@@ -19,24 +19,35 @@ body {
 .hero {
   position: relative;
   height:100vh;
-  background:linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1606800052052-a08af7148866") center/cover no-repeat fixed;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
-  color:white;
-  text-shadow: 0 5px 20px rgba(0,0,0,0.5);
   overflow:hidden;
 }
-.hero h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size:80px;
-  margin:0;
-  letter-spacing:2px;
+.hero-img {
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+  filter: brightness(0.65);
 }
-.hero p {
-  font-size:24px;
-  margin:8px 0;
+.hero-text {
+  position:relative;
+  z-index:1;
+  color:white;
+  text-align:center;
+  text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+.hero-text h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size:70px;
+  margin:0;
+}
+.hero-text p {
+  font-size:22px;
+  margin:5px 0;
   font-style: italic;
 }
 /* SECCIONES */
@@ -80,8 +91,8 @@ button:hover { background:#b5965a; transform: translateY(-3px); }
 .ticket p { margin:5px 0; }
 /* RESPONSIVE MOVIL */
 @media (max-width: 600px) {
-  .hero h1 { font-size:50px; }
-  .hero p { font-size:18px; }
+  .hero-text h1 { font-size:50px; }
+  .hero-text p { font-size:18px; }
   .form input { font-size:16px; padding:12px; margin:8px 0; }
   .form button { font-size:16px; padding:12px; width:100%; }
   .ticket { padding:25px; width:90%; }
@@ -91,10 +102,13 @@ button:hover { background:#b5965a; transform: translateY(-3px); }
 <body>
 <!-- PORTADA -->
 <div class="hero">
-  <h1>Jorge & Estefanía</h1>
-  <p>“Nos casamos y queremos celebrarlo contigo”</p>
-  <p>16 Enero 2027 — 7:00 PM</p>
-  <p>Quinta Agapantos</p>
+  <img class="hero-img" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80" alt="Portada boda">
+  <div class="hero-text">
+    <h1>Jorge & Estefanía</h1>
+    <p>“Nos casamos y queremos celebrarlo contigo”</p>
+    <p>16 Enero 2027 — 7:00 PM</p>
+    <p>Quinta Agapantos</p>
+  </div>
 </div>
 <!-- CONTADOR -->
 <div class="section">
@@ -194,12 +208,11 @@ function enviar(){
 const secciones = document.querySelectorAll('.section');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  document.querySelector('.hero h1').style.transform = `translateY(${scrollY * 0.25}px)`;
-  document.querySelectorAll('.hero p').forEach((p)=>{ p.style.transform = `translateY(${scrollY * 0.35}px)`; });
+  document.querySelector('.hero-text h1').style.transform = `translateY(${scrollY * 0.25}px)`;
+  document.querySelectorAll('.hero-text p').forEach((p)=>{ p.style.transform = `translateY(${scrollY * 0.35}px)`; });
   const triggerBottom = window.innerHeight * 0.85;
   secciones.forEach(sec => { const secTop = sec.getBoundingClientRect().top; if(secTop < triggerBottom){ sec.classList.add('visible'); } });
 });
 </script>
 </body>
-
 </html>
