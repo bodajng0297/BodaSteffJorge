@@ -2,28 +2,87 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pase de Invitación</title>
+<title>Invitación Boda</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-body { font-family: 'Playfair Display', serif; text-align:center; padding:50px; background:#fdfaf6; }
-h1 { font-family: 'Dancing Script', cursive; font-size:36px; margin-bottom:10px; }
-#qr { margin-top:30px; width:250px; height:250px; display:inline-block; }
-p { font-size:18px; margin:5px 0; }
+body {
+  margin:0;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, #fdf7f2, #f6e9de);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+.container {
+  background:white;
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 15px 60px rgba(0,0,0,0.2);
+  text-align:center;
+  max-width:350px;
+  animation: fadeIn 1s ease-out;
+}
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size:36px;
+  margin:10px 0;
+  color:#b28c5d;
+}
+h2 {
+  font-size:24px;
+  margin:5px 0 15px 0;
+  color:#333;
+}
+p {
+  font-size:16px;
+  margin:5px 0;
+  color:#555;
+}
+#qr {
+  margin:20px auto;
+  width:200px;
+  height:200px;
+  padding:10px;
+  background:white;
+  border-radius:25px;
+  box-shadow:0 12px 50px rgba(0,0,0,0.25);
+}
+/* Animaciones */
+@keyframes fadeIn {
+  0% {opacity:0; transform: translateY(-20px);}
+  100% {opacity:1; transform: translateY(0);}
+}
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  .container { padding:30px; width:90%; }
+  h1 { font-size:28px; }
+  h2 { font-size:20px; }
+}
 </style>
 </head>
 <body>
-<h1 id="nombre"></h1>
-<p>Invitado a la boda de Jorge & Estefanía</p>
-<p>16 Enero 2027</p>
-<div id="qr"></div>
+<div class="container">
+  <h1 id="nombre"></h1>
+  <h2>Invitado a nuestra boda</h2>
+  <p>Jorge & Estefanía</p>
+  <p>16 Enero 2027 — 7:00 PM</p>
+  <div id="qr"></div>
+  <p>¡Te esperamos para celebrar juntos este día especial!</p>
+</div>
 <script>
+// Obtener nombre del invitado desde la URL
 const params = new URLSearchParams(window.location.search);
-const invitado = params.get('invitado') || "Invitado";
-document.getElementById('nombre').innerText = invitado.toUpperCase();
-new QRCode(document.getElementById('qr'), {
-  text: "Invitación de: " + invitado.toUpperCase(),
-  width: 250,
-  height: 250
+const invitado = params.get('invitado') || "Querido Invitado";
+document.getElementById("nombre").innerText = invitado.toUpperCase();
+// Generar QR con la URL de confirmación
+const qrURL = window.location.href;
+new QRCode(document.getElementById("qr"), {
+    text: qrURL,
+    width: 200,
+    height: 200
 });
 </script>
 </body>
