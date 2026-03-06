@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pase de Invitación</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+body { font-family: 'Playfair Display', serif; text-align:center; padding:50px; background:#fdfaf6; }
+h1 { font-family: 'Dancing Script', cursive; font-size:36px; margin-bottom:10px; }
+#qr { margin-top:30px; width:250px; height:250px; display:inline-block; }
+p { font-size:18px; margin:5px 0; }
+</style>
+</head>
+<body>
+<h1 id="nombre"></h1>
+<p>Invitado a la boda de Jorge & Estefanía</p>
+<p>16 Enero 2027</p>
+<div id="qr"></div>
+<script>
+const params = new URLSearchParams(window.location.search);
+const invitado = params.get('invitado') || "Invitado";
+document.getElementById('nombre').innerText = invitado.toUpperCase();
+new QRCode(document.getElementById('qr'), {
+  text: "Invitación de: " + invitado.toUpperCase(),
+  width: 250,
+  height: 250
+});
+</script>
+</body>
+</html>
