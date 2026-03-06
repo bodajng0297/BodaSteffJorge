@@ -10,20 +10,18 @@
 body {
   margin:0;
   font-family: 'Playfair Display', serif;
-  background:#fdfaf6;
+  background:#faf7f2;
   color:#333;
-  text-align:center;
-  overflow-x:hidden;
   scroll-behavior: smooth;
 }
 /* PORTADA */
 .hero {
   position: relative;
   height:100vh;
+  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow:hidden;
 }
 .hero-img {
   position:absolute;
@@ -31,77 +29,77 @@ body {
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index:0;
-  filter: brightness(0.6);
-  transition: transform 0.6s ease-out;
+  filter: brightness(0.55);
+  transition: transform 0.4s ease-out;
 }
 .hero-text {
   position:relative;
   z-index:1;
   color:white;
   text-align:center;
-  text-shadow: 0 5px 20px rgba(0,0,0,0.5);
-  transition: transform 0.6s ease-out;
+  text-shadow: 0 5px 15px rgba(0,0,0,0.6);
+  transition: transform 0.4s ease-out;
 }
 .hero-text h1 {
   font-family: 'Dancing Script', cursive;
-  font-size:70px;
+  font-size:60px;
   margin:0;
 }
 .hero-text p {
-  font-size:22px;
+  font-size:20px;
   margin:5px 0;
   font-style: italic;
 }
 /* SECCIONES */
 .section {
-  padding:60px 20px;
-  margin:40px auto;
-  max-width:900px;
+  padding:50px 20px;
+  margin:30px auto;
+  max-width:800px;
   border-radius:25px;
   background:#fff;
-  box-shadow:0 10px 45px rgba(0,0,0,0.1);
+  box-shadow:0 8px 35px rgba(0,0,0,0.08);
   opacity:0;
-  transform: translateY(80px);
-  transition: all 0.8s ease;
+  transform: translateY(40px);
+  transition: all 0.7s ease-out;
 }
 .section.visible {
   opacity:1;
   transform: translateY(0);
 }
 /* TIMER */
-.timer { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
-.card { background:white; padding:25px; border-radius:25px; box-shadow:0 10px 35px rgba(0,0,0,0.1); width:110px; transition: transform 0.4s; }
+.timer { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
+.card { background:white; padding:20px; border-radius:25px; box-shadow:0 8px 25px rgba(0,0,0,0.08); width:100px; transition: transform 0.3s; }
 .card:hover { transform: translateY(-5px); }
-.number { font-size:36px; font-weight:bold; }
+.number { font-size:32px; font-weight:bold; }
 /* EVENTOS */
-.event-card { background:white; padding:30px; margin:20px auto; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.12); max-width:800px; transition: transform 0.4s, box-shadow 0.4s; }
-.event-card:hover { transform: translateY(-10px); box-shadow:0 20px 60px rgba(0,0,0,0.15); }
-iframe { border-radius:20px; }
+.event-card { background:white; padding:25px; margin:15px auto; border-radius:20px; box-shadow:0 8px 35px rgba(0,0,0,0.1); transition: transform 0.4s, box-shadow 0.4s; }
+.event-card:hover { transform: translateY(-5px); box-shadow:0 15px 50px rgba(0,0,0,0.15); }
+iframe { border-radius:15px; }
 /* GALERIA */
-.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin-top:30px; }
-.gallery img { width:100%; border-radius:20px; box-shadow:0 10px 45px rgba(0,0,0,0.15); transition: transform 0.5s, box-shadow 0.5s; }
-.gallery img:hover { transform: scale(1.05); box-shadow:0 15px 55px rgba(0,0,0,0.2); }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:20px; }
+.gallery img { width:100%; border-radius:15px; box-shadow:0 8px 35px rgba(0,0,0,0.12); transition: transform 0.4s, box-shadow 0.4s; }
+.gallery img:hover { transform: scale(1.05); box-shadow:0 12px 50px rgba(0,0,0,0.15); }
 /* FORMULARIO */
-.form { max-width:400px; margin:auto; background:white; padding:40px; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.15); transition: all 0.6s ease; }
-input { width:100%; padding:14px; margin:12px 0; border-radius:12px; border:1px solid #ddd; font-size:16px; text-transform:uppercase; transition: border 0.3s, box-shadow 0.3s; }
-input:focus { border-color:#c8a96a; box-shadow:0 0 12px rgba(200,169,106,0.3); outline:none; }
-button { padding:15px 30px; background:#c8a96a; border:none; color:white; font-size:18px; border-radius:15px; cursor:pointer; transition: background 0.3s, transform 0.2s; }
-button:hover { background:#b5965a; transform: translateY(-3px); }
+.form { max-width:350px; margin:auto; background:white; padding:30px; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.12); }
+input { width:100%; padding:12px; margin:10px 0; border-radius:10px; border:1px solid #ddd; font-size:16px; text-transform:uppercase; transition: all 0.3s; }
+input:focus { border-color:#c8a96a; box-shadow:0 0 12px rgba(200,169,106,0.25); outline:none; }
+button { padding:12px 25px; background:#c8a96a; border:none; color:white; font-size:16px; border-radius:12px; cursor:pointer; transition: all 0.3s; }
+button:hover { background:#b5965a; transform: translateY(-2px); }
 /* TICKET */
-.ticket { display:none; margin-top:40px; background:white; padding:40px; border-radius:25px; box-shadow:0 15px 60px rgba(0,0,0,0.2); max-width:400px; margin-left:auto; margin-right:auto; text-align:center; animation: aparecer 0.6s ease-in-out; }
-@keyframes aparecer { 0% { opacity:0; transform:translateY(-20px); } 100% { opacity:1; transform:translateY(0); } }
-#qr { margin:20px auto; width:200px; height:200px; padding:10px; background:white; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.25); }
-.ticket h3 { margin-bottom:5px; font-size:20px; }
-.ticket h2 { font-family:'Dancing Script', cursive; font-size:34px; margin:10px 0; }
-.ticket p { margin:5px 0; }
-/* RESPONSIVE MOVIL */
+.ticket { display:none; margin-top:30px; background:white; padding:30px; border-radius:20px; box-shadow:0 12px 50px rgba(0,0,0,0.18); max-width:350px; margin-left:auto; margin-right:auto; text-align:center; animation: appear 0.5s ease-in-out; }
+@keyframes appear { 0% { opacity:0; transform:translateY(-15px); } 100% { opacity:1; transform:translateY(0); } }
+#qr { margin:15px auto; width:180px; height:180px; padding:8px; background:white; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.18); }
+.ticket h3 { margin-bottom:5px; font-size:18px; }
+.ticket h2 { font-family:'Dancing Script', cursive; font-size:28px; margin:10px 0; }
+.ticket p { margin:3px 0; }
+/* RESPONSIVE */
 @media (max-width: 600px) {
-  .hero-text h1 { font-size:50px; }
-  .hero-text p { font-size:18px; }
-  .form input { font-size:16px; padding:12px; margin:8px 0; }
-  .form button { font-size:16px; padding:12px; width:100%; }
-  .ticket { padding:25px; width:90%; }
+  .hero-text h1 { font-size:45px; }
+  .hero-text p { font-size:16px; }
+  .form input { font-size:14px; padding:10px; }
+  .form button { font-size:14px; padding:10px; width:100%; }
+  .ticket { padding:20px; width:90%; }
+  .gallery { grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); }
 }
 </style>
 </head>
@@ -132,14 +130,14 @@ button:hover { background:#b5965a; transform: translateY(-3px); }
   <div class="event-card">
     <h3>⛪ Misa</h3>
     <p>Capilla San Agustín — 5:00 PM</p>
-    <iframe width="100%" height="250" src="https://maps.google.com/maps?q=Templo%20San%20Agustin%20Guadalajara&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+    <iframe width="100%" height="200" src="https://maps.google.com/maps?q=Templo%20San%20Agustin%20Guadalajara&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
     <br><br>
     <a href="https://maps.app.goo.gl/xET6rKbuowavWrCh7?g_st=ic" target="_blank"><button>Abrir ubicación</button></a>
   </div>
   <div class="event-card">
     <h3>💍 Ceremonia Civil</h3>
     <p>Quinta Agapantos — 6:00 PM</p>
-    <iframe width="100%" height="250" src="https://maps.google.com/maps?q=Quinta%20Agapantos&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+    <iframe width="100%" height="200" src="https://maps.google.com/maps?q=Quinta%20Agapantos&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
     <br><br>
     <a href="https://maps.app.goo.gl/ANTHJHQ7PhqBSDFk9?g_st=ic" target="_blank"><button>Abrir ubicación</button></a>
   </div>
@@ -199,7 +197,7 @@ function generar(){
   document.getElementById("invitado").innerText=nombre;
   linkInvitacion = "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado=" + encodeURIComponent(nombre);
   document.getElementById("qr").innerHTML="";
-  new QRCode(document.getElementById("qr"),{ text:linkInvitacion, width:200, height:200 });
+  new QRCode(document.getElementById("qr"),{ text:linkInvitacion, width:180, height:180 });
 }
 function enviar(){
   let nombre=document.getElementById("nombre").value.toUpperCase();
@@ -208,14 +206,12 @@ function enviar(){
   let url="https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje);
   window.open(url);
 }
-/* SCROLL DINÁMICO Y PARALLAX */
+/* SCROLL PARALLAX FLUIDO */
 const secciones = document.querySelectorAll('.section');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  // Parallax portada
-  document.querySelector('.hero-img').style.transform = `scale(${1 + scrollY*0.0005}) translateY(${scrollY*0.25}px)`;
-  document.querySelector('.hero-text').style.transform = `translateY(${scrollY*0.2}px)`;
-  // Aparecer secciones
+  document.querySelector('.hero-img').style.transform = `scale(${1 + scrollY*0.0003}) translateY(${scrollY*0.15}px)`;
+  document.querySelector('.hero-text').style.transform = `translateY(${scrollY*0.12}px)`;
   const triggerBottom = window.innerHeight * 0.85;
   secciones.forEach(sec => {
     const secTop = sec.getBoundingClientRect().top;
@@ -227,4 +223,3 @@ window.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
-
