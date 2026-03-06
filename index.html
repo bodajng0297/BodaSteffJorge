@@ -3,25 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Boda Jorge & Estefanía</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 /* GENERAL */
 body {
   margin:0;
   font-family: 'Playfair Display', serif;
-  background:#faf7f2;
+  background:#fdf7f2;
   color:#333;
   scroll-behavior: smooth;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 /* PORTADA */
 .hero {
   position: relative;
+  width:100%;
   height:100vh;
   overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
+  text-align:center;
 }
 .hero-img {
   position:absolute;
@@ -38,58 +43,58 @@ body {
   color:white;
   text-align:center;
   text-shadow: 0 5px 15px rgba(0,0,0,0.6);
-  transition: transform 0.4s ease-out;
 }
 .hero-text h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size:60px;
+  font-family:'Dancing Script', cursive;
+  font-size:65px;
   margin:0;
 }
 .hero-text p {
-  font-size:20px;
+  font-size:22px;
   margin:5px 0;
-  font-style: italic;
+  font-style:italic;
 }
 /* SECCIONES */
 .section {
   padding:50px 20px;
-  margin:30px auto;
+  margin:40px auto;
   max-width:800px;
   border-radius:25px;
   background:#fff;
-  box-shadow:0 8px 35px rgba(0,0,0,0.08);
+  box-shadow:0 12px 50px rgba(0,0,0,0.1);
   opacity:0;
   transform: translateY(40px);
-  transition: all 0.7s ease-out;
+  transition: all 0.8s ease-out;
 }
 .section.visible {
   opacity:1;
   transform: translateY(0);
+  transition: all 0.8s ease-out;
 }
 /* TIMER */
 .timer { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
-.card { background:white; padding:20px; border-radius:25px; box-shadow:0 8px 25px rgba(0,0,0,0.08); width:100px; transition: transform 0.3s; }
+.card { background:white; padding:25px; border-radius:25px; box-shadow:0 8px 35px rgba(0,0,0,0.08); width:100px; transition: transform 0.3s; text-align:center;}
 .card:hover { transform: translateY(-5px); }
 .number { font-size:32px; font-weight:bold; }
 /* EVENTOS */
-.event-card { background:white; padding:25px; margin:15px auto; border-radius:20px; box-shadow:0 8px 35px rgba(0,0,0,0.1); transition: transform 0.4s, box-shadow 0.4s; }
-.event-card:hover { transform: translateY(-5px); box-shadow:0 15px 50px rgba(0,0,0,0.15); }
+.event-card { background:white; padding:25px; margin:20px auto; border-radius:20px; box-shadow:0 12px 50px rgba(0,0,0,0.15); text-align:center; transition: transform 0.4s, box-shadow 0.4s; }
+.event-card:hover { transform: translateY(-5px); box-shadow:0 18px 60px rgba(0,0,0,0.2); }
 iframe { border-radius:15px; }
 /* GALERIA */
-.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:20px; }
-.gallery img { width:100%; border-radius:15px; box-shadow:0 8px 35px rgba(0,0,0,0.12); transition: transform 0.4s, box-shadow 0.4s; }
-.gallery img:hover { transform: scale(1.05); box-shadow:0 12px 50px rgba(0,0,0,0.15); }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; margin-top:20px; justify-items:center; }
+.gallery img { width:100%; border-radius:15px; box-shadow:0 12px 50px rgba(0,0,0,0.12); transition: transform 0.4s, box-shadow 0.4s; }
+.gallery img:hover { transform: scale(1.05); box-shadow:0 18px 60px rgba(0,0,0,0.15); }
 /* FORMULARIO */
-.form { max-width:350px; margin:auto; background:white; padding:30px; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.12); }
-input { width:100%; padding:12px; margin:10px 0; border-radius:10px; border:1px solid #ddd; font-size:16px; text-transform:uppercase; transition: all 0.3s; }
+.form { max-width:350px; margin:auto; background:white; padding:35px; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.12); text-align:center; }
+input { width:100%; padding:12px; margin:10px 0; border-radius:12px; border:1px solid #ddd; font-size:16px; text-transform:uppercase; transition: all 0.3s; }
 input:focus { border-color:#c8a96a; box-shadow:0 0 12px rgba(200,169,106,0.25); outline:none; }
 button { padding:12px 25px; background:#c8a96a; border:none; color:white; font-size:16px; border-radius:12px; cursor:pointer; transition: all 0.3s; }
 button:hover { background:#b5965a; transform: translateY(-2px); }
 /* TICKET */
-.ticket { display:none; margin-top:30px; background:white; padding:30px; border-radius:20px; box-shadow:0 12px 50px rgba(0,0,0,0.18); max-width:350px; margin-left:auto; margin-right:auto; text-align:center; animation: appear 0.5s ease-in-out; }
+.ticket { display:none; margin-top:30px; background:white; padding:35px; border-radius:25px; box-shadow:0 15px 60px rgba(0,0,0,0.18); max-width:350px; margin-left:auto; margin-right:auto; text-align:center; animation: appear 0.5s ease-in-out; }
 @keyframes appear { 0% { opacity:0; transform:translateY(-15px); } 100% { opacity:1; transform:translateY(0); } }
-#qr { margin:15px auto; width:180px; height:180px; padding:8px; background:white; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.18); }
-.ticket h3 { margin-bottom:5px; font-size:18px; }
+#qr { margin:20px auto; width:180px; height:180px; padding:10px; background:white; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.18); }
+.ticket h3 { margin-bottom:5px; font-size:18px; font-weight:bold; }
 .ticket h2 { font-family:'Dancing Script', cursive; font-size:28px; margin:10px 0; }
 .ticket p { margin:3px 0; }
 /* RESPONSIVE */
@@ -197,7 +202,7 @@ function generar(){
   document.getElementById("invitado").innerText=nombre;
   linkInvitacion = "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado=" + encodeURIComponent(nombre);
   document.getElementById("qr").innerHTML="";
-  new QRCode(document.getElementById("qr"),{ text:linkInvitacion, width:180, height:180 });
+  new QRCode(document.getElementById("qr"), { text:linkInvitacion, width:180, height:180 });
 }
 function enviar(){
   let nombre=document.getElementById("nombre").value.toUpperCase();
@@ -206,7 +211,7 @@ function enviar(){
   let url="https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje);
   window.open(url);
 }
-/* SCROLL PARALLAX FLUIDO */
+/* SCROLL SUAVE PARALLAX */
 const secciones = document.querySelectorAll('.section');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
@@ -215,9 +220,7 @@ window.addEventListener('scroll', () => {
   const triggerBottom = window.innerHeight * 0.85;
   secciones.forEach(sec => {
     const secTop = sec.getBoundingClientRect().top;
-    if(secTop < triggerBottom){
-      sec.classList.add('visible');
-    }
+    if(secTop < triggerBottom){ sec.classList.add('visible'); }
   });
 });
 </script>
