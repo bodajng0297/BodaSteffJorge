@@ -53,7 +53,6 @@ section { width:100%; display:flex; justify-content:center; align-items:center; 
 .hero-text p { font-size:26px; margin:10px 0; }
 /* ===== SECCIONES ===== */
 .section {
-  scroll-snap-align: start;
   min-height:100vh;
   width:100%;
   max-width:800px;
@@ -71,9 +70,6 @@ section { width:100%; display:flex; justify-content:center; align-items:center; 
   opacity:1;
   transform: scale(1);
 }
-/* ===== SCROLL SNAP ===== */
-html { scroll-snap-type: y mandatory; }
-body { scroll-snap-type: y mandatory; }
 /* ===== TIMER ===== */
 .timer { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
 .card { background:white; padding:30px; border-radius:25px; box-shadow:0 8px 35px rgba(0,0,0,0.08); width:120px; text-align:center; }
@@ -221,14 +217,17 @@ function enviar(){
 const secciones = document.querySelectorAll('.section');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  document.querySelector('.hero-img').style.transform = `scale(${1 + scrollY*0.0002}) translateY(${scrollY*0.05}px)`;
-  document.querySelector('.hero-text').style.transform = `translateY(${scrollY*0.03}px)`;
-  
-  const trigger = window.innerHeight * 0.5;
+  const heroImg = document.querySelector('.hero-img');
+  const heroText = document.querySelector('.hero-text');
+  if(heroImg) heroImg.style.transform = `scale(${1 + scrollY*0.0002}) translateY(${scrollY*0.05}px)`;
+  if(heroText) heroText.style.transform = `translateY(${scrollY*0.03}px)`;
   secciones.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-    if(top < trigger && top > -trigger) { sec.classList.add('active'); }
-    else { sec.classList.remove('active'); }
+    const rect = sec.getBoundingClientRect();
+    if(rect.top < window.innerHeight*0.75 && rect.bottom > window.innerHeight*0.25) {
+      sec.classList.add('active');
+    } else {
+      sec.classList.remove('active');
+    }
   });
 });
 </script>
