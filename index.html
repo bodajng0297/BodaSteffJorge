@@ -14,44 +14,48 @@ body {
   color:#333;
   text-align:center;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 /* PORTADA */
 .hero {
   height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url("https://images.unsplash.com/photo-1606800052052-a08af7148866");
-  background-size:cover;
-  background-position:center;
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("https://images.unsplash.com/photo-1606800052052-a08af7148866") center/cover no-repeat fixed;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   color:white;
+  text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  transition: background 0.5s ease;
 }
 .hero h1 {
   font-family: Playfair Display, serif;
-  font-size:72px;
+  font-size:80px;
   letter-spacing:4px;
   margin-bottom:10px;
 }
 .hero p {
   font-size:22px;
   letter-spacing:2px;
+  margin:4px 0;
 }
 /* SECCIONES */
 .section {
-  padding:80px 20px;
-  background:#fdfdfd;
-  border-radius:20px;
-  margin:30px auto;
+  padding:60px 20px;
+  margin:20px auto;
   max-width:900px;
-  box-shadow:0 10px 40px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+  transition: transform 0.6s ease, box-shadow 0.6s ease, opacity 0.6s ease;
+  opacity:0;
+  transform: translateY(50px);
 }
-.section:hover {
-  transform: translateY(-5px);
-  box-shadow:0 15px 50px rgba(0,0,0,0.12);
+.section.visible {
+  opacity:1;
+  transform: translateY(0);
 }
 /* TIMER */
 .timer {
@@ -63,9 +67,13 @@ body {
 .card {
   background:white;
   padding:25px;
-  border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  border-radius:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
   width:110px;
+  transition: transform 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
 }
 .number {
   font-size:36px;
@@ -75,13 +83,18 @@ body {
 .event-card {
   background:white;
   padding:30px;
-  margin:30px auto;
-  border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  margin:20px auto;
+  border-radius:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.1);
   max-width:800px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.12);
 }
 iframe {
-  border-radius:10px;
+  border-radius:12px;
 }
 /* GALERIA */
 .gallery {
@@ -92,7 +105,12 @@ iframe {
 }
 .gallery img {
   width:100%;
-  border-radius:12px;
+  border-radius:15px;
+  box-shadow:0 5px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.05);
 }
 /* FORMULARIO */
 .form {
@@ -100,17 +118,23 @@ iframe {
   margin:auto;
   background:white;
   padding:35px;
-  border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  border-radius:20px;
+  box-shadow:0 10px 35px rgba(0,0,0,0.12);
 }
 input {
   width:100%;
   padding:14px;
   margin:10px 0;
-  border-radius:8px;
+  border-radius:12px;
   border:1px solid #ddd;
   font-size:16px;
   text-transform:uppercase;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: border 0.3s;
+}
+input:focus {
+  border-color:#c8a96a;
+  outline:none;
 }
 button {
   padding:15px 30px;
@@ -118,11 +142,13 @@ button {
   border:none;
   color:white;
   font-size:18px;
-  border-radius:10px;
+  border-radius:12px;
   cursor:pointer;
+  transition: background 0.3s, transform 0.2s;
 }
 button:hover {
   background:#b5965a;
+  transform: translateY(-2px);
 }
 /* TICKET */
 .ticket {
@@ -136,7 +162,7 @@ button:hover {
   margin-left:auto;
   margin-right:auto;
   text-align:center;
-  animation: aparecer 0.5s ease-in-out;
+  animation: aparecer 0.6s ease-in-out;
 }
 @keyframes aparecer {
   0% { opacity:0; transform:translateY(-20px); }
@@ -149,8 +175,8 @@ button:hover {
   height:200px;
   padding:10px;
   background:white;
-  border-radius:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  border-radius:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.2);
 }
 .ticket h3 { margin-bottom:5px; font-size:20px; }
 .ticket h2 { font-family:Playfair Display, serif; font-size:32px; margin:10px 0; }
@@ -289,6 +315,17 @@ window.addEventListener("DOMContentLoaded", function(){
     document.getElementById("qr").innerHTML = "";
     new QRCode(document.getElementById("qr"),{ text: linkInvitacion, width:200, height:200 });
   }
+});
+/* Scroll animación estilo Apple */
+const secciones = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  const triggerBottom = window.innerHeight * 0.85;
+  secciones.forEach(sec => {
+    const secTop = sec.getBoundingClientRect().top;
+    if(secTop < triggerBottom){
+      sec.classList.add('visible');
+    }
+  });
 });
 </script>
 </body>
