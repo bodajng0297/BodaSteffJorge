@@ -97,10 +97,10 @@ input:focus { border-color:#c8a96a; box-shadow:0 0 14px rgba(200,169,106,0.25); 
 button { padding:14px 28px; background:#c8a96a; border:none; color:white; font-size:18px; border-radius:12px; cursor:pointer; transition: all 0.3s; }
 button:hover { background:#b5965a; transform: translateY(-2px); }
 /* ===== TICKET ===== */
-.ticket { display:none; margin-top:30px; background:white; padding:40px; border-radius:25px; box-shadow:0 15px 60px rgba(0,0,0,0.18); max-width:370px; margin-left:auto; margin-right:auto; text-align:center; animation: appear 0.6s ease-in-out; }
+.ticket { display:none; margin-top:30px; background:white; padding:40px; border-radius:25px; box-shadow:0 15px 60px rgba(0,0,0,0.18); max-width:370px; margin-left:auto; margin-right:auto; text-align:center; animation: appear 0.6s ease-in-out; font-family:'Dancing Script', cursive; }
 @keyframes appear { 0% { opacity:0; transform:translateY(-15px); } 100% { opacity:1; transform:translateY(0); } }
 #qr { margin:20px auto; width:180px; height:180px; padding:10px; background:white; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.18); }
-.ticket h3 { margin-bottom:5px; font-size:20px; font-weight:bold; }
+.ticket h3 { margin-bottom:5px; font-size:22px; font-weight:bold; }
 .ticket h2 { font-family:'Dancing Script', cursive; font-size:34px; margin:10px 0; }
 .ticket p { margin:4px 0; }
 /* ===== RESPONSIVE ===== */
@@ -115,6 +115,10 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
 </style>
 </head>
 <body>
+<!-- MUSICA DE FONDO -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/08/04/audio_d3d7e7fca0.mp3?filename=romantic-piano-10801.mp3" type="audio/mpeg">
+</audio>
 <!-- HERO -->
 <div class="hero">
   <img class="hero-img" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80" alt="Portada boda">
@@ -174,6 +178,7 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
     <input id="telefono" placeholder="Teléfono con lada">
     <button onclick="generar()">Generar Pase</button>
   </div>
+  <!-- Ticket con estilo igual que invitado.html -->
   <div class="ticket" id="ticket">
     <h3 id="invitado"></h3>
     <p>Invitado a la boda de</p>
@@ -238,4 +243,3 @@ window.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
-
