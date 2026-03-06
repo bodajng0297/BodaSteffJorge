@@ -2,35 +2,35 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Boda Jorge & Estefanía</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Boda Jorge & Estefania</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
+/* ===== GENERAL ===== */
 body {
   margin:0;
   font-family: 'Great Vibes', cursive;
   background: linear-gradient(135deg, #fef9f5, #fdeee7);
   color:#333;
-  scroll-behavior: smooth;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
   overflow-x:hidden;
+  scroll-behavior: smooth;
 }
-/* PORTADA */
+h2 { margin-bottom:20px; }
+section { width:100%; display:flex; justify-content:center; align-items:center; flex-direction:column; }
+/* ===== HERO / PORTADA ===== */
 .hero {
   width:100%;
   height:100vh;
   position:relative;
+  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
-  overflow:hidden;
 }
 .hero-img {
   position:absolute;
-  top:0; left:0;
   width:100%;
   height:100%;
   object-fit:cover;
@@ -41,54 +41,40 @@ body {
   position:relative;
   z-index:1;
   color:white;
-  text-align:center;
   padding:20px;
   text-shadow:0 5px 20px rgba(0,0,0,0.6);
   transition: transform 0.6s ease-out;
 }
-.hero-text h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size:70px;
-  margin:0;
-}
-.hero-text p {
-  font-size:24px;
-  margin:8px 0;
-}
-/* SECCIONES */
+.hero-text h1 { font-family:'Dancing Script', cursive; font-size:60px; margin:0; }
+.hero-text p { font-size:20px; margin:6px 0; }
+/* ===== SECCIONES ===== */
 .section {
-  padding:60px 20px;
-  margin:30px auto;
+  scroll-snap-align: start;
+  min-height:100vh;
+  width:100%;
   max-width:800px;
+  background:white;
+  margin:30px auto;
   border-radius:25px;
-  background:#fff;
+  padding:50px 20px;
   box-shadow:0 12px 50px rgba(0,0,0,0.12);
   text-align:center;
   opacity:0;
-  transform: scale(0.8) translateY(50px);
+  transform: scale(0.8);
   transition: all 0.8s ease-out;
 }
 .section.active {
   opacity:1;
-  transform: scale(1) translateY(0);
+  transform: scale(1);
 }
-/* TIMER */
-.timer {
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-}
-.card {
-  background:white;
-  padding:25px;
-  border-radius:25px;
-  box-shadow:0 8px 35px rgba(0,0,0,0.08);
-  width:100px;
-  text-align:center;
-}
+/* ===== SCROLL SNAP ===== */
+html { scroll-snap-type: y mandatory; }
+body { scroll-snap-type: y mandatory; }
+/* ===== TIMER ===== */
+.timer { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
+.card { background:white; padding:25px; border-radius:25px; box-shadow:0 8px 35px rgba(0,0,0,0.08); width:100px; text-align:center; }
 .number { font-size:32px; font-weight:bold; }
-/* EVENTOS */
+/* ===== EVENTOS ===== */
 .event-card {
   background:white;
   padding:25px;
@@ -100,27 +86,27 @@ body {
 }
 .event-card:hover { transform: translateY(-5px); box-shadow:0 18px 60px rgba(0,0,0,0.2); }
 iframe { border-radius:15px; }
-/* GALERIA */
+/* ===== GALERIA ===== */
 .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; margin-top:20px; justify-items:center; }
 .gallery img { width:100%; border-radius:15px; box-shadow:0 12px 50px rgba(0,0,0,0.12); transition: transform 0.4s, box-shadow 0.4s; }
 .gallery img:hover { transform: scale(1.05); box-shadow:0 18px 60px rgba(0,0,0,0.15); }
-/* FORMULARIO */
+/* ===== FORMULARIO ===== */
 .form { max-width:350px; margin:auto; background:white; padding:35px; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.12); text-align:center; }
 input { width:100%; padding:12px; margin:10px 0; border-radius:12px; border:1px solid #ddd; font-size:16px; text-transform:uppercase; transition: all 0.3s; }
 input:focus { border-color:#c8a96a; box-shadow:0 0 12px rgba(200,169,106,0.25); outline:none; }
 button { padding:12px 25px; background:#c8a96a; border:none; color:white; font-size:16px; border-radius:12px; cursor:pointer; transition: all 0.3s; }
 button:hover { background:#b5965a; transform: translateY(-2px); }
-/* TICKET */
+/* ===== TICKET ===== */
 .ticket { display:none; margin-top:30px; background:white; padding:35px; border-radius:25px; box-shadow:0 15px 60px rgba(0,0,0,0.18); max-width:350px; margin-left:auto; margin-right:auto; text-align:center; animation: appear 0.5s ease-in-out; }
 @keyframes appear { 0% { opacity:0; transform:translateY(-15px); } 100% { opacity:1; transform:translateY(0); } }
 #qr { margin:20px auto; width:180px; height:180px; padding:10px; background:white; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.18); }
 .ticket h3 { margin-bottom:5px; font-size:18px; font-weight:bold; }
 .ticket h2 { font-family:'Dancing Script', cursive; font-size:28px; margin:10px 0; }
 .ticket p { margin:3px 0; }
-/* RESPONSIVE */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
-  .hero-text h1 { font-size:50px; }
-  .hero-text p { font-size:18px; }
+  .hero-text h1 { font-size:45px; }
+  .hero-text p { font-size:16px; }
   .form input { font-size:14px; padding:10px; }
   .form button { font-size:14px; padding:10px; width:100%; }
   .ticket { padding:20px; width:90%; }
@@ -129,18 +115,18 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
 </style>
 </head>
 <body>
-<!-- PORTADA -->
+<!-- HERO -->
 <div class="hero">
   <img class="hero-img" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80" alt="Portada boda">
   <div class="hero-text">
-    <h1>Jorge & Estefanía</h1>
+    <h1>Jorge & Estefania</h1>
     <p>“Nos casamos y queremos compartir este día contigo”</p>
     <p>16 Enero 2027 — 7:00 PM</p>
     <p>Quinta Agapantos</p>
   </div>
 </div>
 <!-- SECCIONES -->
-<div class="section" id="contador">
+<section class="section" id="contador">
   <h2>Cuenta regresiva</h2>
   <div class="timer">
     <div class="card"><div id="dias" class="number"></div>Días</div>
@@ -148,8 +134,8 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
     <div class="card"><div id="minutos" class="number"></div>Min</div>
     <div class="card"><div id="segundos" class="number"></div>Seg</div>
   </div>
-</div>
-<div class="section" id="itinerario">
+</section>
+<section class="section" id="itinerario">
   <h2>Itinerario</h2>
   <div class="event-card">
     <h3>⛪ Misa</h3>
@@ -169,10 +155,10 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
     <h3>🍸 Coctelería</h3>
     <p>Quinta Agapantos — 7:00 PM</p>
   </div>
-</div>
-<div class="section" id="galeria">
+</section>
+<section class="section" id="galeria">
   <h2>Nuestras Fotos</h2>
-  <div class="gallery" id="gallery">
+  <div class="gallery">
     <img src="images/foto1.jpg">
     <img src="images/foto2.jpg">
     <img src="images/foto3.jpg">
@@ -180,8 +166,8 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
     <img src="images/foto5.jpg">
     <img src="images/foto6.jpg">
   </div>
-</div>
-<div class="section" id="confirmacion">
+</section>
+<section class="section" id="confirmacion">
   <h2>Confirmar asistencia</h2>
   <div class="form">
     <input id="nombre" placeholder="Nombre del invitado">
@@ -191,13 +177,13 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
   <div class="ticket" id="ticket">
     <h3 id="invitado"></h3>
     <p>Invitado a la boda de</p>
-    <h2>Jorge & Estefanía</h2>
+    <h2>Jorge & Estefania</h2>
     <p>16 Enero 2027</p>
     <div id="qr"></div>
     <br>
     <button onclick="enviar()">Enviar invitación por WhatsApp</button>
   </div>
-</div>
+</section>
 <script>
 /* CONTADOR */
 const fecha = new Date("Jan 16, 2027 19:00:00").getTime();
@@ -224,10 +210,10 @@ function generar(){
 function enviar(){
   let nombre=document.getElementById("nombre").value.toUpperCase();
   let telefono=document.getElementById("telefono").value;
-  let mensaje = `Hola ${nombre}, Jorge y Estefanía te invitan a su boda. Aquí tu invitación: ${linkInvitacion}`;
+  let mensaje = `Hola ${nombre}, Jorge y Estefania te invitan a su boda. Aquí tu invitación: ${linkInvitacion}`;
   window.open("https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje));
 }
-/* SECCIONES ZOOM SCROLL */
+/* ZOOM SCROLL PROFESIONAL */
 const secciones = document.querySelectorAll('.section');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
@@ -247,4 +233,3 @@ window.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
-
