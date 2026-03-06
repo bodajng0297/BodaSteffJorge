@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Boda Jorge & Estefania</title>
+<title>Boda Jorge & Estefanía</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -16,7 +16,7 @@ body {
   overflow-x:hidden;
   scroll-behavior: smooth;
 }
-h2 { margin-bottom:20px; }
+h2 { margin-bottom:25px; font-size:28px; }
 section { width:100%; display:flex; justify-content:center; align-items:center; flex-direction:column; }
 /* ===== HERO / PORTADA ===== */
 .hero {
@@ -35,7 +35,7 @@ section { width:100%; display:flex; justify-content:center; align-items:center; 
   height:100%;
   object-fit:cover;
   filter: brightness(0.55);
-  transition: transform 0.6s ease-out;
+  transition: transform 1s ease-out;
 }
 .hero-text {
   position:relative;
@@ -43,10 +43,10 @@ section { width:100%; display:flex; justify-content:center; align-items:center; 
   color:white;
   padding:20px;
   text-shadow:0 5px 20px rgba(0,0,0,0.6);
-  transition: transform 0.6s ease-out;
+  transition: transform 1s ease-out;
 }
-.hero-text h1 { font-family:'Dancing Script', cursive; font-size:60px; margin:0; }
-.hero-text p { font-size:20px; margin:6px 0; }
+.hero-text h1 { font-family:'Dancing Script', cursive; font-size:80px; margin:0; }
+.hero-text p { font-size:24px; margin:8px 0; }
 /* ===== SECCIONES ===== */
 .section {
   scroll-snap-align: start;
@@ -56,12 +56,12 @@ section { width:100%; display:flex; justify-content:center; align-items:center; 
   background:white;
   margin:30px auto;
   border-radius:25px;
-  padding:50px 20px;
+  padding:60px 25px;
   box-shadow:0 12px 50px rgba(0,0,0,0.12);
   text-align:center;
   opacity:0;
-  transform: scale(0.8);
-  transition: all 0.8s ease-out;
+  transform: scale(0.85);
+  transition: all 1.2s ease-out;
 }
 .section.active {
   opacity:1;
@@ -71,46 +71,46 @@ section { width:100%; display:flex; justify-content:center; align-items:center; 
 html { scroll-snap-type: y mandatory; }
 body { scroll-snap-type: y mandatory; }
 /* ===== TIMER ===== */
-.timer { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
-.card { background:white; padding:25px; border-radius:25px; box-shadow:0 8px 35px rgba(0,0,0,0.08); width:100px; text-align:center; }
-.number { font-size:32px; font-weight:bold; }
+.timer { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+.card { background:white; padding:30px; border-radius:25px; box-shadow:0 8px 35px rgba(0,0,0,0.08); width:120px; text-align:center; }
+.number { font-size:40px; font-weight:bold; }
 /* ===== EVENTOS ===== */
 .event-card {
   background:white;
-  padding:25px;
-  margin:20px auto;
+  padding:30px;
+  margin:25px auto;
   border-radius:20px;
   box-shadow:0 12px 50px rgba(0,0,0,0.15);
   text-align:center;
-  transition: transform 0.4s, box-shadow 0.4s;
+  transition: transform 0.6s, box-shadow 0.6s;
 }
 .event-card:hover { transform: translateY(-5px); box-shadow:0 18px 60px rgba(0,0,0,0.2); }
 iframe { border-radius:15px; }
 /* ===== GALERIA ===== */
-.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; margin-top:20px; justify-items:center; }
-.gallery img { width:100%; border-radius:15px; box-shadow:0 12px 50px rgba(0,0,0,0.12); transition: transform 0.4s, box-shadow 0.4s; }
-.gallery img:hover { transform: scale(1.05); box-shadow:0 18px 60px rgba(0,0,0,0.15); }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:20px; margin-top:25px; justify-items:center; }
+.gallery img { width:100%; border-radius:15px; box-shadow:0 12px 50px rgba(0,0,0,0.12); transition: transform 0.5s, box-shadow 0.5s; }
+.gallery img:hover { transform: scale(1.08); box-shadow:0 18px 60px rgba(0,0,0,0.15); }
 /* ===== FORMULARIO ===== */
-.form { max-width:350px; margin:auto; background:white; padding:35px; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.12); text-align:center; }
-input { width:100%; padding:12px; margin:10px 0; border-radius:12px; border:1px solid #ddd; font-size:16px; text-transform:uppercase; transition: all 0.3s; }
-input:focus { border-color:#c8a96a; box-shadow:0 0 12px rgba(200,169,106,0.25); outline:none; }
-button { padding:12px 25px; background:#c8a96a; border:none; color:white; font-size:16px; border-radius:12px; cursor:pointer; transition: all 0.3s; }
+.form { max-width:370px; margin:auto; background:white; padding:40px; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.12); text-align:center; }
+input { width:100%; padding:14px; margin:12px 0; border-radius:12px; border:1px solid #ddd; font-size:18px; text-transform:uppercase; transition: all 0.3s; }
+input:focus { border-color:#c8a96a; box-shadow:0 0 14px rgba(200,169,106,0.25); outline:none; }
+button { padding:14px 28px; background:#c8a96a; border:none; color:white; font-size:16px; border-radius:12px; cursor:pointer; transition: all 0.3s; }
 button:hover { background:#b5965a; transform: translateY(-2px); }
 /* ===== TICKET ===== */
-.ticket { display:none; margin-top:30px; background:white; padding:35px; border-radius:25px; box-shadow:0 15px 60px rgba(0,0,0,0.18); max-width:350px; margin-left:auto; margin-right:auto; text-align:center; animation: appear 0.5s ease-in-out; }
+.ticket { display:none; margin-top:30px; background:white; padding:40px; border-radius:25px; box-shadow:0 15px 60px rgba(0,0,0,0.18); max-width:370px; margin-left:auto; margin-right:auto; text-align:center; animation: appear 0.6s ease-in-out; }
 @keyframes appear { 0% { opacity:0; transform:translateY(-15px); } 100% { opacity:1; transform:translateY(0); } }
 #qr { margin:20px auto; width:180px; height:180px; padding:10px; background:white; border-radius:25px; box-shadow:0 12px 50px rgba(0,0,0,0.18); }
-.ticket h3 { margin-bottom:5px; font-size:18px; font-weight:bold; }
-.ticket h2 { font-family:'Dancing Script', cursive; font-size:28px; margin:10px 0; }
-.ticket p { margin:3px 0; }
+.ticket h3 { margin-bottom:5px; font-size:20px; font-weight:bold; }
+.ticket h2 { font-family:'Dancing Script', cursive; font-size:32px; margin:10px 0; }
+.ticket p { margin:4px 0; }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
-  .hero-text h1 { font-size:45px; }
-  .hero-text p { font-size:16px; }
-  .form input { font-size:14px; padding:10px; }
-  .form button { font-size:14px; padding:10px; width:100%; }
-  .ticket { padding:20px; width:90%; }
-  .gallery { grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); }
+  .hero-text h1 { font-size:60px; }
+  .hero-text p { font-size:18px; }
+  .form input { font-size:16px; padding:12px; }
+  .form button { font-size:16px; padding:12px; width:100%; }
+  .ticket { padding:25px; width:90%; }
+  .gallery { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); }
 }
 </style>
 </head>
@@ -119,8 +119,8 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
 <div class="hero">
   <img class="hero-img" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80" alt="Portada boda">
   <div class="hero-text">
-    <h1>Jorge & Estefania</h1>
-    <p>“Nos casamos y queremos compartir este día contigo”</p>
+    <h1>Jorge & Estefanía</h1>
+    <p>“Nos casamos y celebramos el amor contigo”</p>
     <p>16 Enero 2027 — 7:00 PM</p>
     <p>Quinta Agapantos</p>
   </div>
@@ -177,7 +177,7 @@ button:hover { background:#b5965a; transform: translateY(-2px); }
   <div class="ticket" id="ticket">
     <h3 id="invitado"></h3>
     <p>Invitado a la boda de</p>
-    <h2>Jorge & Estefania</h2>
+    <h2>Jorge & Estefanía</h2>
     <p>16 Enero 2027</p>
     <div id="qr"></div>
     <br>
@@ -210,24 +210,21 @@ function generar(){
 function enviar(){
   let nombre=document.getElementById("nombre").value.toUpperCase();
   let telefono=document.getElementById("telefono").value;
-  let mensaje = `Hola ${nombre}, Jorge y Estefania te invitan a su boda. Aquí tu invitación: ${linkInvitacion}`;
+  let mensaje = `Hola ${nombre}, Jorge y Estefanía te invitan a su boda. Aquí tu invitación: ${linkInvitacion}`;
   window.open("https://wa.me/"+telefono+"?text="+encodeURIComponent(mensaje));
 }
-/* ZOOM SCROLL PROFESIONAL */
+/* ZOOM SCROLL PROFESIONAL LENTO */
 const secciones = document.querySelectorAll('.section');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  document.querySelector('.hero-img').style.transform = `scale(${1 + scrollY*0.0004}) translateY(${scrollY*0.12}px)`;
-  document.querySelector('.hero-text').style.transform = `translateY(${scrollY*0.1}px)`;
+  document.querySelector('.hero-img').style.transform = `scale(${1 + scrollY*0.0002}) translateY(${scrollY*0.08}px)`;
+  document.querySelector('.hero-text').style.transform = `translateY(${scrollY*0.05}px)`;
   
   const trigger = window.innerHeight * 0.5;
   secciones.forEach(sec => {
     const top = sec.getBoundingClientRect().top;
-    if(top < trigger && top > -trigger) {
-      sec.classList.add('active');
-    } else {
-      sec.classList.remove('active');
-    }
+    if(top < trigger && top > -trigger) { sec.classList.add('active'); }
+    else { sec.classList.remove('active'); }
   });
 });
 </script>
