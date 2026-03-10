@@ -14,6 +14,7 @@ background:linear-gradient(135deg,#fdf7f3,#f9e7dd);
 color:#333;
 text-align:center;
 overflow-x:hidden;
+scroll-behavior:smooth;
 }
 /* HERO */
 .hero{
@@ -52,17 +53,17 @@ margin:80px auto;
 padding:60px 30px;
 border-radius:25px;
 background:white;
-box-shadow:0 15px 60px rgba(0,0,0,.12);
+box-shadow:0 20px 70px rgba(0,0,0,.12);
 display:flex;
 flex-direction:column;
 align-items:center;
 opacity:0;
-transform:translateY(60px);
-transition:1s;
+transform:translateY(80px) scale(.97);
+transition:all 1.2s cubic-bezier(.19,1,.22,1);
 }
 .section.visible{
 opacity:1;
-transform:translateY(0);
+transform:translateY(0) scale(1);
 }
 /* CONTADOR */
 .timer{
@@ -140,6 +141,7 @@ border-radius:12px;
 border:1px solid #ddd;
 text-align:center;
 font-size:16px;
+text-transform:uppercase;
 }
 button{
 padding:14px 28px;
@@ -225,7 +227,8 @@ font-size:20px;
 <h3>⛪ Misa</h3>
 <p>Capilla San Agustín — 5:00 PM</p>
 <iframe width="100%" height="220"
-src="https://www.google.com/maps?q=Parroquia+San+Agustin+Zapopan&output=embed">
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.9971650419084!2d-103.46677969999999!3d20.5472969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842f54bbb91d9b97%3A0x95d536b6040f63b1!2sParroquia%20de%20San%20Agust%C3%ADn!5e0!3m2!1sen!2smx!4v1773147148440!5m2!1sen!2smx" >  
+</iframe>
 </iframe>
 <br><br>
 <a href="https://maps.app.goo.gl/GP6pij9mQJoQstxL8?g_st=ic" target="_blank">
@@ -301,7 +304,7 @@ segundos.innerHTML=Math.floor((diff%(1000*60))/1000);
 },1000);
 let link="";
 function generar(){
-let nombre=document.getElementById("nombre").value;
+let nombre=document.getElementById("nombre").value.toUpperCase();
 let tel=document.getElementById("telefono").value;
 document.getElementById("ticket").style.display="block";
 document.getElementById("invitado").innerText=nombre;
