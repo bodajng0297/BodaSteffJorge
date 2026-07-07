@@ -196,9 +196,61 @@ font-size:60px;
 font-size:20px;
 }
 }
+
+#contenido{display:none;}
+#intro{position:fixed;top:0;left:0;width:100%;height:100vh;background:#efe9e1;display:flex;justify-content:center;align-items:center;z-index:999999;perspective:2200px;}
+.envelope-wrapper{position:relative;width:380px;height:540px;}
+.left-door,.right-door{position:absolute;top:0;width:50%;height:100%;background:url("images/sobre.jpg");background-size:cover;background-position:center;transition:2s cubic-bezier(.19,1,.22,1);box-shadow:0 20px 50px rgba(0,0,0,.15);} 
+.left-door{left:0;transform-origin:left center;}
+.right-door{right:0;transform-origin:right center;}
+.seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:#f4eee7;display:flex;align-items:center;justify-content:center;font-family:'Great Vibes',cursive;font-size:34px;color:#777;cursor:pointer;z-index:100;}
+.abrir .seal{opacity:0;transform:translate(-50%,-50%) scale(.3);} 
+.abrir .left-door{transform:rotateY(-110deg);} 
+.abrir .right-door{transform:rotateY(110deg);} 
+.seal:hover{
+transform:translate(-50%,-50%) scale(1.08);
+transition:.4s;
+}
+
+.left-door,
+.right-door{
+backface-visibility:hidden;
+}
+.fade-content{
+animation:fadeContent 2s ease forwards;
+}
+
+@keyframes fadeContent{
+from{
+opacity:0;
+transform:scale(1.05);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
 </style>
 </head>
 <body>
+<div id="intro">
+
+    <div class="envelope-wrapper">
+
+        <div class="left-door"></div>
+
+        <div class="right-door"></div>
+
+        <div class="seal" onclick="abrirInvitacion()">
+            love
+        </div>
+
+    </div>
+
+</div>
+
+<div id="contenido">
 <audio id="audio" loop>
 <source src="audio/romantic-piano.mp3" type="audio/mpeg">
 </audio>
@@ -291,6 +343,29 @@ src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed">
 <img id="modalImg">
 </div>
 <script>
+function abrirInvitacion(){
+
+const intro=document.getElementById("intro");
+
+intro.classList.add("abrir");
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+const contenido=document.getElementById("contenido");
+
+contenido.style.display="block";
+
+contenido.classList.add("fade-content");
+
+const audio=document.getElementById("audio");
+
+audio.play().catch(()=>{});
+
+},2200);
+
+}
 const fecha=new Date("Jan 16, 2027 19:00:00").getTime();
 setInterval(()=>{
 let now=new Date().getTime();
@@ -341,6 +416,9 @@ modal.onclick=()=>{
 modal.style.display="none";
 }
 </script>
+</div>
 </body>
+
+  
 </html>
 
