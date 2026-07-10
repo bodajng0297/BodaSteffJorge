@@ -394,6 +394,14 @@ let link="";
 function generar(){
 let nombre=document.getElementById("nombre").value.toUpperCase();
 let tel=document.getElementById("telefono").value;
+fetch("https://script.google.com/macros/s/AKfycbxCZOQX7n-rx_Hb15jYhaPg5kYSgQ_bts-MDRbNU0EtbmhiC2Iiu9g6hu90pui5uWy2lQ/exec",{
+method:"POST",
+body:JSON.stringify({
+nombre:nombre,
+telefono:tel,
+confirmacion:"Confirmado"
+})
+});
 document.getElementById("ticket").style.display="block";
 document.getElementById("invitado").innerText=nombre;
 link="https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado="+encodeURIComponent(nombre);
