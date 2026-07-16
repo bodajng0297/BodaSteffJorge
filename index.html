@@ -347,7 +347,6 @@ src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed">
 <img src="images/foto2.jpg">
 <img src="images/foto3.jpg">
 <img src="images/foto4.jpg">
-<img src="images/foto5.jpg">
 </div>
 </section>
 <section class="section">
@@ -406,13 +405,15 @@ let link="";
 function generar(){
 let nombre=document.getElementById("nombre").value.toUpperCase();
 let tel=document.getElementById("telefono").value;
+let personas=document.getElementById("personas").value;
 fetch("https://script.google.com/macros/s/AKfycbxCZOQX7n-rx_Hb15jYhaPg5kYSgQ_bts-MDRbNU0EtbmhiC2Iiu9g6hu90pui5uWy2lQ/exec",{
-method:"POST",
-body:JSON.stringify({
-nombre:nombre,
-telefono:tel,
-confirmacion:"Confirmado"
-})
+    method:"POST",
+    body:JSON.stringify({
+        nombre:nombre,
+        telefono:tel,
+        personas:personas,
+        confirmacion:"Confirmado"
+    })
 });
 document.getElementById("ticket").style.display="block";
 document.getElementById("invitado").innerText=nombre;
