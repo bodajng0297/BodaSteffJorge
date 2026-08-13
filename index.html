@@ -6,7 +6,7 @@
 
 <title>Boda Estefania & Jorge</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -14,7 +14,7 @@
 
 body{
 margin:0;
-font-family:'Great Vibes',cursive;
+font-family:'Dancing Script',cursive;
 background:linear-gradient(135deg,#fdf7f3,#f9e7dd);
 color:#333;
 text-align:center;
@@ -22,7 +22,9 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
 height:100vh;
@@ -47,17 +49,21 @@ text-shadow:0 6px 20px rgba(0,0,0,.6);
 }
 
 .hero-text h1{
-font-family:'Dancing Script';
+font-family:'Dancing Script',cursive;
 font-size:90px;
+font-weight:700;
 margin:0;
 }
 
 .hero-text p{
-font-size:26px;
+font-size:30px;
+font-weight:600;
 margin:6px 0;
 }
 
-/* SECCIONES */
+/* =========================
+   SECCIONES
+========================= */
 
 .section{
 max-width:800px;
@@ -73,6 +79,7 @@ align-items:center;
 opacity:0;
 transform:translateY(80px) scale(.97);
 transition:all 1.2s cubic-bezier(.19,1,.22,1);
+box-sizing:border-box;
 }
 
 .section.visible{
@@ -80,7 +87,19 @@ opacity:1;
 transform:translateY(0) scale(1);
 }
 
-/* CONTADOR */
+.section h2{
+font-size:42px;
+margin-top:0;
+font-weight:700;
+}
+
+.section p{
+font-size:24px;
+}
+
+/* =========================
+   CONTADOR
+========================= */
 
 .timer{
 display:flex;
@@ -95,6 +114,7 @@ border-radius:20px;
 background:white;
 box-shadow:0 10px 30px rgba(0,0,0,.1);
 width:110px;
+font-size:24px;
 }
 
 .number{
@@ -102,7 +122,9 @@ font-size:42px;
 font-weight:bold;
 }
 
-/* EVENTOS */
+/* =========================
+   EVENTOS
+========================= */
 
 .event-card{
 padding:30px;
@@ -110,6 +132,16 @@ margin:20px 0;
 border-radius:20px;
 box-shadow:0 12px 40px rgba(0,0,0,.12);
 width:100%;
+box-sizing:border-box;
+}
+
+.event-card h3{
+font-size:32px;
+margin-top:0;
+}
+
+.event-card p{
+font-size:24px;
 }
 
 iframe{
@@ -117,7 +149,9 @@ border-radius:15px;
 margin-top:15px;
 }
 
-/* GALERIA */
+/* =========================
+   GALERIA
+========================= */
 
 .gallery{
 display:grid;
@@ -137,7 +171,9 @@ transition:.4s;
 transform:scale(1.05);
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
 position:fixed;
@@ -149,6 +185,7 @@ background:rgba(0,0,0,.8);
 display:none;
 align-items:center;
 justify-content:center;
+z-index:99999;
 }
 
 .modal img{
@@ -157,7 +194,9 @@ max-height:90%;
 border-radius:20px;
 }
 
-/* FORM */
+/* =========================
+   FORM
+========================= */
 
 .form{
 max-width:350px;
@@ -171,17 +210,29 @@ margin:10px 0;
 border-radius:12px;
 border:1px solid #ddd;
 text-align:center;
-font-size:16px;
-text-transform:uppercase;
+font-size:18px;
+font-family:'Dancing Script',cursive;
 box-sizing:border-box;
+text-transform:uppercase;
 }
+
+input::placeholder{
+font-family:'Dancing Script',cursive;
+font-size:18px;
+}
+
+/* =========================
+   BOTONES
+========================= */
 
 button{
 padding:14px 28px;
 background:#c8a96a;
 border:none;
 color:white;
-font-size:18px;
+font-family:'Dancing Script',cursive;
+font-size:22px;
+font-weight:600;
 border-radius:12px;
 cursor:pointer;
 margin-top:10px;
@@ -191,25 +242,30 @@ button:hover{
 background:#b59759;
 }
 
-/* TORNABODA */
+/* =========================
+   TORNABODA
+========================= */
 
 .tornaboda-container{
 margin-top:15px;
 }
 
 .tornaboda-container p{
-font-size:20px;
+font-size:26px;
+font-weight:600;
 margin-bottom:10px;
 }
 
 .tornaboda-btn{
-padding:12px 25px;
+padding:12px 30px;
 margin:5px;
 border-radius:12px;
 border:none;
 background:#ddd;
 color:#555;
-font-size:18px;
+font-family:'Dancing Script',cursive;
+font-size:22px;
+font-weight:600;
 cursor:pointer;
 transition:.3s;
 }
@@ -225,7 +281,9 @@ color:white;
 box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
-/* TICKET */
+/* =========================
+   TICKET
+========================= */
 
 .ticket{
 display:none;
@@ -233,6 +291,20 @@ margin-top:30px;
 padding:40px;
 border-radius:20px;
 box-shadow:0 15px 50px rgba(0,0,0,.15);
+width:100%;
+box-sizing:border-box;
+}
+
+.ticket h3{
+font-size:32px;
+}
+
+.ticket h2{
+font-size:40px;
+}
+
+.ticket p{
+font-size:24px;
 }
 
 #qr{
@@ -249,7 +321,9 @@ display:block;
 margin:auto;
 }
 
-/* DRESS */
+/* =========================
+   DRESS
+========================= */
 
 .dress-img{
 width:100%;
@@ -258,7 +332,9 @@ border-radius:20px;
 box-shadow:0 10px 40px rgba(0,0,0,.15);
 }
 
-/* MUSICA */
+/* =========================
+   MUSICA
+========================= */
 
 #music-btn{
 position:fixed;
@@ -271,23 +347,12 @@ padding:10px 16px;
 border-radius:12px;
 cursor:pointer;
 z-index:10;
+font-size:18px;
 }
 
-/* RESPONSIVE */
-
-@media(max-width:600px){
-
-.hero-text h1{
-font-size:60px;
-}
-
-.hero-text p{
-font-size:20px;
-}
-
-}
-
-/* SOBRE */
+/* =========================
+   SOBRE
+========================= */
 
 #contenido{
 display:none;
@@ -348,8 +413,9 @@ background:#f4eee7;
 display:flex;
 align-items:center;
 justify-content:center;
-font-family:'Great Vibes',cursive;
+font-family:'Dancing Script',cursive;
 font-size:34px;
+font-weight:700;
 color:#777;
 cursor:pointer;
 z-index:100;
@@ -378,6 +444,10 @@ transition:.4s;
 backface-visibility:hidden;
 }
 
+/* =========================
+   ANIMACION
+========================= */
+
 .fade-content{
 animation:fadeContent 2s ease forwards;
 }
@@ -396,7 +466,45 @@ transform:scale(1);
 
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media(max-width:600px){
+
+.hero-text h1{
+font-size:60px;
+}
+
+.hero-text p{
+font-size:23px;
+}
+
+.section{
+padding:45px 20px;
+}
+
+.section h2{
+font-size:36px;
+}
+
+.event-card p{
+font-size:21px;
+}
+
+.timer{
+gap:10px;
+}
+
+.card{
+width:90px;
+padding:18px 10px;
+font-size:20px;
+}
+
+.number{
+font-size:34px;
+}
 
 .envelope-wrapper{
 position:relative;
@@ -418,7 +526,9 @@ font-size:32px;
 
 <body>
 
-<!-- SOBRE -->
+<!-- =========================
+     SOBRE
+========================= -->
 
 <div id="intro">
 
@@ -439,7 +549,9 @@ E & J
 
 <div id="contenido">
 
-<!-- MUSICA -->
+<!-- =========================
+     MUSICA
+========================= -->
 
 <audio id="audio" loop>
 <source src="audio/romantic-piano.mp3" type="audio/mpeg">
@@ -448,7 +560,9 @@ E & J
 <button id="music-btn">🎵 Música</button>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <div class="hero">
 
@@ -467,7 +581,9 @@ E & J
 </div>
 
 
-<!-- CUENTA REGRESIVA -->
+<!-- =========================
+     CUENTA REGRESIVA
+========================= -->
 
 <section class="section">
 
@@ -500,7 +616,9 @@ Seg
 </section>
 
 
-<!-- ITINERARIO -->
+<!-- =========================
+     ITINERARIO
+========================= -->
 
 <section class="section">
 
@@ -568,13 +686,15 @@ Abrir ubicación
 </section>
 
 
-<!-- VESTIMENTA -->
+<!-- =========================
+     VESTIMENTA
+========================= -->
 
 <section class="section">
 
 <h2>Código de vestimenta</h2>
 
-<p style="font-size:22px">
+<p style="font-size:26px">
 Formal
 </p>
 
@@ -585,7 +705,9 @@ class="dress-img">
 </section>
 
 
-<!-- SOLO ADULTOS -->
+<!-- =========================
+     SOLO ADULTOS
+========================= -->
 
 <section class="section">
 
@@ -597,7 +719,9 @@ alt="Recepción solo para adultos">
 </section>
 
 
-<!-- MESA DE REGALOS -->
+<!-- =========================
+     MESA DE REGALOS
+========================= -->
 
 <section class="section">
 
@@ -620,7 +744,9 @@ Ver mesa de regalos
 </section>
 
 
-<!-- GALERIA -->
+<!-- =========================
+     GALERIA
+========================= -->
 
 <section class="section">
 
@@ -641,7 +767,9 @@ Ver mesa de regalos
 </section>
 
 
-<!-- CONFIRMACION -->
+<!-- =========================
+     CONFIRMACION
+========================= -->
 
 <section class="section">
 
@@ -649,16 +777,13 @@ Ver mesa de regalos
 
 <div class="form">
 
-
 <input
 id="nombre"
 placeholder="Nombre">
 
-
 <input
 id="telefono"
 placeholder="Teléfono">
-
 
 <input
 id="personas"
@@ -667,12 +792,14 @@ min="1"
 placeholder="¿Cuántas personas asistirán?">
 
 
-<!-- TORNABODA -->
+<!-- =========================
+     TORNABODA
+========================= -->
 
 <div class="tornaboda-container">
 
 <p>
-¿Asistiras al dia siguiente a la Tornaboda?
+¿Asistirás al día siguiente a la Tornaboda?
 </p>
 
 <button
@@ -705,7 +832,9 @@ Generar Pase
 </div>
 
 
-<!-- TICKET -->
+<!-- =========================
+     TICKET
+========================= -->
 
 <div
 class="ticket"
@@ -734,7 +863,9 @@ Enviar invitación
 </section>
 
 
-<!-- MODAL -->
+<!-- =========================
+     MODAL
+========================= -->
 
 <div
 class="modal"
@@ -747,7 +878,6 @@ id="modalImg">
 
 
 <script>
-
 
 /* =========================
    SOBRE
@@ -821,7 +951,6 @@ Math.floor(
 
 let tornaboda="";
 
-
 function seleccionarTornaboda(opcion){
 
 tornaboda=opcion;
@@ -831,7 +960,6 @@ document.getElementById("btnSi")
 
 document.getElementById("btnNo")
 .classList.remove("selected");
-
 
 if(opcion==="Sí"){
 
@@ -854,7 +982,6 @@ document.getElementById("btnNo")
 
 let link="";
 
-
 function generar(){
 
 let nombre=
@@ -873,7 +1000,7 @@ document.getElementById("personas")
 .trim();
 
 
-/* 🔒 NOMBRE */
+/* NOMBRE */
 
 if(nombre===""){
 
@@ -886,7 +1013,7 @@ return;
 }
 
 
-/* 🔒 TELEFONO */
+/* TELEFONO */
 
 if(tel===""){
 
@@ -899,7 +1026,7 @@ return;
 }
 
 
-/* 🔒 PERSONAS */
+/* PERSONAS */
 
 if(personas===""){
 
@@ -912,7 +1039,7 @@ return;
 }
 
 
-/* 🔒 PERSONAS MINIMO */
+/* MINIMO */
 
 if(parseInt(personas)<1){
 
@@ -925,7 +1052,7 @@ return;
 }
 
 
-/* 🔒 TORNABODA */
+/* TORNABODA */
 
 if(tornaboda===""){
 
@@ -994,10 +1121,8 @@ link=
 +
 encodeURIComponent(nombre);
 
-
 document.getElementById("qr")
 .innerHTML="";
-
 
 new QRCode(
 document.getElementById("qr"),
@@ -1010,7 +1135,6 @@ width:180,
 height:180
 
 });
-
 
 }
 
@@ -1025,7 +1149,6 @@ let tel=
 document.getElementById("telefono")
 .value
 .trim();
-
 
 window.open(
 "https://wa.me/"+tel+
@@ -1045,7 +1168,6 @@ encodeURIComponent(
 const audio=
 document.getElementById("audio");
 
-
 document.getElementById("music-btn")
 .onclick=()=>{
 
@@ -1059,12 +1181,11 @@ audio.pause();
 
 
 /* =========================
-   ANIMACION SECCIONES
+   ANIMACION
 ========================= */
 
 const sections=
 document.querySelectorAll('.section');
-
 
 window.addEventListener(
 'scroll',
