@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Boda Estefania & Jorge</title>
@@ -16,7 +14,7 @@
 <style>
 
 /* =========================
-   GENERAL
+   BODY
 ========================= */
 
 body{
@@ -174,7 +172,7 @@ background:rgba(0,0,0,.8);
 display:none;
 align-items:center;
 justify-content:center;
-z-index:9999;
+z-index:99999;
 }
 
 .modal img{
@@ -185,7 +183,7 @@ border-radius:20px;
 
 
 /* =========================
-   FORMULARIO
+   FORM
 ========================= */
 
 .form{
@@ -348,13 +346,18 @@ font-size:20px;
 }
 
 
-/* =========================
-   INTRO / SOBRE
-========================= */
+/* =====================================================
+   SOBRE / APERTURA ELEGANTE
+===================================================== */
 
 #contenido{
 display:none;
 }
+
+
+/* =========================
+   INTRO
+========================= */
 
 #intro{
 
@@ -363,7 +366,7 @@ position:fixed;
 top:0;
 left:0;
 
-width:100vw;
+width:100%;
 height:100vh;
 
 background:#efe9e1;
@@ -375,63 +378,70 @@ align-items:center;
 
 z-index:999999;
 
-perspective:2200px;
-
 overflow:hidden;
+
+opacity:1;
+
+transition:
+opacity 1.8s ease,
+visibility 1.8s ease;
+
 }
 
 
-/* SOBRE GRANDE */
+/* =========================
+   SOBRE
+========================= */
 
 .envelope-wrapper{
 
 position:relative;
 
-width:100vw;
-height:100vh;
+width:380px;
+height:540px;
 
-overflow:hidden;
+background-image:url("images/sobre.jpg");
+
+background-size:cover;
+background-position:center;
+
+border-radius:3px;
+
+box-shadow:
+0 25px 80px rgba(0,0,0,.25);
+
+transition:
+filter 2s ease,
+opacity 2s ease;
+
 }
 
 
-/* PUERTAS DEL SOBRE */
+/* =========================
+   BRILLO DEL SOBRE
+========================= */
 
-.left-door,
-.right-door{
+.envelope-wrapper::after{
+
+content:"";
 
 position:absolute;
 
-top:0;
+inset:0;
 
-width:50%;
-height:100vh;
+background:
+radial-gradient(
+circle at center,
+rgba(255,255,255,.18),
+transparent 45%
+);
 
-background:url("images/sobre.jpg")
-center center / cover no-repeat;
+opacity:.7;
 
-background-size:cover;
+pointer-events:none;
 
-background-position:center;
-
-transition:2s cubic-bezier(.19,1,.22,1);
-
-box-shadow:0 20px 50px rgba(0,0,0,.15);
-
-}
-
-.left-door{
-
-left:0;
-
-transform-origin:left center;
-
-}
-
-.right-door{
-
-right:0;
-
-transform-origin:right center;
+transition:
+opacity 1.5s ease;
 
 }
 
@@ -447,7 +457,9 @@ position:absolute;
 left:50%;
 top:50%;
 
-transform:translate(-50%,-50%);
+transform:
+translate(-50%,-50%)
+scale(1);
 
 width:90px;
 height:90px;
@@ -469,97 +481,230 @@ color:#777;
 
 cursor:pointer;
 
-z-index:100;
-
-
-/* AURA */
+z-index:10;
 
 box-shadow:
-0 0 0 8px rgba(244,238,231,.35),
-0 0 30px rgba(255,255,255,.9),
-0 10px 35px rgba(0,0,0,.25);
+0 8px 30px rgba(0,0,0,.18);
+
+transition:
+transform 1.3s cubic-bezier(.19,1,.22,1),
+opacity 1.2s ease,
+box-shadow 1.3s ease;
 
 }
 
 
-/* ANIMACION AL ABRIR */
+/* =========================
+   AURA DEL SELLO
+========================= */
+
+.seal::before{
+
+content:"";
+
+position:absolute;
+
+width:112px;
+height:112px;
+
+border-radius:50%;
+
+border:1px solid rgba(255,255,255,.85);
+
+box-shadow:
+0 0 20px rgba(255,255,255,.45),
+0 0 45px rgba(255,255,255,.25);
+
+animation:
+halo 3s ease-in-out infinite;
+
+}
+
+
+/* SEGUNDA AURA */
+
+.seal::after{
+
+content:"";
+
+position:absolute;
+
+width:135px;
+height:135px;
+
+border-radius:50%;
+
+border:1px solid rgba(255,255,255,.25);
+
+animation:
+haloOuter 3.5s ease-in-out infinite;
+
+}
+
+
+@keyframes halo{
+
+0%,100%{
+
+transform:scale(.94);
+
+opacity:.4;
+
+}
+
+50%{
+
+transform:scale(1.10);
+
+opacity:1;
+
+}
+
+}
+
+
+@keyframes haloOuter{
+
+0%,100%{
+
+transform:scale(.92);
+
+opacity:.15;
+
+}
+
+50%{
+
+transform:scale(1.08);
+
+opacity:.5;
+
+}
+
+}
+
+
+/* =========================
+   EFECTO DE APERTURA
+========================= */
 
 .abrir .seal{
 
-opacity:0;
+animation:
+sealReveal 1.4s cubic-bezier(.19,1,.22,1)
+forwards;
+
+}
+
+
+@keyframes sealReveal{
+
+0%{
 
 transform:
 translate(-50%,-50%)
-scale(.3);
+scale(1);
 
-transition:
-opacity .8s ease,
-transform 1s ease;
+opacity:1;
 
 }
 
-
-/* PUERTAS */
-
-.abrir .left-door{
-
-transform:rotateY(-110deg);
-
-}
-
-.abrir .right-door{
-
-transform:rotateY(110deg);
-
-}
-
-
-.seal:hover{
+45%{
 
 transform:
 translate(-50%,-50%)
 scale(1.08);
 
-transition:.4s;
+opacity:1;
+
+box-shadow:
+0 0 30px rgba(255,255,255,.8),
+0 0 70px rgba(255,255,255,.5);
+
+}
+
+100%{
+
+transform:
+translate(-50%,-50%)
+scale(.7);
+
+opacity:0;
+
+}
 
 }
 
 
 /* =========================
-   ANIMACION CONTENIDO
+   LUZ QUE SALE DEL SELLO
 ========================= */
 
-.left-door,
-.right-door{
+.abrir .envelope-wrapper::before{
 
-backface-visibility:hidden;
+content:"";
 
-}
+position:absolute;
 
-.fade-content{
+left:50%;
+top:50%;
+
+width:40px;
+height:40px;
+
+border-radius:50%;
+
+background:white;
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+opacity:0;
+
+z-index:5;
 
 animation:
-fadeContent 2s ease forwards;
+lightReveal 1.8s ease-out forwards;
 
 }
 
-@keyframes fadeContent{
 
-from{
+@keyframes lightReveal{
+
+0%{
 
 opacity:0;
 
 transform:
-scale(1.04);
+translate(-50%,-50%)
+scale(.2);
 
 }
 
-to{
+25%{
 
-opacity:1;
+opacity:.8;
+
+}
+
+60%{
+
+opacity:.45;
 
 transform:
-scale(1);
+translate(-50%,-50%)
+scale(5);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+translate(-50%,-50%)
+scale(15);
 
 }
 
@@ -567,49 +712,144 @@ scale(1);
 
 
 /* =========================
-   MOVIL
+   SOBRE SE DISUELVE
+========================= */
+
+.abrir .envelope-wrapper{
+
+animation:
+envelopeFade 2.2s ease forwards;
+
+}
+
+
+@keyframes envelopeFade{
+
+0%{
+
+opacity:1;
+
+filter:brightness(1);
+
+}
+
+45%{
+
+opacity:1;
+
+filter:brightness(1.08);
+
+}
+
+100%{
+
+opacity:0;
+
+filter:
+brightness(1.25)
+blur(8px);
+
+}
+
+}
+
+
+/* =========================
+   INTRO DESAPARECE
+========================= */
+
+#intro.ocultar{
+
+opacity:0;
+
+visibility:hidden;
+
+}
+
+
+/* =========================
+   INVITACION APARECE
+========================= */
+
+.fade-content{
+
+animation:
+mainReveal 2s cubic-bezier(.19,1,.22,1)
+forwards;
+
+}
+
+
+@keyframes mainReveal{
+
+0%{
+
+opacity:0;
+
+filter:blur(12px);
+
+transform:scale(1.025);
+
+}
+
+45%{
+
+opacity:.5;
+
+filter:blur(5px);
+
+}
+
+100%{
+
+opacity:1;
+
+filter:blur(0);
+
+transform:scale(1);
+
+}
+
+}
+
+
+/* =========================
+   CELULAR
 ========================= */
 
 @media(max-width:600px){
 
 .envelope-wrapper{
 
-position:relative;
-
 width:100vw;
-
 height:100vh;
 
-overflow:hidden;
+border-radius:0;
+
+background-size:cover;
 
 }
 
 .seal{
 
 width:80px;
-
 height:80px;
 
 font-size:32px;
 
 }
 
+.seal::before{
+
+width:100px;
+height:100px;
+
 }
 
+.seal::after{
 
-/* =========================
-   IPHONE PEQUEÑO
-========================= */
-
-@media(max-width:380px){
-
-.seal{
-
-width:76px;
-
-height:76px;
-
-font-size:30px;
+width:120px;
+height:120px;
 
 }
 
@@ -623,19 +863,16 @@ font-size:30px;
 <body>
 
 
-<!-- ==================================================
-     SOBRE DE INICIO
-================================================== -->
+<!-- =====================================================
+     SOBRE
+===================================================== -->
 
 <div id="intro">
 
 <div class="envelope-wrapper">
 
-<div class="left-door"></div>
-
-<div class="right-door"></div>
-
-<div class="seal"
+<div
+class="seal"
 onclick="abrirInvitacion()">
 
 E & J
@@ -647,14 +884,12 @@ E & J
 </div>
 
 
-<!-- ==================================================
-     CONTENIDO
-================================================== -->
-
 <div id="contenido">
 
 
-<!-- MUSICA -->
+<!-- =====================================================
+     MUSICA
+===================================================== -->
 
 <audio id="audio" loop>
 
@@ -664,15 +899,14 @@ type="audio/mpeg">
 
 </audio>
 
-
 <button id="music-btn">
 🎵 Música
 </button>
 
 
-<!-- ==================================================
+<!-- =====================================================
      HERO
-================================================== -->
+===================================================== -->
 
 <div class="hero">
 
@@ -698,9 +932,9 @@ Quinta Agapantos
 </div>
 
 
-<!-- ==================================================
+<!-- =====================================================
      CUENTA REGRESIVA
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
@@ -712,8 +946,7 @@ Cuenta regresiva
 
 <div class="card">
 
-<div id="dias"
-class="number"></div>
+<div id="dias" class="number"></div>
 
 Días
 
@@ -722,8 +955,7 @@ Días
 
 <div class="card">
 
-<div id="horas"
-class="number"></div>
+<div id="horas" class="number"></div>
 
 Horas
 
@@ -732,8 +964,7 @@ Horas
 
 <div class="card">
 
-<div id="minutos"
-class="number"></div>
+<div id="minutos" class="number"></div>
 
 Min
 
@@ -742,8 +973,7 @@ Min
 
 <div class="card">
 
-<div id="segundos"
-class="number"></div>
+<div id="segundos" class="number"></div>
 
 Seg
 
@@ -754,9 +984,9 @@ Seg
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      ITINERARIO
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
@@ -775,13 +1005,15 @@ Itinerario
 Templo Nueva Galicia — 6:00 PM
 </p>
 
+
 <iframe
 width="100%"
 height="220"
 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.191831208503!2d-103.4390028!3d20.580222199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428acbb2f44210d%3A0xb5f4523c0b41ba23!2sNuestra%20Se%C3%B1ora%20del%20Rocio!5e0!3m2!1ses-419!2smx!4v1783537871011!5m2!1ses-419!2smx">
 </iframe>
 
-<br><br>
+<br>
+<br>
 
 <a
 href="https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9"
@@ -806,13 +1038,15 @@ Abrir ubicación
 Quinta Agapantos — 7:30 PM - 1AM
 </p>
 
+
 <iframe
 width="100%"
 height="220"
 src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed">
 </iframe>
 
-<br><br>
+<br>
+<br>
 
 <a
 href="https://maps.app.goo.gl/gf9h7gvR2p2orKZGA"
@@ -842,9 +1076,9 @@ Abrir ubicación
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      VESTIMENTA
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
@@ -863,9 +1097,9 @@ class="dress-img">
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      SOLO ADULTOS
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
@@ -877,9 +1111,9 @@ alt="Recepción solo para adultos">
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      MESA DE REGALOS
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
@@ -904,9 +1138,9 @@ Ver mesa de regalos
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      GALERIA
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
@@ -929,9 +1163,9 @@ Nuestras Fotos
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      CONFIRMACION
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
@@ -1030,15 +1264,14 @@ Enviar invitación
 
 </button>
 
-
 </div>
 
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      MODAL
-================================================== -->
+===================================================== -->
 
 <div
 class="modal"
@@ -1053,22 +1286,24 @@ id="modalImg">
 <script>
 
 
-/* ==================================================
-   SOBRE
-================================================== */
+/* =====================================================
+   ABRIR INVITACION
+===================================================== */
 
 function abrirInvitacion(){
 
 const intro=
 document.getElementById("intro");
 
+
+/* ACTIVAR TRANSICION */
+
 intro.classList.add("abrir");
 
 
+/* MOSTRAR INVITACION */
+
 setTimeout(()=>{
-
-intro.style.display="none";
-
 
 const contenido=
 document.getElementById("contenido");
@@ -1078,24 +1313,42 @@ contenido.style.display="block";
 contenido.classList.add("fade-content");
 
 
+/* MUSICA */
+
 const audio=
 document.getElementById("audio");
 
 audio.play().catch(()=>{});
 
-},2200);
+},1200);
+
+
+/* DESAPARECER INTRO */
+
+setTimeout(()=>{
+
+intro.classList.add("ocultar");
+
+},1900);
+
+
+/* ELIMINAR INTRO */
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+},3700);
 
 }
 
 
-/* ==================================================
+/* =====================================================
    CONTADOR
-================================================== */
+===================================================== */
 
 const fecha=
-new Date(
-"Jan 16, 2027 19:00:00"
-).getTime();
+new Date("Jan 16, 2027 19:00:00").getTime();
 
 
 setInterval(()=>{
@@ -1111,13 +1364,6 @@ document.getElementById("dias").innerHTML=
 Math.floor(
 diff/(1000*60*60*24)
 );
-
-
-document.getElementById("horas").innerHTML=
-Math.floor(
-(diff%(1000*60*60*24))/
-(1000*60)
-)/60;
 
 
 document.getElementById("horas").innerHTML=
@@ -1143,9 +1389,9 @@ Math.floor(
 },1000);
 
 
-/* ==================================================
+/* =====================================================
    TORNABODA
-================================================== */
+===================================================== */
 
 let tornaboda="";
 
@@ -1155,22 +1401,26 @@ function seleccionarTornaboda(opcion){
 tornaboda=opcion;
 
 
-document.getElementById("btnSi")
+document
+.getElementById("btnSi")
 .classList.remove("selected");
 
 
-document.getElementById("btnNo")
+document
+.getElementById("btnNo")
 .classList.remove("selected");
 
 
 if(opcion==="Sí"){
 
-document.getElementById("btnSi")
+document
+.getElementById("btnSi")
 .classList.add("selected");
 
 }else{
 
-document.getElementById("btnNo")
+document
+.getElementById("btnNo")
 .classList.add("selected");
 
 }
@@ -1178,9 +1428,9 @@ document.getElementById("btnNo")
 }
 
 
-/* ==================================================
+/* =====================================================
    GENERAR PASE
-================================================== */
+===================================================== */
 
 let link="";
 
@@ -1188,19 +1438,22 @@ let link="";
 function generar(){
 
 let nombre=
-document.getElementById("nombre")
+document
+.getElementById("nombre")
 .value
 .trim();
 
 
 let tel=
-document.getElementById("telefono")
+document
+.getElementById("telefono")
 .value
 .trim();
 
 
 let personas=
-document.getElementById("personas")
+document
+.getElementById("personas")
 .value
 .trim();
 
@@ -1213,7 +1466,8 @@ alert(
 "⚠️ Por favor ingresa tu nombre."
 );
 
-document.getElementById("nombre")
+document
+.getElementById("nombre")
 .focus();
 
 return;
@@ -1229,7 +1483,8 @@ alert(
 "⚠️ Por favor ingresa tu teléfono."
 );
 
-document.getElementById("telefono")
+document
+.getElementById("telefono")
 .focus();
 
 return;
@@ -1245,7 +1500,8 @@ alert(
 "⚠️ Por favor indica cuántas personas asistirán."
 );
 
-document.getElementById("personas")
+document
+.getElementById("personas")
 .focus();
 
 return;
@@ -1261,7 +1517,8 @@ alert(
 "⚠️ Debe asistir al menos 1 persona."
 );
 
-document.getElementById("personas")
+document
+.getElementById("personas")
 .focus();
 
 return;
@@ -1286,12 +1543,12 @@ nombre=
 nombre.toUpperCase();
 
 
-/* GOOGLE SHEETS */
+/* =====================================================
+   GOOGLE SHEETS
+===================================================== */
 
 fetch(
-
 "https://script.google.com/macros/s/AKfycbyDPJbTLQgur2q22GzT5KlmwSH7yJlrfS5rgTS29ssXB-suxXuwdy8b7ORD-67kZrzQBQ/exec",
-
 {
 
 method:"POST",
@@ -1310,27 +1567,32 @@ confirmacion:"Confirmado"
 
 })
 
-}
-
-);
+});
 
 
-/* MOSTRAR PASE */
+/* =====================================================
+   MOSTRAR PASE
+===================================================== */
 
-document.getElementById("ticket")
+document
+.getElementById("ticket")
 .style.display="block";
 
 
-document.getElementById("invitado")
+document
+.getElementById("invitado")
 .innerText=nombre;
 
 
-document.getElementById("tornabodaResultado")
+document
+.getElementById("tornabodaResultado")
 .innerText=
 "Tornaboda: "+tornaboda;
 
 
-/* QR */
+/* =====================================================
+   QR
+===================================================== */
 
 link=
 "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado="
@@ -1338,7 +1600,8 @@ link=
 encodeURIComponent(nombre);
 
 
-document.getElementById("qr")
+document
+.getElementById("qr")
 .innerHTML="";
 
 
@@ -1361,14 +1624,15 @@ height:180
 }
 
 
-/* ==================================================
+/* =====================================================
    WHATSAPP
-================================================== */
+===================================================== */
 
 function enviar(){
 
 let tel=
-document.getElementById("telefono")
+document
+.getElementById("telefono")
 .value
 .trim();
 
@@ -1386,15 +1650,16 @@ encodeURIComponent(
 }
 
 
-/* ==================================================
+/* =====================================================
    MUSICA
-================================================== */
+===================================================== */
 
 const audio=
 document.getElementById("audio");
 
 
-document.getElementById("music-btn")
+document
+.getElementById("music-btn")
 .onclick=()=>{
 
 audio.paused
@@ -1406,12 +1671,13 @@ audio.pause();
 };
 
 
-/* ==================================================
+/* =====================================================
    ANIMACION SECCIONES
-================================================== */
+===================================================== */
 
 const sections=
-document.querySelectorAll('.section');
+document
+.querySelectorAll('.section');
 
 
 window.addEventListener(
@@ -1436,9 +1702,9 @@ sec.classList.add('visible');
 });
 
 
-/* ==================================================
+/* =====================================================
    GALERIA
-================================================== */
+===================================================== */
 
 document
 .querySelectorAll('.gallery img')
@@ -1446,11 +1712,13 @@ document
 
 img.onclick=()=>{
 
-document.getElementById("modal")
+document
+.getElementById("modal")
 .style.display="flex";
 
 
-document.getElementById("modalImg")
+document
+.getElementById("modalImg")
 .src=img.src;
 
 };
@@ -1458,23 +1726,23 @@ document.getElementById("modalImg")
 });
 
 
-/* ==================================================
+/* =====================================================
    CERRAR MODAL
-================================================== */
+===================================================== */
 
-document.getElementById("modal")
+document
+.getElementById("modal")
 .onclick=()=>{
 
-document.getElementById("modal")
+document
+.getElementById("modal")
 .style.display="none";
 
 };
 
 </script>
 
-
 </div>
 
 </body>
-
 </html>
