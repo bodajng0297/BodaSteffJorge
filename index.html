@@ -14,7 +14,7 @@
 
 body{
 margin:0;
-font-family:'Great Vibes',cursive;
+font-family:'Dancing Script',cursive;
 background:linear-gradient(135deg,#fdf7f3,#f9e7dd);
 color:#333;
 text-align:center;
@@ -171,6 +171,7 @@ margin:10px 0;
 border-radius:12px;
 border:1px solid #ddd;
 text-align:center;
+font-family:'Dancing Script',cursive;
 font-size:16px;
 text-transform:uppercase;
 box-sizing:border-box;
@@ -181,6 +182,7 @@ padding:14px 28px;
 background:#c8a96a;
 border:none;
 color:white;
+font-family:'Dancing Script',cursive;
 font-size:18px;
 border-radius:12px;
 cursor:pointer;
@@ -209,6 +211,7 @@ border-radius:12px;
 border:none;
 background:#ddd;
 color:#555;
+font-family:'Dancing Script',cursive;
 font-size:18px;
 cursor:pointer;
 transition:.3s;
@@ -225,9 +228,7 @@ color:white;
 box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
-/* =========================================
-   TICKET / PASE
-========================================= */
+/* TICKET */
 
 .ticket{
 display:none;
@@ -235,29 +236,18 @@ margin-top:30px;
 padding:40px;
 border-radius:20px;
 box-shadow:0 15px 50px rgba(0,0,0,.15);
+}
+
+#ticket h2{
 font-family:'Dancing Script',cursive;
 }
 
-.ticket h2{
+#ticket h3{
 font-family:'Dancing Script',cursive;
-font-size:42px;
-margin:15px 0;
 }
 
-.ticket h3{
+#ticket p{
 font-family:'Dancing Script',cursive;
-font-size:36px;
-margin:10px 0;
-}
-
-.ticket p{
-font-family:'Dancing Script',cursive;
-font-size:24px;
-}
-
-.ticket button{
-font-family:'Dancing Script',cursive;
-font-size:22px;
 }
 
 #qr{
@@ -296,6 +286,7 @@ padding:10px 16px;
 border-radius:12px;
 cursor:pointer;
 z-index:10;
+font-family:'Dancing Script',cursive;
 }
 
 /* RESPONSIVE */
@@ -373,7 +364,7 @@ background:#f4eee7;
 display:flex;
 align-items:center;
 justify-content:center;
-font-family:'Great Vibes',cursive;
+font-family:'Dancing Script',cursive;
 font-size:34px;
 color:#777;
 cursor:pointer;
@@ -461,7 +452,6 @@ E & J
 
 </div>
 
-
 <div id="contenido">
 
 <!-- MUSICA -->
@@ -471,7 +461,6 @@ E & J
 </audio>
 
 <button id="music-btn">🎵 Música</button>
-
 
 <!-- HERO -->
 
@@ -490,7 +479,6 @@ E & J
 </div>
 
 </div>
-
 
 <!-- CUENTA REGRESIVA -->
 
@@ -524,7 +512,6 @@ Seg
 
 </section>
 
-
 <!-- ITINERARIO -->
 
 <section class="section">
@@ -555,7 +542,6 @@ Abrir ubicación
 
 </div>
 
-
 <div class="event-card">
 
 <h3>💍 Boda</h3>
@@ -580,7 +566,6 @@ Abrir ubicación
 
 </div>
 
-
 <div class="event-card">
 
 <h3>🍸 Coctelería</h3>
@@ -590,7 +575,6 @@ Abrir ubicación
 </div>
 
 </section>
-
 
 <!-- VESTIMENTA -->
 
@@ -608,7 +592,6 @@ class="dress-img">
 
 </section>
 
-
 <!-- SOLO ADULTOS -->
 
 <section class="section">
@@ -619,7 +602,6 @@ class="dress-img"
 alt="Recepción solo para adultos">
 
 </section>
-
 
 <!-- MESA DE REGALOS -->
 
@@ -643,7 +625,6 @@ Ver mesa de regalos
 
 </section>
 
-
 <!-- GALERIA -->
 
 <section class="section">
@@ -663,7 +644,6 @@ Ver mesa de regalos
 </div>
 
 </section>
-
 
 <!-- CONFIRMACION -->
 
@@ -686,9 +666,6 @@ id="personas"
 type="number"
 min="1"
 placeholder="¿Cuántas personas asistirán?">
-
-
-<!-- TORNABODA -->
 
 <div class="tornaboda-container">
 
@@ -718,15 +695,11 @@ No
 
 </div>
 
-
 <button onclick="generar()">
 Generar Pase
 </button>
 
 </div>
-
-
-<!-- TICKET -->
 
 <div
 class="ticket"
@@ -754,7 +727,6 @@ Enviar invitación
 
 </section>
 
-
 <!-- MODAL -->
 
 <div
@@ -766,12 +738,9 @@ id="modalImg">
 
 </div>
 
-
 <script>
 
-/* =========================
-   SOBRE
-========================= */
+/* SOBRE */
 
 function abrirInvitacion(){
 
@@ -798,9 +767,7 @@ audio.play().catch(()=>{});
 }
 
 
-/* =========================
-   CONTADOR
-========================= */
+/* CONTADOR */
 
 const fecha=
 new Date("Jan 16, 2027 19:00:00").getTime();
@@ -835,9 +802,7 @@ Math.floor(
 },1000);
 
 
-/* =========================
-   TORNABODA
-========================= */
+/* TORNABODA */
 
 let tornaboda="";
 
@@ -866,9 +831,7 @@ document.getElementById("btnNo")
 }
 
 
-/* =========================
-   GENERAR PASE
-========================= */
+/* GENERAR PASE */
 
 let link="";
 
@@ -939,13 +902,10 @@ return;
 
 }
 
-
 nombre=nombre.toUpperCase();
 
 
-/* =========================
-   GOOGLE SHEETS
-========================= */
+/* GOOGLE SHEETS */
 
 fetch(
 "https://script.google.com/macros/s/AKfycbyDPJbTLQgur2q22GzT5KlmwSH7yJlrfS5rgTS29ssXB-suxXuwdy8b7ORD-67kZrzQBQ/exec",
@@ -970,9 +930,7 @@ confirmacion:"Confirmado"
 });
 
 
-/* =========================
-   MOSTRAR PASE
-========================= */
+/* MOSTRAR PASE */
 
 document.getElementById("ticket")
 .style.display="block";
@@ -985,9 +943,7 @@ document.getElementById("tornabodaResultado")
 "Tornaboda: "+tornaboda;
 
 
-/* =========================
-   QR
-========================= */
+/* QR */
 
 link=
 "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado="
@@ -1012,9 +968,7 @@ height:180
 }
 
 
-/* =========================
-   WHATSAPP
-========================= */
+/* WHATSAPP */
 
 function enviar(){
 
@@ -1034,9 +988,7 @@ encodeURIComponent(
 }
 
 
-/* =========================
-   MUSICA
-========================= */
+/* MUSICA */
 
 const audio=
 document.getElementById("audio");
@@ -1053,9 +1005,7 @@ audio.pause();
 };
 
 
-/* =========================
-   ANIMACION SECCIONES
-========================= */
+/* ANIMACION */
 
 const sections=
 document.querySelectorAll('.section');
@@ -1081,9 +1031,7 @@ sec.classList.add('visible');
 });
 
 
-/* =========================
-   GALERIA
-========================= */
+/* GALERIA */
 
 document
 .querySelectorAll('.gallery img')
@@ -1102,9 +1050,7 @@ document.getElementById("modalImg")
 });
 
 
-/* =========================
-   CERRAR MODAL
-========================= */
+/* CERRAR MODAL */
 
 document.getElementById("modal")
 .onclick=()=>{
