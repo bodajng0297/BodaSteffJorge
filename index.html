@@ -137,7 +137,7 @@ transition:.4s;
 transform:scale(1.05);
 }
 
-/* MODAL FOTO */
+/* MODAL */
 
 .modal{
 position:fixed;
@@ -193,39 +193,36 @@ background:#b59759;
 
 /* TORNABODA */
 
-.tornaboda-title{
-font-family:'Great Vibes',cursive;
-font-size:25px;
-margin-top:25px;
-margin-bottom:15px;
+.tornaboda-container{
+margin-top:15px;
 }
 
-.tornaboda-options{
-display:flex;
-justify-content:center;
-gap:15px;
-margin-bottom:15px;
+.tornaboda-container p{
+font-size:20px;
+margin-bottom:10px;
 }
 
 .tornaboda-btn{
-padding:12px 35px;
-background:white;
-color:#c8a96a;
-border:2px solid #c8a96a;
+padding:12px 25px;
+margin:5px;
 border-radius:12px;
+border:none;
+background:#ddd;
+color:#555;
 font-size:18px;
 cursor:pointer;
 transition:.3s;
 }
 
 .tornaboda-btn:hover{
-background:#f8f0e5;
+background:#c8a96a;
+color:white;
 }
 
 .tornaboda-btn.selected{
 background:#c8a96a;
 color:white;
-box-shadow:0 5px 15px rgba(200,169,106,.35);
+box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
 /* TICKET */
@@ -236,8 +233,6 @@ margin-top:30px;
 padding:40px;
 border-radius:20px;
 box-shadow:0 15px 50px rgba(0,0,0,.15);
-width:100%;
-box-sizing:border-box;
 }
 
 #qr{
@@ -290,17 +285,9 @@ font-size:60px;
 font-size:20px;
 }
 
-.tornaboda-options{
-gap:10px;
 }
 
-.tornaboda-btn{
-padding:12px 28px;
-}
-
-}
-
-/* INTRO */
+/* SOBRE */
 
 #contenido{
 display:none;
@@ -431,6 +418,8 @@ font-size:32px;
 
 <body>
 
+<!-- SOBRE -->
+
 <div id="intro">
 
 <div class="envelope-wrapper">
@@ -449,6 +438,8 @@ E & J
 
 
 <div id="contenido">
+
+<!-- MUSICA -->
 
 <audio id="audio" loop>
 <source src="audio/romantic-piano.mp3" type="audio/mpeg">
@@ -531,7 +522,11 @@ src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.191831208503!2d-
 <br><br>
 
 <a href="https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9" target="_blank">
-<button>Abrir ubicación</button>
+
+<button>
+Abrir ubicación
+</button>
+
 </a>
 
 </div>
@@ -552,7 +547,11 @@ src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed">
 <br><br>
 
 <a href="https://maps.app.goo.gl/gf9h7gvR2p2orKZGA" target="_blank">
-<button>Abrir ubicación</button>
+
+<button>
+Abrir ubicación
+</button>
+
 </a>
 
 </div>
@@ -621,7 +620,7 @@ Ver mesa de regalos
 </section>
 
 
-<!-- FOTOS -->
+<!-- GALERIA -->
 
 <section class="section">
 
@@ -642,7 +641,7 @@ Ver mesa de regalos
 </section>
 
 
-<!-- CONFIRMAR ASISTENCIA -->
+<!-- CONFIRMACION -->
 
 <section class="section">
 
@@ -650,13 +649,16 @@ Ver mesa de regalos
 
 <div class="form">
 
+
 <input
 id="nombre"
 placeholder="Nombre">
 
+
 <input
 id="telefono"
 placeholder="Teléfono">
+
 
 <input
 id="personas"
@@ -667,27 +669,26 @@ placeholder="¿Cuántas personas asistirán?">
 
 <!-- TORNABODA -->
 
-<div class="tornaboda-title">
-¿Asistirás a la Tornaboda?
-</div>
+<div class="tornaboda-container">
 
-<div class="tornaboda-options">
+<p>
+¿Te quedarás a la Tornaboda?
+</p>
 
 <button
 type="button"
 class="tornaboda-btn"
-id="tornabodaSi"
+id="btnSi"
 onclick="seleccionarTornaboda('Sí')">
 
 Sí
 
 </button>
 
-
 <button
 type="button"
 class="tornaboda-btn"
-id="tornabodaNo"
+id="btnNo"
 onclick="seleccionarTornaboda('No')">
 
 No
@@ -706,7 +707,9 @@ Generar Pase
 
 <!-- TICKET -->
 
-<div class="ticket" id="ticket">
+<div
+class="ticket"
+id="ticket">
 
 <h3 id="invitado"></h3>
 
@@ -733,9 +736,12 @@ Enviar invitación
 
 <!-- MODAL -->
 
-<div class="modal" id="modal">
+<div
+class="modal"
+id="modal">
 
-<img id="modalImg">
+<img
+id="modalImg">
 
 </div>
 
@@ -743,7 +749,9 @@ Enviar invitación
 <script>
 
 
-/* ABRIR INVITACIÓN */
+/* =========================
+   SOBRE
+========================= */
 
 function abrirInvitacion(){
 
@@ -770,9 +778,12 @@ audio.play().catch(()=>{});
 }
 
 
-/* CONTADOR */
+/* =========================
+   CONTADOR
+========================= */
 
-const fecha=new Date("Jan 16, 2027 19:00:00").getTime();
+const fecha=
+new Date("Jan 16, 2027 19:00:00").getTime();
 
 setInterval(()=>{
 
@@ -784,18 +795,29 @@ document.getElementById("dias").innerHTML=
 Math.floor(diff/(1000*60*60*24));
 
 document.getElementById("horas").innerHTML=
-Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+Math.floor(
+(diff%(1000*60*60*24))/
+(1000*60*60)
+);
 
 document.getElementById("minutos").innerHTML=
-Math.floor((diff%(1000*60*60))/(1000*60));
+Math.floor(
+(diff%(1000*60*60))/
+(1000*60)
+);
 
 document.getElementById("segundos").innerHTML=
-Math.floor((diff%(1000*60))/1000);
+Math.floor(
+(diff%(1000*60))/
+1000
+);
 
 },1000);
 
 
-/* TORNABODA */
+/* =========================
+   TORNABODA
+========================= */
 
 let tornaboda="";
 
@@ -804,32 +826,31 @@ function seleccionarTornaboda(opcion){
 
 tornaboda=opcion;
 
-const si=document.getElementById("tornabodaSi");
+document.getElementById("btnSi")
+.classList.remove("selected");
 
-const no=document.getElementById("tornabodaNo");
-
-
-si.classList.remove("selected");
-
-no.classList.remove("selected");
+document.getElementById("btnNo")
+.classList.remove("selected");
 
 
 if(opcion==="Sí"){
 
-si.classList.add("selected");
+document.getElementById("btnSi")
+.classList.add("selected");
+
+}else{
+
+document.getElementById("btnNo")
+.classList.add("selected");
 
 }
 
-if(opcion==="No"){
-
-no.classList.add("selected");
-
-}
-
 }
 
 
-/* GENERAR PASE */
+/* =========================
+   GENERAR PASE
+========================= */
 
 let link="";
 
@@ -837,58 +858,99 @@ let link="";
 function generar(){
 
 let nombre=
-document.getElementById("nombre").value.toUpperCase();
+document.getElementById("nombre")
+.value
+.trim();
 
 let tel=
-document.getElementById("telefono").value;
+document.getElementById("telefono")
+.value
+.trim();
 
 let personas=
-document.getElementById("personas").value;
+document.getElementById("personas")
+.value
+.trim();
 
 
-/* VALIDACIONES */
+/* 🔒 NOMBRE */
 
 if(nombre===""){
 
-alert("Por favor ingresa tu nombre.");
+alert("⚠️ Por favor ingresa tu nombre.");
+
+document.getElementById("nombre").focus();
 
 return;
 
 }
 
+
+/* 🔒 TELEFONO */
 
 if(tel===""){
 
-alert("Por favor ingresa tu teléfono.");
+alert("⚠️ Por favor ingresa tu teléfono.");
+
+document.getElementById("telefono").focus();
 
 return;
 
 }
 
+
+/* 🔒 PERSONAS */
 
 if(personas===""){
 
-alert("Por favor indica cuántas personas asistirán.");
+alert("⚠️ Por favor indica cuántas personas asistirán.");
+
+document.getElementById("personas").focus();
 
 return;
 
 }
 
+
+/* 🔒 PERSONAS MINIMO */
+
+if(parseInt(personas)<1){
+
+alert("⚠️ Debe asistir al menos 1 persona.");
+
+document.getElementById("personas").focus();
+
+return;
+
+}
+
+
+/* 🔒 TORNABODA */
 
 if(tornaboda===""){
 
-alert("Por favor selecciona si asistirás a la Tornaboda.");
+alert("⚠️ Por favor selecciona Sí o No para la Tornaboda.");
 
 return;
 
 }
 
 
-/* ENVIAR A GOOGLE SHEETS */
+/* =========================
+   TODO CORRECTO
+========================= */
+
+nombre=nombre.toUpperCase();
+
+
+/* =========================
+   GOOGLE SHEETS
+========================= */
 
 fetch(
-"https://script.google.com/macros/s/AKfycbyDPJbTLQgur2q22GzT5KlmwSH7yJlrfS5rgTS29ssXB-suxXuwdy8b7ORD-67kZrzQBQ/exec",
+"https://script.google.com/macros/s/AKfycbzhzFqDbLi5y3IG5bndviZ1NXzUEmIl8Y12Jp_q2O8su-QMcfSAs75yeo0g4vnMdGAPIQ/exec",
 {
+
 method:"POST",
 
 body:JSON.stringify({
@@ -908,17 +970,24 @@ confirmacion:"Confirmado"
 });
 
 
-/* MOSTRAR PASE */
+/* =========================
+   MOSTRAR PASE
+========================= */
 
-document.getElementById("ticket").style.display="block";
+document.getElementById("ticket")
+.style.display="block";
 
-document.getElementById("invitado").innerText=nombre;
+document.getElementById("invitado")
+.innerText=nombre;
 
-document.getElementById("tornabodaResultado").innerText=
+document.getElementById("tornabodaResultado")
+.innerText=
 "Tornaboda: "+tornaboda;
 
 
-/* QR */
+/* =========================
+   QR
+========================= */
 
 link=
 "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado="
@@ -926,7 +995,8 @@ link=
 encodeURIComponent(nombre);
 
 
-document.getElementById("qr").innerHTML="";
+document.getElementById("qr")
+.innerHTML="";
 
 
 new QRCode(
@@ -939,18 +1009,23 @@ width:180,
 
 height:180
 
+});
+
+
 }
-);
-
-}
 
 
-/* WHATSAPP */
+/* =========================
+   WHATSAPP
+========================= */
 
 function enviar(){
 
 let tel=
-document.getElementById("telefono").value;
+document.getElementById("telefono")
+.value
+.trim();
+
 
 window.open(
 "https://wa.me/"+tel+
@@ -963,11 +1038,16 @@ encodeURIComponent(
 }
 
 
-/* MUSICA */
+/* =========================
+   MUSICA
+========================= */
 
-const audio=document.getElementById("audio");
+const audio=
+document.getElementById("audio");
 
-document.getElementById("music-btn").onclick=()=>{
+
+document.getElementById("music-btn")
+.onclick=()=>{
 
 audio.paused
 ?
@@ -978,20 +1058,25 @@ audio.pause();
 };
 
 
-/* ANIMACIONES */
+/* =========================
+   ANIMACION SECCIONES
+========================= */
 
 const sections=
 document.querySelectorAll('.section');
 
 
-window.addEventListener('scroll',()=>{
+window.addEventListener(
+'scroll',
+()=>{
 
 sections.forEach(sec=>{
 
 let top=
 sec.getBoundingClientRect().top;
 
-if(top<window.innerHeight-100){
+if(top<
+window.innerHeight-100){
 
 sec.classList.add('visible');
 
@@ -1002,34 +1087,42 @@ sec.classList.add('visible');
 });
 
 
-/* GALERIA */
+/* =========================
+   GALERIA
+========================= */
 
-document.querySelectorAll('.gallery img').forEach(img=>{
+document
+.querySelectorAll('.gallery img')
+.forEach(img=>{
 
 img.onclick=()=>{
 
-document.getElementById("modal").style.display="flex";
+document.getElementById("modal")
+.style.display="flex";
 
-document.getElementById("modalImg").src=img.src;
+document.getElementById("modalImg")
+.src=img.src;
 
 };
 
 });
 
 
-/* CERRAR MODAL */
+/* =========================
+   CERRAR MODAL
+========================= */
 
-document.getElementById("modal").onclick=()=>{
+document.getElementById("modal")
+.onclick=()=>{
 
-document.getElementById("modal").style.display="none";
+document.getElementById("modal")
+.style.display="none";
 
 };
-
 
 </script>
 
 </div>
 
 </body>
-
 </html>
