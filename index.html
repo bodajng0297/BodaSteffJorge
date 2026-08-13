@@ -15,10 +15,6 @@
 
 <style>
 
-/* =========================================================
-   BODY
-========================================================= */
-
 body{
 margin:0;
 font-family:'Dancing Script',cursive;
@@ -29,10 +25,7 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
+/* HERO */
 
 .hero{
 height:100vh;
@@ -67,10 +60,7 @@ font-size:26px;
 margin:6px 0;
 }
 
-
-/* =========================================================
-   SECCIONES
-========================================================= */
+/* SECCIONES */
 
 .section{
 max-width:800px;
@@ -93,10 +83,7 @@ opacity:1;
 transform:translateY(0) scale(1);
 }
 
-
-/* =========================================================
-   CONTADOR
-========================================================= */
+/* CONTADOR */
 
 .timer{
 display:flex;
@@ -118,10 +105,7 @@ font-size:42px;
 font-weight:bold;
 }
 
-
-/* =========================================================
-   EVENTOS
-========================================================= */
+/* EVENTOS */
 
 .event-card{
 padding:30px;
@@ -129,7 +113,6 @@ margin:20px 0;
 border-radius:20px;
 box-shadow:0 12px 40px rgba(0,0,0,.12);
 width:100%;
-box-sizing:border-box;
 }
 
 iframe{
@@ -137,10 +120,7 @@ border-radius:15px;
 margin-top:15px;
 }
 
-
-/* =========================================================
-   GALERIA
-========================================================= */
+/* GALERIA */
 
 .gallery{
 display:grid;
@@ -160,10 +140,7 @@ transition:.4s;
 transform:scale(1.05);
 }
 
-
-/* =========================================================
-   MODAL
-========================================================= */
+/* MODAL */
 
 .modal{
 position:fixed;
@@ -175,7 +152,6 @@ background:rgba(0,0,0,.8);
 display:none;
 align-items:center;
 justify-content:center;
-z-index:9999;
 }
 
 .modal img{
@@ -184,10 +160,7 @@ max-height:90%;
 border-radius:20px;
 }
 
-
-/* =========================================================
-   FORMULARIO
-========================================================= */
+/* FORM */
 
 .form{
 max-width:350px;
@@ -223,10 +196,7 @@ button:hover{
 background:#b59759;
 }
 
-
-/* =========================================================
-   TORNABODA
-========================================================= */
+/* TORNABODA */
 
 .tornaboda-container{
 margin-top:15px;
@@ -261,10 +231,7 @@ color:white;
 box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
-
-/* =========================================================
-   TICKET
-========================================================= */
+/* TICKET */
 
 .ticket{
 display:none;
@@ -286,11 +253,6 @@ font-family:'Dancing Script',cursive;
 font-family:'Dancing Script',cursive;
 }
 
-
-/* =========================================================
-   QR
-========================================================= */
-
 #qr{
 width:100%;
 display:flex;
@@ -305,10 +267,7 @@ display:block;
 margin:auto;
 }
 
-
-/* =========================================================
-   VESTIMENTA
-========================================================= */
+/* DRESS */
 
 .dress-img{
 width:100%;
@@ -317,10 +276,7 @@ border-radius:20px;
 box-shadow:0 10px 40px rgba(0,0,0,.15);
 }
 
-
-/* =========================================================
-   MUSICA
-========================================================= */
+/* MUSICA */
 
 #music-btn{
 position:fixed;
@@ -336,10 +292,7 @@ z-index:10;
 font-family:'Dancing Script',cursive;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* RESPONSIVE */
 
 @media(max-width:600px){
 
@@ -353,27 +306,16 @@ font-size:20px;
 
 }
 
-
-/* =========================================================
-   CONTENIDO
-========================================================= */
+/* SOBRE */
 
 #contenido{
 display:none;
 }
 
-
-/* =========================================================
-   APERTURA ELEGANTE
-========================================================= */
-
 #intro{
-
 position:fixed;
-
 top:0;
 left:0;
-
 width:100%;
 height:100vh;
 
@@ -386,33 +328,25 @@ circle at center,
 );
 
 display:flex;
-
 justify-content:center;
 align-items:center;
 
 z-index:999999;
-
 overflow:hidden;
-
 }
 
 
-/* =========================================================
-   SOBRE
-========================================================= */
+/* SOBRE */
 
 .envelope-wrapper{
 
 position:relative;
 
 width:390px;
-
 height:570px;
 
 display:flex;
-
 justify-content:center;
-
 align-items:center;
 
 transform:
@@ -432,8 +366,6 @@ forwards;
 }
 
 
-/* SOBRE REAL */
-
 .envelope{
 
 position:absolute;
@@ -450,9 +382,7 @@ border-radius:5px;
 }
 
 
-/* =========================================================
-   AURA DEL SELLO
-========================================================= */
+/* AURA */
 
 .seal-aura{
 
@@ -477,8 +407,7 @@ rgba(255,255,255,.45) 35%,
 rgba(255,255,255,0) 72%
 );
 
-filter:
-blur(5px);
+filter:blur(5px);
 
 animation:
 auraPulse 2.5s
@@ -491,6 +420,7 @@ pointer-events:none;
 
 /* =========================================================
    SELLO E & J
+   SOLO CAMBIO: SUBIDO 12PX
 ========================================================= */
 
 .seal{
@@ -498,16 +428,12 @@ pointer-events:none;
 position:absolute;
 
 left:50%;
+
 top:50%;
 
-/*
-   El translate(-50%,-50%) hace que el centro
-   del sello coincida exactamente con el centro
-   del sobre.
-*/
-
 transform:
-translate(-50%,-50%);
+translate(-50%,-50%)
+translateY(-12px);
 
 width:92px;
 height:92px;
@@ -579,9 +505,7 @@ ease-in-out infinite;
 }
 
 
-/* =========================================================
-   ANIMACIONES DE APERTURA
-========================================================= */
+/* ANIMACIONES */
 
 @keyframes envelopeEntrance{
 
@@ -610,6 +534,11 @@ translateY(0);
 }
 
 
+/* =========================================================
+   ANIMACION SELLO
+   MANTIENE EL SELLO 12PX ARRIBA
+========================================================= */
+
 @keyframes sealEntrance{
 
 0%{
@@ -618,6 +547,7 @@ opacity:0;
 
 transform:
 translate(-50%,-50%)
+translateY(-12px)
 scale(.65);
 
 }
@@ -628,6 +558,7 @@ opacity:1;
 
 transform:
 translate(-50%,-50%)
+translateY(-12px)
 scale(1.08);
 
 }
@@ -638,6 +569,7 @@ opacity:1;
 
 transform:
 translate(-50%,-50%)
+translateY(-12px)
 scale(1);
 
 }
@@ -709,9 +641,7 @@ opacity:.4;
 }
 
 
-/* =========================================================
-   SALIDA DEL SOBRE
-========================================================= */
+/* SALIDA */
 
 #intro.saliendo .envelope-wrapper{
 
@@ -775,6 +705,7 @@ opacity:1;
 
 transform:
 translate(-50%,-50%)
+translateY(-12px)
 scale(1);
 
 }
@@ -785,6 +716,7 @@ opacity:0;
 
 transform:
 translate(-50%,-50%)
+translateY(-12px)
 scale(1.3);
 
 }
@@ -817,9 +749,7 @@ scale(1.5);
 }
 
 
-/* =========================================================
-   FADE DE LA INVITACION
-========================================================= */
+/* FADE CONTENIDO */
 
 .fade-content{
 
@@ -836,8 +766,7 @@ from{
 
 opacity:0;
 
-transform:
-scale(1.025);
+transform:scale(1.025);
 
 }
 
@@ -845,17 +774,14 @@ to{
 
 opacity:1;
 
-transform:
-scale(1);
+transform:scale(1);
 
 }
 
 }
 
 
-/* =========================================================
-   MOVIL
-========================================================= */
+/* MOVIL */
 
 @media(max-width:600px){
 
@@ -888,9 +814,7 @@ height:145px;
 }
 
 
-/* =========================================================
-   IPHONE PEQUEÑO
-========================================================= */
+/* IPHONE PEQUEÑO */
 
 @media(max-width:380px){
 
@@ -917,13 +841,10 @@ font-size:29px;
 
 </head>
 
-
 <body>
 
 
-<!-- =======================================================
-     APERTURA
-======================================================= -->
+<!-- SOBRE -->
 
 <div id="intro">
 
@@ -946,10 +867,6 @@ E & J
 </div>
 
 
-<!-- =======================================================
-     CONTENIDO
-======================================================= -->
-
 <div id="contenido">
 
 
@@ -969,9 +886,7 @@ type="audio/mpeg">
 </button>
 
 
-<!-- =======================================================
-     HERO
-======================================================= -->
+<!-- HERO -->
 
 <div class="hero">
 
@@ -997,9 +912,7 @@ Quinta Agapantos
 </div>
 
 
-<!-- =======================================================
-     CUENTA REGRESIVA
-======================================================= -->
+<!-- CUENTA REGRESIVA -->
 
 <section class="section">
 
@@ -1017,7 +930,6 @@ Días
 
 </div>
 
-
 <div class="card">
 
 <div id="horas" class="number"></div>
@@ -1026,7 +938,6 @@ Horas
 
 </div>
 
-
 <div class="card">
 
 <div id="minutos" class="number"></div>
@@ -1034,7 +945,6 @@ Horas
 Min
 
 </div>
-
 
 <div class="card">
 
@@ -1049,9 +959,7 @@ Seg
 </section>
 
 
-<!-- =======================================================
-     ITINERARIO
-======================================================= -->
+<!-- ITINERARIO -->
 
 <section class="section">
 
@@ -1077,9 +985,7 @@ height="220"
 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.191831208503!2d-103.4390028!3d20.580222199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428acbb2f44210d%3A0xb5f4523c0b41ba23!2sNuestra%20Se%C3%B1ora%20del%20Rocio!5e0!3m2!1ses-419!2smx!4v1783537871011!5m2!1ses-419!2smx">
 </iframe>
 
-
 <br><br>
-
 
 <a
 href="https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9"
@@ -1111,9 +1017,7 @@ height="220"
 src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed">
 </iframe>
 
-
 <br><br>
-
 
 <a
 href="https://maps.app.goo.gl/gf9h7gvR2p2orKZGA"
@@ -1143,9 +1047,7 @@ Abrir ubicación
 </section>
 
 
-<!-- =======================================================
-     VESTIMENTA
-======================================================= -->
+<!-- VESTIMENTA -->
 
 <section class="section">
 
@@ -1157,7 +1059,6 @@ Código de vestimenta
 Formal
 </p>
 
-
 <img
 src="images/dresscode.jpg"
 class="dress-img">
@@ -1165,9 +1066,7 @@ class="dress-img">
 </section>
 
 
-<!-- =======================================================
-     SOLO ADULTOS
-======================================================= -->
+<!-- SOLO ADULTOS -->
 
 <section class="section">
 
@@ -1179,9 +1078,7 @@ alt="Recepción solo para adultos">
 </section>
 
 
-<!-- =======================================================
-     MESA DE REGALOS
-======================================================= -->
+<!-- MESA DE REGALOS -->
 
 <section class="section">
 
@@ -1192,7 +1089,6 @@ Mesa de Regalos
 <p>
 Tu presencia es nuestro mejor regalo.
 </p>
-
 
 <a
 href="https://www.amazon.com.mx/wedding/guest-view/288H6QT8OE4AW"
@@ -1207,16 +1103,13 @@ Ver mesa de regalos
 </section>
 
 
-<!-- =======================================================
-     GALERIA
-======================================================= -->
+<!-- GALERIA -->
 
 <section class="section">
 
 <h2>
 Nuestras Fotos
 </h2>
-
 
 <div class="gallery">
 
@@ -1233,16 +1126,13 @@ Nuestras Fotos
 </section>
 
 
-<!-- =======================================================
-     CONFIRMACION
-======================================================= -->
+<!-- CONFIRMACION -->
 
 <section class="section">
 
 <h2>
 Confirmar asistencia
 </h2>
-
 
 <div class="form">
 
@@ -1296,57 +1186,40 @@ No
 
 
 <button onclick="generar()">
-
 Generar Pase
-
 </button>
 
 </div>
 
 
-<!-- =====================================================
-     PASE
-===================================================== -->
-
 <div
 class="ticket"
 id="ticket">
 
-
 <h3 id="invitado"></h3>
-
 
 <p>
 Invitado a la boda
 </p>
 
-
 <h2>
 Estefania & Jorge
 </h2>
 
-
 <p id="tornabodaResultado"></p>
-
 
 <div id="qr"></div>
 
-
 <button onclick="enviar()">
-
 Enviar invitación
-
 </button>
-
 
 </div>
 
 </section>
 
 
-<!-- =======================================================
-     MODAL
-======================================================= -->
+<!-- MODAL -->
 
 <div
 class="modal"
@@ -1360,10 +1233,7 @@ id="modalImg">
 
 <script>
 
-
-/* =========================================================
-   APERTURA
-========================================================= */
+/* SOBRE */
 
 function abrirInvitacion(){
 
@@ -1397,9 +1267,7 @@ audio.play().catch(()=>{});
 }
 
 
-/* =========================================================
-   CONTADOR
-========================================================= */
+/* CONTADOR */
 
 const fecha =
 new Date(
@@ -1445,9 +1313,7 @@ Math.floor(
 },1000);
 
 
-/* =========================================================
-   TORNABODA
-========================================================= */
+/* TORNABODA */
 
 let tornaboda="";
 
@@ -1488,9 +1354,7 @@ document
 }
 
 
-/* =========================================================
-   GENERAR PASE
-========================================================= */
+/* GENERAR PASE */
 
 let link="";
 
@@ -1518,7 +1382,7 @@ document
 .trim();
 
 
-/* NOMBRE */
+/* NOMBRE OBLIGATORIO */
 
 if(nombre===""){
 
@@ -1535,7 +1399,7 @@ return;
 }
 
 
-/* TELEFONO */
+/* TELEFONO OBLIGATORIO */
 
 if(tel===""){
 
@@ -1552,7 +1416,7 @@ return;
 }
 
 
-/* PERSONAS */
+/* PERSONAS OBLIGATORIO */
 
 if(personas===""){
 
@@ -1569,7 +1433,7 @@ return;
 }
 
 
-/* MINIMO */
+/* PERSONAS MINIMO */
 
 if(parseInt(personas)<1){
 
@@ -1586,7 +1450,7 @@ return;
 }
 
 
-/* TORNABODA */
+/* TORNABODA OBLIGATORIA */
 
 if(tornaboda===""){
 
@@ -1603,9 +1467,7 @@ nombre =
 nombre.toUpperCase();
 
 
-/* =====================================================
-   GOOGLE SHEETS
-===================================================== */
+/* GOOGLE SHEETS */
 
 fetch(
 
@@ -1634,9 +1496,7 @@ confirmacion:"Confirmado"
 );
 
 
-/* =====================================================
-   MOSTRAR PASE
-===================================================== */
+/* MOSTRAR PASE */
 
 document
 .getElementById("ticket")
@@ -1654,9 +1514,7 @@ document
 "Tornaboda: "+tornaboda;
 
 
-/* =====================================================
-   QR
-===================================================== */
+/* QR */
 
 link =
 
@@ -1690,9 +1548,7 @@ height:180
 }
 
 
-/* =========================================================
-   WHATSAPP
-========================================================= */
+/* WHATSAPP */
 
 function enviar(){
 
@@ -1710,9 +1566,7 @@ window.open(
 "?text="+
 
 encodeURIComponent(
-
 "Te invitamos a nuestra boda "+link
-
 )
 
 );
@@ -1720,9 +1574,7 @@ encodeURIComponent(
 }
 
 
-/* =========================================================
-   MUSICA
-========================================================= */
+/* MUSICA */
 
 const audio =
 document.getElementById("audio");
@@ -1741,14 +1593,10 @@ audio.pause();
 };
 
 
-/* =========================================================
-   ANIMACION DE SECCIONES
-========================================================= */
+/* ANIMACION */
 
 const sections =
-document.querySelectorAll(
-'.section'
-);
+document.querySelectorAll('.section');
 
 
 window.addEventListener(
@@ -1758,8 +1606,7 @@ window.addEventListener(
 sections.forEach(sec=>{
 
 let top =
-sec.getBoundingClientRect()
-.top;
+sec.getBoundingClientRect().top;
 
 
 if(
@@ -1767,9 +1614,7 @@ top <
 window.innerHeight-100
 ){
 
-sec.classList.add(
-'visible'
-);
+sec.classList.add('visible');
 
 }
 
@@ -1778,9 +1623,7 @@ sec.classList.add(
 });
 
 
-/* =========================================================
-   GALERIA
-========================================================= */
+/* GALERIA */
 
 document
 .querySelectorAll('.gallery img')
@@ -1802,9 +1645,7 @@ document
 });
 
 
-/* =========================================================
-   CERRAR MODAL
-========================================================= */
+/* CERRAR MODAL */
 
 document
 .getElementById("modal")
@@ -1817,7 +1658,6 @@ document
 };
 
 </script>
-
 
 </div>
 
