@@ -14,7 +14,7 @@
 <style>
 
 /* =========================
-   GENERAL
+   BODY
 ========================= */
 
 body{
@@ -346,16 +346,13 @@ font-size:20px;
 }
 
 
-/* ==================================================
-   NUEVA APERTURA ELEGANTE
-================================================== */
+/* =========================================================
+   SOBRE - APERTURA ELEGANTE
+========================================================= */
 
 #contenido{
 display:none;
 }
-
-
-/* PANTALLA DE APERTURA */
 
 #intro{
 
@@ -367,13 +364,7 @@ left:0;
 width:100%;
 height:100vh;
 
-background:
-radial-gradient(
-circle at center,
-#fffaf5 0%,
-#f5ebe1 45%,
-#e7d9cb 100%
-);
+background:#efe9e1;
 
 display:flex;
 
@@ -385,155 +376,119 @@ z-index:999999;
 overflow:hidden;
 
 transition:
-opacity 1.5s ease,
-visibility 1.5s ease;
+opacity 1.2s ease,
+visibility 1.2s ease;
 
 }
 
 
-/* BRILLO CENTRAL */
-
-#intro::before{
-
-content:"";
-
-position:absolute;
-
-width:350px;
-height:350px;
-
-border-radius:50%;
-
-background:
-radial-gradient(
-circle,
-rgba(255,255,255,.95),
-rgba(200,169,106,.18),
-transparent 70%
-);
-
-filter:blur(10px);
-
-animation:
-halo 3s ease-in-out infinite alternate;
-
-}
-
-
-/* LINEAS DECORATIVAS */
-
-#intro::after{
-
-content:"";
-
-position:absolute;
-
-width:75%;
-height:75%;
-
-border:1px solid rgba(184,145,85,.35);
-
-border-radius:50%;
-
-animation:
-rotateRing 18s linear infinite;
-
-}
-
-
-/* CONTENEDOR */
+/* =========================
+   SOBRE COMPLETO
+========================= */
 
 .envelope-wrapper{
 
 position:relative;
 
-width:320px;
-height:320px;
+width:380px;
+height:540px;
 
-display:flex;
+background-image:url("images/sobre.jpg");
 
-justify-content:center;
-align-items:center;
+background-size:cover;
+background-position:center;
 
-z-index:5;
-
-}
-
-
-/* MONOGRAMA */
-
-.seal{
-
-position:relative;
-
-width:130px;
-height:130px;
-
-border-radius:50%;
-
-background:
-linear-gradient(
-145deg,
-#fffdf9,
-#eee1d4
-);
-
-border:
-1px solid rgba(181,145,90,.6);
+border-radius:3px;
 
 box-shadow:
+0 25px 80px rgba(0,0,0,.25);
 
-0 10px 30px rgba(0,0,0,.12),
-
-0 0 0 8px rgba(255,255,255,.45),
-
-0 0 0 9px rgba(184,145,85,.25);
-
-display:flex;
-
-align-items:center;
-justify-content:center;
-
-font-family:'Great Vibes',cursive;
-
-font-size:48px;
-
-color:#b28c5d;
-
-cursor:pointer;
+transform:scale(1);
 
 transition:
-transform 1s cubic-bezier(.19,1,.22,1),
-box-shadow 1s ease,
-opacity 1s ease;
+transform 1.8s cubic-bezier(.19,1,.22,1),
+filter 1.8s ease;
 
 }
 
 
-/* TEXTO INFERIOR */
+/* =========================
+   BRILLO DEL SOBRE
+========================= */
 
-.seal::after{
+.envelope-wrapper::after{
 
-content:"Estefania & Jorge";
+content:"";
 
 position:absolute;
 
-top:145px;
+inset:0;
 
-white-space:nowrap;
+background:
+radial-gradient(
+circle at center,
+rgba(255,255,255,.20),
+transparent 45%
+);
 
-font-family:'Dancing Script',cursive;
+opacity:.7;
 
-font-size:24px;
-
-color:#8f7658;
-
-letter-spacing:.5px;
+pointer-events:none;
 
 }
 
 
-/* PEQUEÑO BRILLO */
+/* =========================
+   SELLO
+========================= */
+
+.seal{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+background:#f4eee7;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+font-family:'Dancing Script',cursive;
+
+font-size:34px;
+
+color:#777;
+
+cursor:pointer;
+
+z-index:10;
+
+box-shadow:
+0 8px 30px rgba(0,0,0,.18);
+
+transition:
+transform .7s cubic-bezier(.19,1,.22,1),
+opacity .7s ease,
+box-shadow .7s ease;
+
+}
+
+
+/* =========================
+   HALO DEL SELLO
+========================= */
 
 .seal::before{
 
@@ -541,72 +496,91 @@ content:"";
 
 position:absolute;
 
-top:15px;
-left:-30px;
+width:112px;
+height:112px;
 
-width:40px;
-height:100px;
+border-radius:50%;
 
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.8),
-transparent
-);
+border:1px solid rgba(255,255,255,.8);
 
-transform:rotate(25deg);
+box-shadow:
+0 0 25px rgba(255,255,255,.5);
 
-opacity:0;
+animation:
+halo 3s ease-in-out infinite;
+
+}
+
+@keyframes halo{
+
+0%,100%{
+
+transform:scale(.95);
+
+opacity:.45;
+
+}
+
+50%{
+
+transform:scale(1.08);
+
+opacity:.9;
+
+}
 
 }
 
 
-/* HOVER */
+/* =========================
+   HOVER SELLO
+========================= */
 
 .seal:hover{
 
 transform:
+translate(-50%,-50%)
 scale(1.08);
 
 box-shadow:
-
-0 15px 45px rgba(0,0,0,.15),
-
-0 0 0 8px rgba(255,255,255,.5),
-
-0 0 35px rgba(200,169,106,.45);
+0 12px 40px rgba(0,0,0,.25);
 
 }
 
 
-/* ANIMACION AL ABRIR */
+/* =========================
+   AL ABRIR
+========================= */
+
+.abrir .envelope-wrapper{
+
+transform:scale(1.08);
+
+filter:brightness(1.08);
+
+}
+
+
+/* =========================
+   DESAPARECER SELLO
+========================= */
 
 .abrir .seal{
 
-transform:
-scale(3);
-
 opacity:0;
 
-box-shadow:
-0 0 100px rgba(200,169,106,.9);
-
-}
-
-.abrir .seal::before{
-
-opacity:1;
-
-animation:
-shine 1s ease forwards;
+transform:
+translate(-50%,-50%)
+scale(1.7);
 
 }
 
 
-/* DESAPARECER PANTALLA */
+/* =========================
+   DESAPARECER INTRO
+========================= */
 
-.abrir{
+#intro.ocultar{
 
 opacity:0;
 
@@ -615,7 +589,9 @@ visibility:hidden;
 }
 
 
-/* ENTRADA DE CONTENIDO */
+/* =========================
+   ANIMACION CONTENIDO
+========================= */
 
 .fade-content{
 
@@ -624,93 +600,21 @@ fadeContent 1.8s ease forwards;
 
 }
 
-
 @keyframes fadeContent{
-
-0%{
-
-opacity:0;
-
-transform:
-scale(1.04);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:
-scale(1);
-
-}
-
-}
-
-
-/* HALO */
-
-@keyframes halo{
-
-0%{
-
-transform:
-scale(.85);
-
-opacity:.5;
-
-}
-
-100%{
-
-transform:
-scale(1.15);
-
-opacity:1;
-
-}
-
-}
-
-
-/* ANILLO */
-
-@keyframes rotateRing{
 
 from{
 
-transform:
-rotate(0deg);
+opacity:0;
+
+transform:scale(1.04);
 
 }
 
 to{
 
-transform:
-rotate(360deg);
+opacity:1;
 
-}
-
-}
-
-
-/* BRILLO */
-
-@keyframes shine{
-
-0%{
-
-transform:
-translateX(-100px)
-rotate(25deg);
-
-}
-
-100%{
-
-transform:
-translateX(300px)
-rotate(25deg);
+transform:scale(1);
 
 }
 
@@ -718,81 +622,50 @@ rotate(25deg);
 
 
 /* =========================
-   MOBILE
+   SOBRE EN CELULAR
 ========================= */
 
 @media(max-width:600px){
 
 .envelope-wrapper{
 
-width:280px;
-height:280px;
+width:100vw;
+height:100vh;
+
+border-radius:0;
+
+background-size:cover;
 
 }
 
 .seal{
 
-width:105px;
-height:105px;
+width:80px;
+height:80px;
 
-font-size:42px;
-
-}
-
-.seal::after{
-
-top:120px;
-
-font-size:21px;
+font-size:32px;
 
 }
 
-#intro::after{
+.seal::before{
 
-width:85%;
-height:65%;
-
-}
-
-}
-
-
-/* =========================
-   IPHONE PEQUEÑO
-========================= */
-
-@media(max-width:380px){
-
-.seal{
-
-width:95px;
-height:95px;
-
-font-size:38px;
-
-}
-
-.seal::after{
-
-top:108px;
-
-font-size:19px;
+width:100px;
+height:100px;
 
 }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- ==================================================
-     APERTURA
-================================================== -->
+<!-- =====================================================
+     SOBRE
+===================================================== -->
 
 <div id="intro">
 
@@ -811,14 +684,12 @@ E & J
 </div>
 
 
-<!-- ==================================================
-     CONTENIDO
-================================================== -->
-
 <div id="contenido">
 
 
-<!-- MUSICA -->
+<!-- =====================================================
+     MUSICA
+===================================================== -->
 
 <audio id="audio" loop>
 
@@ -828,15 +699,14 @@ type="audio/mpeg">
 
 </audio>
 
-
 <button id="music-btn">
-
 🎵 Música
-
 </button>
 
 
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <div class="hero">
 
@@ -846,21 +716,15 @@ src="https://images.unsplash.com/photo-1606800052052-a08af7148866">
 <div class="hero-text">
 
 <h1>
-
 Estefania & Jorge
-
 </h1>
 
 <p>
-
 16 Enero 2027 — 7:30 PM
-
 </p>
 
 <p>
-
 Quinta Agapantos
-
 </p>
 
 </div>
@@ -868,28 +732,21 @@ Quinta Agapantos
 </div>
 
 
-<!-- ==================================================
+<!-- =====================================================
      CUENTA REGRESIVA
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
 <h2>
-
 Cuenta regresiva
-
 </h2>
 
 <div class="timer">
 
-
 <div class="card">
 
-<div
-id="dias"
-class="number">
-
-</div>
+<div id="dias" class="number"></div>
 
 Días
 
@@ -898,11 +755,7 @@ Días
 
 <div class="card">
 
-<div
-id="horas"
-class="number">
-
-</div>
+<div id="horas" class="number"></div>
 
 Horas
 
@@ -911,11 +764,7 @@ Horas
 
 <div class="card">
 
-<div
-id="minutos"
-class="number">
-
-</div>
+<div id="minutos" class="number"></div>
 
 Min
 
@@ -924,47 +773,36 @@ Min
 
 <div class="card">
 
-<div
-id="segundos"
-class="number">
-
-</div>
+<div id="segundos" class="number"></div>
 
 Seg
 
 </div>
-
 
 </div>
 
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      ITINERARIO
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
 <h2>
-
 Itinerario
-
 </h2>
 
 
 <div class="event-card">
 
 <h3>
-
 ⛪ Misa
-
 </h3>
 
 <p>
-
 Templo Nueva Galicia — 6:00 PM
-
 </p>
 
 
@@ -974,18 +812,15 @@ height="220"
 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.191831208503!2d-103.4390028!3d20.580222199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428acbb2f44210d%3A0xb5f4523c0b41ba23!2sNuestra%20Se%C3%B1ora%20del%20Rocio!5e0!3m2!1ses-419!2smx!4v1783537871011!5m2!1ses-419!2smx">
 </iframe>
 
-
-<br><br>
-
+<br>
+<br>
 
 <a
 href="https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9"
 target="_blank">
 
 <button>
-
 Abrir ubicación
-
 </button>
 
 </a>
@@ -996,15 +831,11 @@ Abrir ubicación
 <div class="event-card">
 
 <h3>
-
 💍 Boda
-
 </h3>
 
 <p>
-
 Quinta Agapantos — 7:30 PM - 1AM
-
 </p>
 
 
@@ -1014,18 +845,15 @@ height="220"
 src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed">
 </iframe>
 
-
-<br><br>
-
+<br>
+<br>
 
 <a
 href="https://maps.app.goo.gl/gf9h7gvR2p2orKZGA"
 target="_blank">
 
 <button>
-
 Abrir ubicación
-
 </button>
 
 </a>
@@ -1036,15 +864,11 @@ Abrir ubicación
 <div class="event-card">
 
 <h3>
-
 🍸 Coctelería
-
 </h3>
 
 <p>
-
 7:30 PM
-
 </p>
 
 </div>
@@ -1052,24 +876,19 @@ Abrir ubicación
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      VESTIMENTA
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
 <h2>
-
 Código de vestimenta
-
 </h2>
 
 <p style="font-size:22px">
-
 Formal
-
 </p>
-
 
 <img
 src="images/dresscode.jpg"
@@ -1078,7 +897,9 @@ class="dress-img">
 </section>
 
 
-<!-- SOLO ADULTOS -->
+<!-- =====================================================
+     SOLO ADULTOS
+===================================================== -->
 
 <section class="section">
 
@@ -1090,33 +911,26 @@ alt="Recepción solo para adultos">
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      MESA DE REGALOS
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
 <h2>
-
 Mesa de Regalos
-
 </h2>
 
 <p>
-
 Tu presencia es nuestro mejor regalo.
-
 </p>
-
 
 <a
 href="https://www.amazon.com.mx/wedding/guest-view/288H6QT8OE4AW"
 target="_blank">
 
 <button>
-
 Ver mesa de regalos
-
 </button>
 
 </a>
@@ -1124,18 +938,15 @@ Ver mesa de regalos
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      GALERIA
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
 <h2>
-
 Nuestras Fotos
-
 </h2>
-
 
 <div class="gallery">
 
@@ -1152,16 +963,14 @@ Nuestras Fotos
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      CONFIRMACION
-================================================== -->
+===================================================== -->
 
 <section class="section">
 
 <h2>
-
 Confirmar asistencia
-
 </h2>
 
 
@@ -1188,9 +997,7 @@ placeholder="¿Cuántas personas asistirán?">
 <div class="tornaboda-container">
 
 <p>
-
 ¿Asistirás a la Tornaboda?
-
 </p>
 
 
@@ -1227,42 +1034,28 @@ Generar Pase
 </div>
 
 
-<!-- PASE -->
-
 <div
 class="ticket"
 id="ticket">
 
 
-<h3
-id="invitado">
-
-</h3>
+<h3 id="invitado"></h3>
 
 
 <p>
-
 Invitado a la boda
-
 </p>
 
 
 <h2>
-
 Estefania & Jorge
-
 </h2>
 
 
-<p
-id="tornabodaResultado">
-
-</p>
+<p id="tornabodaResultado"></p>
 
 
-<div id="qr">
-
-</div>
+<div id="qr"></div>
 
 
 <button onclick="enviar()">
@@ -1271,13 +1064,14 @@ Enviar invitación
 
 </button>
 
-
 </div>
 
 </section>
 
 
-<!-- MODAL -->
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div
 class="modal"
@@ -1292,22 +1086,24 @@ id="modalImg">
 <script>
 
 
-/* ==================================================
-   APERTURA
-================================================== */
+/* =====================================================
+   ABRIR INVITACION
+===================================================== */
 
 function abrirInvitacion(){
 
 const intro=
 document.getElementById("intro");
 
+
+/* ACTIVAR ANIMACION */
+
 intro.classList.add("abrir");
 
 
+/* MOSTRAR CONTENIDO */
+
 setTimeout(()=>{
-
-intro.style.display="none";
-
 
 const contenido=
 document.getElementById("contenido");
@@ -1317,25 +1113,43 @@ contenido.style.display="block";
 contenido.classList.add("fade-content");
 
 
+/* MUSICA */
+
 const audio=
 document.getElementById("audio");
 
 audio.play().catch(()=>{});
 
 
-},1500);
+},1000);
+
+
+/* CERRAR SOBRE */
+
+setTimeout(()=>{
+
+intro.classList.add("ocultar");
+
+},1800);
+
+
+/* ELIMINAR INTRO */
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+},3000);
 
 }
 
 
-/* ==================================================
+/* =====================================================
    CONTADOR
-================================================== */
+===================================================== */
 
 const fecha=
-new Date(
-"Jan 16, 2027 19:00:00"
-).getTime();
+new Date("Jan 16, 2027 19:00:00").getTime();
 
 
 setInterval(()=>{
@@ -1357,8 +1171,13 @@ document.getElementById("horas").innerHTML=
 Math.floor(
 (diff%(1000*60*60*24))/
 (1000*60)
-/
-60
+);
+
+
+document.getElementById("horas").innerHTML=
+Math.floor(
+(diff%(1000*60*60*24))/
+(1000*60*60)
 );
 
 
@@ -1378,9 +1197,9 @@ Math.floor(
 },1000);
 
 
-/* ==================================================
+/* =====================================================
    TORNABODA
-================================================== */
+===================================================== */
 
 let tornaboda="";
 
@@ -1390,22 +1209,26 @@ function seleccionarTornaboda(opcion){
 tornaboda=opcion;
 
 
-document.getElementById("btnSi")
+document
+.getElementById("btnSi")
 .classList.remove("selected");
 
 
-document.getElementById("btnNo")
+document
+.getElementById("btnNo")
 .classList.remove("selected");
 
 
 if(opcion==="Sí"){
 
-document.getElementById("btnSi")
+document
+.getElementById("btnSi")
 .classList.add("selected");
 
 }else{
 
-document.getElementById("btnNo")
+document
+.getElementById("btnNo")
 .classList.add("selected");
 
 }
@@ -1413,35 +1236,37 @@ document.getElementById("btnNo")
 }
 
 
-/* ==================================================
+/* =====================================================
    GENERAR PASE
-================================================== */
+===================================================== */
 
 let link="";
 
 
 function generar(){
 
-
 let nombre=
-document.getElementById("nombre")
+document
+.getElementById("nombre")
 .value
 .trim();
 
 
 let tel=
-document.getElementById("telefono")
+document
+.getElementById("telefono")
 .value
 .trim();
 
 
 let personas=
-document.getElementById("personas")
+document
+.getElementById("personas")
 .value
 .trim();
 
 
-/* NOMBRE */
+/* NOMBRE OBLIGATORIO */
 
 if(nombre===""){
 
@@ -1458,7 +1283,7 @@ return;
 }
 
 
-/* TELEFONO */
+/* TELEFONO OBLIGATORIO */
 
 if(tel===""){
 
@@ -1475,7 +1300,7 @@ return;
 }
 
 
-/* PERSONAS */
+/* PERSONAS OBLIGATORIO */
 
 if(personas===""){
 
@@ -1492,7 +1317,7 @@ return;
 }
 
 
-/* MINIMO */
+/* PERSONAS MINIMO */
 
 if(parseInt(personas)<1){
 
@@ -1526,7 +1351,9 @@ nombre=
 nombre.toUpperCase();
 
 
-/* GOOGLE SHEETS */
+/* =====================================================
+   GOOGLE SHEETS
+===================================================== */
 
 fetch(
 "https://script.google.com/macros/s/AKfycbyDPJbTLQgur2q22GzT5KlmwSH7yJlrfS5rgTS29ssXB-suxXuwdy8b7ORD-67kZrzQBQ/exec",
@@ -1551,7 +1378,9 @@ confirmacion:"Confirmado"
 });
 
 
-/* MOSTRAR PASE */
+/* =====================================================
+   MOSTRAR PASE
+===================================================== */
 
 document
 .getElementById("ticket")
@@ -1560,8 +1389,7 @@ document
 
 document
 .getElementById("invitado")
-.innerText=
-nombre;
+.innerText=nombre;
 
 
 document
@@ -1570,7 +1398,9 @@ document
 "Tornaboda: "+tornaboda;
 
 
-/* QR */
+/* =====================================================
+   QR
+===================================================== */
 
 link=
 "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado="
@@ -1602,14 +1432,15 @@ height:180
 }
 
 
-/* ==================================================
+/* =====================================================
    WHATSAPP
-================================================== */
+===================================================== */
 
 function enviar(){
 
 let tel=
-document.getElementById("telefono")
+document
+.getElementById("telefono")
 .value
 .trim();
 
@@ -1627,9 +1458,9 @@ encodeURIComponent(
 }
 
 
-/* ==================================================
+/* =====================================================
    MUSICA
-================================================== */
+===================================================== */
 
 const audio=
 document.getElementById("audio");
@@ -1648,14 +1479,13 @@ audio.pause();
 };
 
 
-/* ==================================================
-   ANIMACION
-================================================== */
+/* =====================================================
+   ANIMACION DE SECCIONES
+===================================================== */
 
 const sections=
-document.querySelectorAll(
-'.section'
-);
+document
+.querySelectorAll('.section');
 
 
 window.addEventListener(
@@ -1665,16 +1495,13 @@ window.addEventListener(
 sections.forEach(sec=>{
 
 let top=
-sec.getBoundingClientRect()
-.top;
+sec.getBoundingClientRect().top;
 
 
-if(
-top<
-window.innerHeight-100
-){
+if(top<
+window.innerHeight-100){
 
-sec.classList.add("visible");
+sec.classList.add('visible');
 
 }
 
@@ -1683,14 +1510,12 @@ sec.classList.add("visible");
 });
 
 
-/* ==================================================
+/* =====================================================
    GALERIA
-================================================== */
+===================================================== */
 
 document
-.querySelectorAll(
-'.gallery img'
-)
+.querySelectorAll('.gallery img')
 .forEach(img=>{
 
 img.onclick=()=>{
@@ -1702,17 +1527,16 @@ document
 
 document
 .getElementById("modalImg")
-.src=
-img.src;
+.src=img.src;
 
 };
 
 });
 
 
-/* ==================================================
+/* =====================================================
    CERRAR MODAL
-================================================== */
+===================================================== */
 
 document
 .getElementById("modal")
@@ -1723,7 +1547,6 @@ document
 .style.display="none";
 
 };
-
 
 </script>
 
