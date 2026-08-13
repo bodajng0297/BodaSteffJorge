@@ -346,13 +346,18 @@ font-size:20px;
 }
 
 
-/* =========================================================
-   SOBRE - APERTURA ELEGANTE
-========================================================= */
+/* =====================================================
+   SOBRE / APERTURA ELEGANTE
+===================================================== */
 
 #contenido{
 display:none;
 }
+
+
+/* =========================
+   INTRO
+========================= */
 
 #intro{
 
@@ -375,15 +380,17 @@ z-index:999999;
 
 overflow:hidden;
 
+opacity:1;
+
 transition:
-opacity 1.2s ease,
-visibility 1.2s ease;
+opacity 1.8s ease,
+visibility 1.8s ease;
 
 }
 
 
 /* =========================
-   SOBRE COMPLETO
+   SOBRE
 ========================= */
 
 .envelope-wrapper{
@@ -403,11 +410,9 @@ border-radius:3px;
 box-shadow:
 0 25px 80px rgba(0,0,0,.25);
 
-transform:scale(1);
-
 transition:
-transform 1.8s cubic-bezier(.19,1,.22,1),
-filter 1.8s ease;
+filter 2s ease,
+opacity 2s ease;
 
 }
 
@@ -427,13 +432,16 @@ inset:0;
 background:
 radial-gradient(
 circle at center,
-rgba(255,255,255,.20),
+rgba(255,255,255,.18),
 transparent 45%
 );
 
 opacity:.7;
 
 pointer-events:none;
+
+transition:
+opacity 1.5s ease;
 
 }
 
@@ -479,15 +487,15 @@ box-shadow:
 0 8px 30px rgba(0,0,0,.18);
 
 transition:
-transform .7s cubic-bezier(.19,1,.22,1),
-opacity .7s ease,
-box-shadow .7s ease;
+transform 1.3s cubic-bezier(.19,1,.22,1),
+opacity 1.2s ease,
+box-shadow 1.3s ease;
 
 }
 
 
 /* =========================
-   HALO DEL SELLO
+   AURA DEL SELLO
 ========================= */
 
 .seal::before{
@@ -501,23 +509,67 @@ height:112px;
 
 border-radius:50%;
 
-border:1px solid rgba(255,255,255,.8);
+border:1px solid rgba(255,255,255,.85);
 
 box-shadow:
-0 0 25px rgba(255,255,255,.5);
+0 0 20px rgba(255,255,255,.45),
+0 0 45px rgba(255,255,255,.25);
 
 animation:
 halo 3s ease-in-out infinite;
 
 }
 
+
+/* SEGUNDA AURA */
+
+.seal::after{
+
+content:"";
+
+position:absolute;
+
+width:135px;
+height:135px;
+
+border-radius:50%;
+
+border:1px solid rgba(255,255,255,.25);
+
+animation:
+haloOuter 3.5s ease-in-out infinite;
+
+}
+
+
 @keyframes halo{
 
 0%,100%{
 
-transform:scale(.95);
+transform:scale(.94);
 
-opacity:.45;
+opacity:.4;
+
+}
+
+50%{
+
+transform:scale(1.10);
+
+opacity:1;
+
+}
+
+}
+
+
+@keyframes haloOuter{
+
+0%,100%{
+
+transform:scale(.92);
+
+opacity:.15;
 
 }
 
@@ -525,7 +577,7 @@ opacity:.45;
 
 transform:scale(1.08);
 
-opacity:.9;
+opacity:.5;
 
 }
 
@@ -533,51 +585,177 @@ opacity:.9;
 
 
 /* =========================
-   HOVER SELLO
+   EFECTO DE APERTURA
 ========================= */
 
-.seal:hover{
+.abrir .seal{
+
+animation:
+sealReveal 1.4s cubic-bezier(.19,1,.22,1)
+forwards;
+
+}
+
+
+@keyframes sealReveal{
+
+0%{
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+opacity:1;
+
+}
+
+45%{
 
 transform:
 translate(-50%,-50%)
 scale(1.08);
 
+opacity:1;
+
 box-shadow:
-0 12px 40px rgba(0,0,0,.25);
+0 0 30px rgba(255,255,255,.8),
+0 0 70px rgba(255,255,255,.5);
+
+}
+
+100%{
+
+transform:
+translate(-50%,-50%)
+scale(.7);
+
+opacity:0;
+
+}
 
 }
 
 
 /* =========================
-   AL ABRIR
+   LUZ QUE SALE DEL SELLO
 ========================= */
 
-.abrir .envelope-wrapper{
+.abrir .envelope-wrapper::before{
 
-transform:scale(1.08);
+content:"";
 
-filter:brightness(1.08);
+position:absolute;
+
+left:50%;
+top:50%;
+
+width:40px;
+height:40px;
+
+border-radius:50%;
+
+background:white;
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+opacity:0;
+
+z-index:5;
+
+animation:
+lightReveal 1.8s ease-out forwards;
 
 }
 
 
-/* =========================
-   DESAPARECER SELLO
-========================= */
+@keyframes lightReveal{
 
-.abrir .seal{
+0%{
 
 opacity:0;
 
 transform:
 translate(-50%,-50%)
-scale(1.7);
+scale(.2);
+
+}
+
+25%{
+
+opacity:.8;
+
+}
+
+60%{
+
+opacity:.45;
+
+transform:
+translate(-50%,-50%)
+scale(5);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+translate(-50%,-50%)
+scale(15);
+
+}
 
 }
 
 
 /* =========================
-   DESAPARECER INTRO
+   SOBRE SE DISUELVE
+========================= */
+
+.abrir .envelope-wrapper{
+
+animation:
+envelopeFade 2.2s ease forwards;
+
+}
+
+
+@keyframes envelopeFade{
+
+0%{
+
+opacity:1;
+
+filter:brightness(1);
+
+}
+
+45%{
+
+opacity:1;
+
+filter:brightness(1.08);
+
+}
+
+100%{
+
+opacity:0;
+
+filter:
+brightness(1.25)
+blur(8px);
+
+}
+
+}
+
+
+/* =========================
+   INTRO DESAPARECE
 ========================= */
 
 #intro.ocultar{
@@ -590,29 +768,43 @@ visibility:hidden;
 
 
 /* =========================
-   ANIMACION CONTENIDO
+   INVITACION APARECE
 ========================= */
 
 .fade-content{
 
 animation:
-fadeContent 1.8s ease forwards;
+mainReveal 2s cubic-bezier(.19,1,.22,1)
+forwards;
 
 }
 
-@keyframes fadeContent{
 
-from{
+@keyframes mainReveal{
+
+0%{
 
 opacity:0;
 
-transform:scale(1.04);
+filter:blur(12px);
+
+transform:scale(1.025);
 
 }
 
-to{
+45%{
+
+opacity:.5;
+
+filter:blur(5px);
+
+}
+
+100%{
 
 opacity:1;
+
+filter:blur(0);
 
 transform:scale(1);
 
@@ -622,7 +814,7 @@ transform:scale(1);
 
 
 /* =========================
-   SOBRE EN CELULAR
+   CELULAR
 ========================= */
 
 @media(max-width:600px){
@@ -654,9 +846,17 @@ height:100px;
 
 }
 
+.seal::after{
+
+width:120px;
+height:120px;
+
+}
+
 }
 
 </style>
+
 </head>
 
 
@@ -1096,12 +1296,12 @@ const intro=
 document.getElementById("intro");
 
 
-/* ACTIVAR ANIMACION */
+/* ACTIVAR TRANSICION */
 
 intro.classList.add("abrir");
 
 
-/* MOSTRAR CONTENIDO */
+/* MOSTRAR INVITACION */
 
 setTimeout(()=>{
 
@@ -1120,17 +1320,16 @@ document.getElementById("audio");
 
 audio.play().catch(()=>{});
 
+},1200);
 
-},1000);
 
-
-/* CERRAR SOBRE */
+/* DESAPARECER INTRO */
 
 setTimeout(()=>{
 
 intro.classList.add("ocultar");
 
-},1800);
+},1900);
 
 
 /* ELIMINAR INTRO */
@@ -1139,7 +1338,7 @@ setTimeout(()=>{
 
 intro.style.display="none";
 
-},3000);
+},3700);
 
 }
 
@@ -1164,13 +1363,6 @@ fecha-now;
 document.getElementById("dias").innerHTML=
 Math.floor(
 diff/(1000*60*60*24)
-);
-
-
-document.getElementById("horas").innerHTML=
-Math.floor(
-(diff%(1000*60*60*24))/
-(1000*60)
 );
 
 
@@ -1266,7 +1458,7 @@ document
 .trim();
 
 
-/* NOMBRE OBLIGATORIO */
+/* NOMBRE */
 
 if(nombre===""){
 
@@ -1283,7 +1475,7 @@ return;
 }
 
 
-/* TELEFONO OBLIGATORIO */
+/* TELEFONO */
 
 if(tel===""){
 
@@ -1300,7 +1492,7 @@ return;
 }
 
 
-/* PERSONAS OBLIGATORIO */
+/* PERSONAS */
 
 if(personas===""){
 
@@ -1317,7 +1509,7 @@ return;
 }
 
 
-/* PERSONAS MINIMO */
+/* MINIMO */
 
 if(parseInt(personas)<1){
 
@@ -1480,7 +1672,7 @@ audio.pause();
 
 
 /* =====================================================
-   ANIMACION DE SECCIONES
+   ANIMACION SECCIONES
 ===================================================== */
 
 const sections=
