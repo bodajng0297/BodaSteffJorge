@@ -412,6 +412,7 @@ let nombre=document.getElementById("nombre").value.toUpperCase();
 let tel=document.getElementById("telefono").value;
 let personas=document.getElementById("personas").value;
 fetch("https://script.google.com/macros/s/AKfycbzhzFqDbLi5y3IG5bndviZ1NXzUEmIl8Y12Jp_q2O8su-QMcfSAs75yeo0g4vnMdGAPIQ/exec",{
+    
     method:"POST",
     body:JSON.stringify({
         nombre:nombre,
