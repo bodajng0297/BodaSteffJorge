@@ -1,89 +1,394 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Invitación Boda</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<style>
-body {
-  margin:0;
-  font-family: 'Playfair Display', serif;
-  background: linear-gradient(135deg, #fdf7f2, #f6e9de);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  overflow:hidden;
-}
-.container {
-  background:white;
-  padding:40px;
-  border-radius:25px;
-  box-shadow:0 15px 60px rgba(0,0,0,0.2);
-  text-align:center;
-  max-width:350px;
-  animation: fadeIn 1s ease-out;
-}
-h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size:36px;
-  margin:10px 0;
-  color:#b28c5d;
-}
-h2 {
-  font-size:24px;
-  margin:5px 0 15px 0;
-  color:#333;
-}
-p {
-  font-size:16px;
-  margin:5px 0;
-  color:#555;
-}
-#qr {
-  margin:20px auto;
-  width:200px;
-  height:200px;
-  padding:10px;
-  background:white;
-  border-radius:25px;
-  box-shadow:0 12px 50px rgba(0,0,0,0.25);
-}
-/* Animaciones */
-@keyframes fadeIn {
-  0% {opacity:0; transform: translateY(-20px);}
-  100% {opacity:1; transform: translateY(0);}
-}
-/* RESPONSIVE */
-@media (max-width: 500px) {
-  .container { padding:30px; width:90%; }
-  h1 { font-size:28px; }
-  h2 { font-size:20px; }
-}
-</style>
-</head>
-<body>
-<div class="container">
-  <h1 id="nombre"></h1>
-  <h2>Invitado a nuestra boda</h2>
-  <p>Jorge & Estefanía</p>
-  <p>16 Enero 2027 — 7:00 PM</p>
-  <div id="qr"></div>
-  <p>¡Te esperamos para celebrar juntos este día especial!</p>
-</div>
-<script>
-// Obtener nombre del invitado desde la URL
-const params = new URLSearchParams(window.location.search);
-const invitado = params.get('invitado') || "Querido Invitado";
-document.getElementById("nombre").innerText = invitado.toUpperCase();
-// Generar QR con la URL de confirmación
-const qrURL = window.location.href;
-new QRCode(document.getElementById("qr"), {
-    text: qrURL,
-    width: 200,
-    height: 200
-});
+
+<link
+href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+rel="stylesheet">
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
 </script>
+
+<style>
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+margin:0;
+
+font-family:'Dancing Script',cursive;
+
+background:linear-gradient(
+135deg,
+#fdf7f2,
+#f6e9de
+);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+min-height:100vh;
+
+padding:20px;
+
+box-sizing:border-box;
+
+overflow:hidden;
+
+}
+
+
+/* =========================
+   TARJETA
+========================= */
+
+.container{
+
+background:white;
+
+padding:40px 30px;
+
+border-radius:25px;
+
+box-shadow:
+0 15px 60px rgba(0,0,0,0.2);
+
+text-align:center;
+
+width:90%;
+
+max-width:800px;
+
+box-sizing:border-box;
+
+animation:
+fadeIn 1s ease-out;
+
+}
+
+
+/* =========================
+   NOMBRE
+========================= */
+
+h1{
+
+font-family:'Dancing Script',cursive;
+
+font-size:36px;
+
+margin:10px 0;
+
+color:#b28c5d;
+
+}
+
+
+/* =========================
+   TITULO
+========================= */
+
+h2{
+
+font-family:'Dancing Script',cursive;
+
+font-size:24px;
+
+margin:5px 0 15px 0;
+
+color:#333;
+
+}
+
+
+/* =========================
+   TEXTOS
+========================= */
+
+p{
+
+font-family:'Dancing Script',cursive;
+
+font-size:16px;
+
+margin:8px 0;
+
+color:#555;
+
+}
+
+
+/* =========================
+   QR
+========================= */
+
+#qr{
+
+margin:20px auto;
+
+width:200px;
+
+height:200px;
+
+padding:10px;
+
+background:white;
+
+border-radius:25px;
+
+box-shadow:
+0 12px 50px rgba(0,0,0,0.25);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+box-sizing:content-box;
+
+}
+
+
+/* =========================
+   ANIMACION
+========================= */
+
+@keyframes fadeIn{
+
+0%{
+
+opacity:0;
+
+transform:
+translateY(-20px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+body{
+
+padding:15px;
+
+}
+
+.container{
+
+width:95%;
+
+max-width:none;
+
+padding:35px 20px;
+
+border-radius:25px;
+
+}
+
+h1{
+
+font-size:36px;
+
+}
+
+h2{
+
+font-size:24px;
+
+}
+
+p{
+
+font-size:18px;
+
+}
+
+#qr{
+
+width:200px;
+
+height:200px;
+
+}
+
+}
+
+
+/* =========================
+   IPHONE PEQUEÑO
+========================= */
+
+@media(max-width:380px){
+
+.container{
+
+padding:30px 15px;
+
+}
+
+h1{
+
+font-size:32px;
+
+}
+
+h2{
+
+font-size:22px;
+
+}
+
+p{
+
+font-size:17px;
+
+}
+
+#qr{
+
+transform:scale(.9);
+
+margin:10px auto;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     INVITACION
+========================= -->
+
+<div class="container">
+
+
+<h1 id="nombre"></h1>
+
+
+<h2>
+
+Invitado a nuestra boda
+
+</h2>
+
+
+<p>
+
+Estefania & Jorge
+
+</p>
+
+
+<p>
+
+16 Enero 2027 — 7:00 PM
+
+</p>
+
+
+<!-- QR -->
+
+<div id="qr"></div>
+
+
+<p>
+
+¡Te esperamos para celebrar juntos este día especial!
+
+</p>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   OBTENER NOMBRE
+========================= */
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+
+const invitado =
+params.get('invitado')
+|| "Querido Invitado";
+
+
+document
+.getElementById("nombre")
+.innerText =
+invitado.toUpperCase();
+
+
+/* =========================
+   GENERAR QR
+========================= */
+
+const qrURL =
+window.location.href;
+
+
+new QRCode(
+
+document.getElementById("qr"),
+
+{
+
+text:qrURL,
+
+width:200,
+
+height:200
+
+}
+
+);
+
+</script>
+
+
 </body>
+
 </html>
