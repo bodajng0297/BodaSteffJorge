@@ -13,9 +13,9 @@
 
 <style>
 
-/* =========================
+/* =====================================================
    BODY
-========================= */
+===================================================== */
 
 body{
 margin:0;
@@ -28,9 +28,9 @@ scroll-behavior:smooth;
 }
 
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
 height:100vh;
@@ -66,9 +66,9 @@ margin:6px 0;
 }
 
 
-/* =========================
+/* =====================================================
    SECCIONES
-========================= */
+===================================================== */
 
 .section{
 max-width:800px;
@@ -92,9 +92,9 @@ transform:translateY(0) scale(1);
 }
 
 
-/* =========================
+/* =====================================================
    CONTADOR
-========================= */
+===================================================== */
 
 .timer{
 display:flex;
@@ -116,51 +116,17 @@ font-size:42px;
 font-weight:bold;
 }
 
-
-/* =========================
-   MENSAJE DEL GRAN DÍA
-========================= */
-
-#mensaje-dia{
+#mensaje-final{
+font-size:30px;
+font-weight:bold;
+margin-top:20px;
 display:none;
-text-align:center;
-animation:granDia 1.5s ease forwards;
-}
-
-#mensaje-dia .mensaje-icono{
-font-size:45px;
-margin-bottom:10px;
-}
-
-#mensaje-dia h2{
-font-size:32px;
-color:#b28c5d;
-margin:5px 0 10px;
-}
-
-#mensaje-dia p{
-font-size:21px;
-margin:6px 0;
-}
-
-@keyframes granDia{
-
-0%{
-opacity:0;
-transform:scale(.85);
-}
-
-100%{
-opacity:1;
-transform:scale(1);
-}
-
 }
 
 
-/* =========================
+/* =====================================================
    EVENTOS
-========================= */
+===================================================== */
 
 .event-card{
 padding:30px;
@@ -168,6 +134,7 @@ margin:20px 0;
 border-radius:20px;
 box-shadow:0 12px 40px rgba(0,0,0,.12);
 width:100%;
+box-sizing:border-box;
 }
 
 iframe{
@@ -176,9 +143,9 @@ margin-top:15px;
 }
 
 
-/* =========================
+/* =====================================================
    GALERIA
-========================= */
+===================================================== */
 
 .gallery{
 display:grid;
@@ -199,9 +166,9 @@ transform:scale(1.05);
 }
 
 
-/* =========================
+/* =====================================================
    MODAL
-========================= */
+===================================================== */
 
 .modal{
 position:fixed;
@@ -223,9 +190,9 @@ border-radius:20px;
 }
 
 
-/* =========================
+/* =====================================================
    FORM
-========================= */
+===================================================== */
 
 .form{
 max-width:350px;
@@ -262,9 +229,9 @@ background:#b59759;
 }
 
 
-/* =========================
+/* =====================================================
    TICKET
-========================= */
+===================================================== */
 
 .ticket{
 display:none;
@@ -301,9 +268,9 @@ margin:auto;
 }
 
 
-/* =========================
+/* =====================================================
    VESTIMENTA
-========================= */
+===================================================== */
 
 .dress-img{
 width:100%;
@@ -313,9 +280,9 @@ box-shadow:0 10px 40px rgba(0,0,0,.15);
 }
 
 
-/* =========================
+/* =====================================================
    MUSICA
-========================= */
+===================================================== */
 
 #music-btn{
 position:fixed;
@@ -332,9 +299,9 @@ font-family:'Dancing Script',cursive;
 }
 
 
-/* =========================
+/* =====================================================
    RESPONSIVE
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
@@ -358,9 +325,9 @@ display:none;
 }
 
 
-/* =========================
+/* =====================================================
    INTRO
-========================= */
+===================================================== */
 
 #intro{
 
@@ -392,9 +359,9 @@ visibility 1.8s ease;
 }
 
 
-/* =========================
+/* =====================================================
    SOBRE
-========================= */
+===================================================== */
 
 .envelope-wrapper{
 
@@ -420,9 +387,9 @@ opacity 2s ease;
 }
 
 
-/* =========================
+/* =====================================================
    BRILLO DEL SOBRE
-========================= */
+===================================================== */
 
 .envelope-wrapper::after{
 
@@ -449,9 +416,9 @@ opacity 1.5s ease;
 }
 
 
-/* =========================
+/* =====================================================
    SELLO
-========================= */
+===================================================== */
 
 .seal{
 
@@ -498,9 +465,9 @@ box-shadow 1.3s ease;
 }
 
 
-/* =========================
+/* =====================================================
    AURA DEL SELLO
-========================= */
+===================================================== */
 
 .seal::before{
 
@@ -525,9 +492,9 @@ halo 3s ease-in-out infinite;
 }
 
 
-/* =========================
+/* =====================================================
    SEGUNDA AURA
-========================= */
+===================================================== */
 
 .seal::after{
 
@@ -590,9 +557,9 @@ opacity:.5;
 }
 
 
-/* =========================
+/* =====================================================
    EFECTO DE APERTURA
-========================= */
+===================================================== */
 
 .abrir .seal{
 
@@ -642,9 +609,9 @@ opacity:0;
 }
 
 
-/* =========================
+/* =====================================================
    LUZ QUE SALE DEL SELLO
-========================= */
+===================================================== */
 
 .abrir .envelope-wrapper::before{
 
@@ -717,9 +684,9 @@ scale(15);
 }
 
 
-/* =========================
+/* =====================================================
    SOBRE SE DISUELVE
-========================= */
+===================================================== */
 
 .abrir .envelope-wrapper{
 
@@ -760,9 +727,9 @@ blur(8px);
 }
 
 
-/* =========================
+/* =====================================================
    INTRO DESAPARECE
-========================= */
+===================================================== */
 
 #intro.ocultar{
 
@@ -773,9 +740,9 @@ visibility:hidden;
 }
 
 
-/* =========================
+/* =====================================================
    INVITACION APARECE
-========================= */
+===================================================== */
 
 .fade-content{
 
@@ -819,9 +786,9 @@ transform:scale(1);
 }
 
 
-/* =========================
+/* =====================================================
    CELULAR
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
@@ -905,9 +872,7 @@ type="audio/mpeg">
 </audio>
 
 <button id="music-btn">
-
 🎵 Música
-
 </button>
 
 
@@ -949,18 +914,11 @@ Quinta Agapantos
 Cuenta regresiva
 </h2>
 
-
-<div
-class="timer"
-id="timer">
-
+<div class="timer">
 
 <div class="card">
 
-<div
-id="dias"
-class="number">
-</div>
+<div id="dias" class="number"></div>
 
 Días
 
@@ -969,10 +927,7 @@ Días
 
 <div class="card">
 
-<div
-id="horas"
-class="number">
-</div>
+<div id="horas" class="number"></div>
 
 Horas
 
@@ -981,10 +936,7 @@ Horas
 
 <div class="card">
 
-<div
-id="minutos"
-class="number">
-</div>
+<div id="minutos" class="number"></div>
 
 Min
 
@@ -993,39 +945,17 @@ Min
 
 <div class="card">
 
-<div
-id="segundos"
-class="number">
-</div>
+<div id="segundos" class="number"></div>
 
 Seg
 
 </div>
 
-
 </div>
 
 
-<!-- MENSAJE CUANDO LLEGUE A CERO -->
-
-<div id="mensaje-dia">
-
-<div class="mensaje-icono">
-💍
-</div>
-
-<h2>
-¡Hoy es el gran día!
-</h2>
-
-<p>
-<strong>Estefania & Jorge</strong>
-</p>
-
-<p>
-✨ ¡Nos vemos para celebrar nuestro amor! ✨
-</p>
-
+<div id="mensaje-final">
+¡Hoy es el gran día! 💍❤️
 </div>
 
 </section>
@@ -1042,6 +972,8 @@ Itinerario
 </h2>
 
 
+<!-- MISA -->
+
 <div class="event-card">
 
 <h3>
@@ -1053,14 +985,21 @@ Templo Nueva Galicia — 6:00 PM
 </p>
 
 
+<!-- MAPA CORREGIDO -->
+
 <iframe
 width="100%"
 height="220"
-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.191831208503!2d-103.4390028!3d20.580222199999998!2m3!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428acbb2f44210d%3A0xb5f4523c0b41ba23!2sNuestra%20Se%C3%B1ora%20del%20Rocio!5e0!3m2!1ses-419!2smx!4v1783537871011!5m2!1ses-419!2smx">
+style="border:0;"
+loading="lazy"
+allowfullscreen
+src="https://www.google.com/maps?q=Nuestra%20Se%C3%B1ora%20del%20Rocio%2C%20Guadalajara%2C%20Jalisco&output=embed">
 </iframe>
+
 
 <br>
 <br>
+
 
 <a
 href="https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9"
@@ -1074,6 +1013,8 @@ Abrir ubicación
 
 </div>
 
+
+<!-- BODA -->
 
 <div class="event-card">
 
@@ -1092,8 +1033,10 @@ height="220"
 src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed">
 </iframe>
 
+
 <br>
 <br>
+
 
 <a
 href="https://maps.app.goo.gl/gf9h7gvR2p2orKZGA"
@@ -1107,6 +1050,8 @@ Abrir ubicación
 
 </div>
 
+
+<!-- COCTELERIA -->
 
 <div class="event-card">
 
@@ -1172,6 +1117,7 @@ Mesa de Regalos
 Tu presencia es nuestro mejor regalo.
 </p>
 
+
 <a
 href="https://www.amazon.com.mx/wedding/guest-view/288H6QT8OE4AW"
 target="_blank">
@@ -1194,6 +1140,7 @@ Ver mesa de regalos
 <h2>
 Nuestras Fotos
 </h2>
+
 
 <div class="gallery">
 
@@ -1307,7 +1254,7 @@ id="modalImg">
 
 function abrirInvitacion(){
 
-const intro =
+const intro=
 document.getElementById("intro");
 
 
@@ -1320,7 +1267,7 @@ intro.classList.add("abrir");
 
 setTimeout(()=>{
 
-const contenido =
+const contenido=
 document.getElementById("contenido");
 
 contenido.style.display="block";
@@ -1330,7 +1277,7 @@ contenido.classList.add("fade-content");
 
 /* MUSICA */
 
-const audio =
+const audio=
 document.getElementById("audio");
 
 audio.play().catch(()=>{});
@@ -1362,89 +1309,69 @@ intro.style.display="none";
    CONTADOR
 ===================================================== */
 
-const fecha =
-new Date("Jan 16, 2027 19:30:00").getTime();
+const fecha=
+new Date("Jan 16, 2027 19:00:00").getTime();
 
 
 function actualizarContador(){
 
-let now =
+let now=
 new Date().getTime();
 
-let diff =
-fecha - now;
+let diff=
+fecha-now;
 
 
-/* =========================
-   LLEGÓ EL GRAN DÍA
-========================= */
+/* SI YA LLEGO EL DIA */
 
-if(diff <= 0){
+if(diff<=0){
 
-document
-.getElementById("timer")
-.style.display="none";
+document.getElementById("dias").innerHTML="0";
 
-document
-.getElementById("mensaje-dia")
-.style.display="block";
+document.getElementById("horas").innerHTML="0";
+
+document.getElementById("minutos").innerHTML="0";
+
+document.getElementById("segundos").innerHTML="0";
+
+document.getElementById("mensaje-final").style.display="block";
 
 return;
 
 }
 
 
-/* =========================
-   DIAS
-========================= */
+/* DIAS */
 
-document
-.getElementById("dias")
-.innerHTML =
+document.getElementById("dias").innerHTML=
 Math.floor(
-diff /
-(1000*60*60*24)
+diff/(1000*60*60*24)
 );
 
 
-/* =========================
-   HORAS
-========================= */
+/* HORAS */
 
-document
-.getElementById("horas")
-.innerHTML =
+document.getElementById("horas").innerHTML=
 Math.floor(
-(diff %
-(1000*60*60*24)) /
+(diff%(1000*60*60*24))/
 (1000*60*60)
 );
 
 
-/* =========================
-   MINUTOS
-========================= */
+/* MINUTOS */
 
-document
-.getElementById("minutos")
-.innerHTML =
+document.getElementById("minutos").innerHTML=
 Math.floor(
-(diff %
-(1000*60*60)) /
+(diff%(1000*60*60))/
 (1000*60)
 );
 
 
-/* =========================
-   SEGUNDOS
-========================= */
+/* SEGUNDOS */
 
-document
-.getElementById("segundos")
-.innerHTML =
+document.getElementById("segundos").innerHTML=
 Math.floor(
-(diff %
-(1000*60)) /
+(diff%(1000*60))/
 1000
 );
 
@@ -1473,30 +1400,28 @@ let link="";
 
 function generar(){
 
-let nombre =
+let nombre=
 document
 .getElementById("nombre")
 .value
 .trim();
 
 
-let tel =
+let tel=
 document
 .getElementById("telefono")
 .value
 .trim();
 
 
-let personas =
+let personas=
 document
 .getElementById("personas")
 .value
 .trim();
 
 
-/* =========================
-   NOMBRE
-========================= */
+/* NOMBRE */
 
 if(nombre===""){
 
@@ -1513,9 +1438,7 @@ return;
 }
 
 
-/* =========================
-   TELEFONO
-========================= */
+/* TELEFONO */
 
 if(tel===""){
 
@@ -1532,9 +1455,7 @@ return;
 }
 
 
-/* =========================
-   PERSONAS
-========================= */
+/* PERSONAS */
 
 if(personas===""){
 
@@ -1551,9 +1472,7 @@ return;
 }
 
 
-/* =========================
-   MINIMO
-========================= */
+/* MINIMO */
 
 if(parseInt(personas)<1){
 
@@ -1570,7 +1489,7 @@ return;
 }
 
 
-nombre =
+nombre=
 nombre.toUpperCase();
 
 
@@ -1617,7 +1536,7 @@ document
    QR
 ===================================================== */
 
-link =
+link=
 "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado="
 +
 encodeURIComponent(nombre);
@@ -1653,7 +1572,7 @@ height:180
 
 function enviar(){
 
-let tel =
+let tel=
 document
 .getElementById("telefono")
 .value
@@ -1677,7 +1596,7 @@ encodeURIComponent(
    MUSICA
 ===================================================== */
 
-const audio =
+const audio=
 document.getElementById("audio");
 
 
@@ -1698,7 +1617,7 @@ audio.pause();
    ANIMACION SECCIONES
 ===================================================== */
 
-const sections =
+const sections=
 document
 .querySelectorAll('.section');
 
@@ -1709,11 +1628,11 @@ window.addEventListener(
 
 sections.forEach(sec=>{
 
-let top =
+let top=
 sec.getBoundingClientRect().top;
 
 
-if(top <
+if(top<
 window.innerHeight-100){
 
 sec.classList.add('visible');
