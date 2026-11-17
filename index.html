@@ -1,1661 +1,1857 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Boda Estefania & Jorge</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
-
+<title>Boda Estefanía & Jorge — 16 Enero 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Dancing+Script:wght@700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <style>
+:root {
+  --gold: #c8a96a;
+  --gold-dark: #9a7b3e;
+  --gold-soft: #f5ebd9;
+  --cream: #fdf7f3;
+  --cream-2: #f7e6da;
+  --ink: #2b231d;
+  --muted: #6f6257;
+  --estefania: #be185d;
+  --estefania-bg: #fce7f3;
+  --jorge: #0369a1;
+  --jorge-bg: #e0f2fe;
+  --flex-color: #0f766e;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Dancing Script', cursive;
+  background: linear-gradient(135deg, var(--cream), var(--cream-2));
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
 /* =====================================================
-   BODY
+   BARRA SUPERIOR EXCLUSIVA NOVIOS (OCULTA HASTA DESBLOQUEAR)
 ===================================================== */
-
-body{
-margin:0;
-font-family:'Dancing Script',cursive;
-background:linear-gradient(135deg,#fdf7f3,#f9e7dd);
-color:#333;
-text-align:center;
-overflow-x:hidden;
-scroll-behavior:smooth;
+#novios-topbar {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 100000;
+  background: linear-gradient(135deg, #221b16 0%, #382c23 100%);
+  color: #fff;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  border-bottom: 2px solid var(--gold);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
-
+.brand-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 13.5px;
+}
+.brand-monogram {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Dancing Script', cursive;
+  color: var(--gold);
+  font-size: 16px;
+}
+.mode-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.mode-tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,169,106,0.4);
+  background: rgba(255,255,255,0.06);
+  color: #ebdfd1;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0;
+}
+.mode-tab.active {
+  background: var(--gold);
+  color: #1f1914;
+  border-color: var(--gold);
+  font-weight: 700;
+}
+.lock-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(248,113,113,0.5);
+  background: rgba(248,113,113,0.15);
+  color: #fecaca;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 0;
+}
 
 /* =====================================================
-   HERO
+   MODAL DE CONTRASEÑA PARA NOVIOS (CIFRADA)
 ===================================================== */
-
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
+#passwordModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 17, 13, 0.82);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999999;
+  padding: 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
-
-.hero img{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-filter:brightness(.55);
+.pwd-card {
+  background: #fff;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 24px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+  overflow: hidden;
+  text-align: center;
+  animation: popIn 0.3s ease-out;
 }
-
-.hero-text{
-position:relative;
-color:white;
-text-shadow:0 6px 20px rgba(0,0,0,.6);
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
 }
-
-.hero-text h1{
-font-family:'Dancing Script',cursive;
-font-size:90px;
-margin:0;
+.pwd-head {
+  background: linear-gradient(135deg, #261e18, #423429);
+  color: #fff;
+  padding: 22px 20px;
+  border-bottom: 2px solid var(--gold);
 }
-
-.hero-text p{
-font-size:26px;
-margin:6px 0;
+.pwd-head h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  margin: 6px 0 0;
+  color: #fff;
 }
-
+.pwd-body {
+  padding: 24px 22px;
+}
+.pwd-input {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #d5c3aa;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin: 12px 0 8px;
+  outline: none;
+}
+.pwd-input:focus {
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 0 4px rgba(200,169,106,0.2);
+}
+.pwd-err {
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 600;
+  min-height: 18px;
+  margin-bottom: 8px;
+}
 
 /* =====================================================
-   SECCIONES
+   SOBRE DE APERTURA CINEMATOGRÁFICA
 ===================================================== */
-
-.section{
-max-width:800px;
-width:90%;
-margin:80px auto;
-padding:60px 30px;
-border-radius:25px;
-background:white;
-box-shadow:0 20px 70px rgba(0,0,0,.12);
-display:flex;
-flex-direction:column;
-align-items:center;
-opacity:0;
-transform:translateY(80px) scale(.97);
-transition:all 1.2s cubic-bezier(.19,1,.22,1);
+#contenido { display: none; }
+#intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle at center, #f5efe8 0%, #e6ddd1 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 1.8s ease, visibility 1.8s ease;
 }
-
-.section.visible{
-opacity:1;
-transform:translateY(0) scale(1);
+.envelope-wrapper {
+  position: relative;
+  width: 380px;
+  height: 540px;
+  background-image: url("images/sobre.jpg"), url("https://bodajng0297.github.io/BodaSteffJorge/images/sobre.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  box-shadow: 0 28px 85px rgba(0,0,0,.28);
+  transition: filter 2s ease, opacity 2s ease;
 }
-
+.envelope-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,.2), transparent 48%);
+  opacity: .75;
+  pointer-events: none;
+}
+.seal {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%,-50%) scale(1);
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: #f4eee7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 34px;
+  color: #6d5f53;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 8px 30px rgba(0,0,0,.2);
+  transition: transform 1.3s cubic-bezier(.19,1,.22,1), opacity 1.2s ease;
+}
+.seal::before {
+  content: "";
+  position: absolute;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.88);
+  box-shadow: 0 0 20px rgba(255,255,255,.5), 0 0 45px rgba(255,255,255,.3);
+  animation: halo 3s ease-in-out infinite;
+}
+.seal::after {
+  content: "";
+  position: absolute;
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.28);
+  animation: haloOuter 3.5s ease-in-out infinite;
+}
+.envelope-hint {
+  margin-top: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #6b5c4f;
+  animation: halo 2.8s ease-in-out infinite;
+}
+@keyframes halo {
+  0%,100% { transform: scale(.94); opacity: .45; }
+  50% { transform: scale(1.10); opacity: 1; }
+}
+@keyframes haloOuter {
+  0%,100% { transform: scale(.92); opacity: .15; }
+  50% { transform: scale(1.08); opacity: .5; }
+}
+.abrir .seal { animation: sealReveal 1.4s cubic-bezier(.19,1,.22,1) forwards; }
+@keyframes sealReveal {
+  0% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+  45% { transform: translate(-50%,-50%) scale(1.08); opacity: 1; box-shadow: 0 0 30px rgba(255,255,255,.8), 0 0 70px rgba(255,255,255,.5); }
+  100% { transform: translate(-50%,-50%) scale(.7); opacity: 0; }
+}
+.abrir .envelope-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  transform: translate(-50%,-50%) scale(1);
+  opacity: 0;
+  z-index: 5;
+  animation: lightReveal 1.8s ease-out forwards;
+}
+@keyframes lightReveal {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(.2); }
+  25% { opacity: .85; }
+  60% { opacity: .45; transform: translate(-50%,-50%) scale(5); }
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(15); }
+}
+.abrir .envelope-wrapper { animation: envelopeFade 2.2s ease forwards; }
+@keyframes envelopeFade {
+  0% { opacity: 1; filter: brightness(1); }
+  45% { opacity: 1; filter: brightness(1.08); }
+  100% { opacity: 0; filter: brightness(1.25) blur(8px); }
+}
+#intro.ocultar { opacity: 0; visibility: hidden; }
+.fade-content { animation: mainReveal 2s cubic-bezier(.19,1,.22,1) forwards; }
+@keyframes mainReveal {
+  0% { opacity: 0; filter: blur(12px); transform: scale(1.02); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
 
 /* =====================================================
-   CONTADOR
+   HERO & NAVEGACION FLOTANTE
 ===================================================== */
-
-.timer{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-justify-content:center;
+.hero {
+  height: 95vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
-
-.card{
-padding:25px;
-border-radius:20px;
-background:white;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
-width:110px;
+.hero img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.52);
 }
-
-.number{
-font-size:42px;
-font-weight:bold;
+.hero-text {
+  position: relative;
+  color: white;
+  text-shadow: 0 6px 24px rgba(0,0,0,.65);
+  padding: 0 20px;
 }
-
-#mensaje-final{
-font-size:30px;
-font-weight:bold;
-margin-top:20px;
-display:none;
+.hero-kicker {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255,255,255,0.7);
+  border-bottom: 1px solid rgba(255,255,255,0.7);
+  padding: 6px 20px;
+  margin-bottom: 14px;
 }
-
+.hero-text h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 94px;
+  margin: 0;
+  line-height: 1.05;
+}
+.hero-text p {
+  font-size: 28px;
+  margin: 8px 0;
+}
+.hero-btns {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.quick-nav {
+  position: sticky;
+  top: 14px;
+  z-index: 95;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 9px 14px;
+  margin: -28px auto 15px;
+  max-width: 720px;
+  width: 92%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+  border: 1px solid rgba(200,169,106,0.4);
+}
+.quick-nav a {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #4a3c31;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+.quick-nav a:hover, .quick-nav a.gold-pill {
+  background: var(--gold);
+  color: white;
+}
 
 /* =====================================================
-   EVENTOS
+   SECCIONES DE LA INVITACION
 ===================================================== */
-
-.event-card{
-padding:30px;
-margin:20px 0;
-border-radius:20px;
-box-shadow:0 12px 40px rgba(0,0,0,.12);
-width:100%;
-box-sizing:border-box;
+.section {
+  max-width: 820px;
+  width: 92%;
+  margin: 70px auto;
+  padding: 58px 34px;
+  border-radius: 28px;
+  background: white;
+  box-shadow: 0 20px 70px rgba(0,0,0,.10);
+  border: 1px solid rgba(200,169,106,0.24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(60px) scale(.98);
+  transition: all 1.1s cubic-bezier(.19,1,.22,1);
 }
-
-iframe{
-border-radius:15px;
-margin-top:15px;
+.section.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
-
+.section h2 {
+  font-size: 54px;
+  color: var(--gold-dark);
+  margin: 0 0 16px;
+}
+.ornament-line {
+  width: 90px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 6px auto 22px;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 25px;
+  line-height: 1.6;
+  color: #4a3e34;
+  max-width: 640px;
+}
+.timer {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  padding: 24px 18px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff, #faf4ec);
+  border: 1px solid rgba(200,169,106,0.38);
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+  width: 115px;
+  font-size: 22px;
+}
+.number {
+  font-size: 44px;
+  font-weight: bold;
+  color: var(--gold-dark);
+}
+#mensaje-final {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 20px;
+  display: none;
+  color: var(--gold-dark);
+}
+.event-card {
+  padding: 32px 28px;
+  margin: 16px 0;
+  border-radius: 22px;
+  background: #fdfbf8;
+  border: 1px solid rgba(200,169,106,0.32);
+  box-shadow: 0 12px 38px rgba(0,0,0,.07);
+  width: 100%;
+}
+.event-time-badge {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  margin-bottom: 8px;
+}
+.event-card h3 { font-size: 38px; margin: 4px 0 6px; color: var(--ink); }
+.event-card p { font-size: 25px; margin: 4px 0 14px; color: #55483d; }
+iframe { border-radius: 16px; margin-top: 12px; border: 1px solid rgba(200,169,106,0.3); }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+.gallery img {
+  width: 100%;
+  height: 235px;
+  object-fit: cover;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: .4s;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+}
+.gallery img:hover { transform: scale(1.04); }
+.dress-img {
+  width: 100%;
+  max-width: 430px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.15);
+}
+button {
+  padding: 13px 28px;
+  background: var(--gold);
+  border: none;
+  color: white;
+  font-family: 'Dancing Script', cursive;
+  font-size: 21px;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+button:hover { background: var(--gold-dark); transform: translateY(-1px); }
+#music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(43, 35, 29, 0.92);
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 100;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+}
 
 /* =====================================================
-   GALERIA
+   BUSCADOR PRIVADO DE PASE Y MESA
 ===================================================== */
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:20px;
-width:100%;
+.lookup-box {
+  width: 100%;
+  max-width: 580px;
+  margin-top: 26px;
+  padding: 30px 24px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #fdfaf5, #f5eadc);
+  border: 1.5px solid rgba(200, 169, 106, 0.48);
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
-
-.gallery img{
-width:100%;
-border-radius:15px;
-cursor:pointer;
-transition:.4s;
+.lookup-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 30px; margin: 0 0 6px; color: var(--ink); }
+.lookup-box p.sub { font-size: 13.5px; color: var(--muted); margin: 0 0 16px; line-height: 1.5; }
+.lookup-input {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 14px;
+  border: 1.5px solid #d5c3aa;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  text-align: center;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+  text-transform: uppercase;
 }
-
-.gallery img:hover{
-transform:scale(1.05);
+.lookup-suggestions {
+  margin-top: 8px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(200,169,106,0.35);
+  max-height: 210px;
+  overflow-y: auto;
+  text-align: left;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
 }
-
+.lookup-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f2e9dc;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+}
+.lookup-item:hover { background: #fbf5ec; }
+.vip-pass-preview {
+  display: none;
+  margin-top: 22px;
+  background: #fff;
+  border-radius: 24px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 20px 55px rgba(43,35,29,0.16);
+  overflow: hidden;
+  text-align: center;
+}
+.vip-pass-head {
+  background: linear-gradient(135deg, #2b231d, #46382d);
+  color: #fff;
+  padding: 20px;
+  border-bottom: 2px solid var(--gold);
+  position: relative;
+}
+.vip-folio {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(200,169,106,0.2);
+  border: 1px solid rgba(200,169,106,0.5);
+  color: #f5ebd9;
+}
+.vip-pass-head h4 { font-family: 'Dancing Script', cursive; font-size: 34px; margin: 4px 0 0; color: var(--gold); }
+.vip-pass-body { padding: 24px 20px; }
+.vip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+.vip-stat { background: #faf6f0; border: 1px solid rgba(200,169,106,0.38); border-radius: 14px; padding: 13px 10px; }
+.vip-stat .lbl { font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); }
+.vip-stat .val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--gold-dark); margin-top: 3px; }
+.action-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+}
 
 /* =====================================================
-   MODAL
+   DASHBOARD PRIVADO DESBLOQUEABLE (CIFRADO)
 ===================================================== */
-
-.modal{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.8);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:99999;
+.admin-section {
+  display: none;
+  max-width: 1300px;
+  margin: 24px auto 60px;
+  padding: 0 18px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-align: left;
 }
-
-.modal img{
-max-width:90%;
-max-height:90%;
-border-radius:20px;
+.admin-banner {
+  background: linear-gradient(135deg, #2b221b 0%, #46372b 100%);
+  color: #fff;
+  padding: 24px 28px;
+  border-radius: 22px;
+  border: 1px solid var(--gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
 }
-
-
-/* =====================================================
-   FORM
-===================================================== */
-
-.form{
-max-width:350px;
-width:100%;
+.admin-banner h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; margin: 0; color: #fff; }
+.admin-banner p { margin: 4px 0 0; font-size: 13px; color: #dfd2c2; }
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
 }
-
-input{
-width:100%;
-padding:14px;
-margin:10px 0;
-border-radius:12px;
-border:1px solid #ddd;
-text-align:center;
-font-family:'Dancing Script',cursive;
-font-size:16px;
-text-transform:uppercase;
-box-sizing:border-box;
+.kpi-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  border: 1px solid rgba(200,169,106,0.35);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
-
-button{
-padding:14px 28px;
-background:#c8a96a;
-border:none;
-color:white;
-font-family:'Dancing Script',cursive;
-font-size:18px;
-border-radius:12px;
-cursor:pointer;
-margin-top:10px;
+.kpi-card .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.9px; color: var(--muted); }
+.kpi-card .num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; margin: 4px 0; color: var(--ink); }
+.kpi-card .sub { font-size: 12px; color: var(--muted); }
+.admin-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 24px;
+  margin-top: 20px;
+  border: 1px solid rgba(200,169,106,0.32);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
-
-button:hover{
-background:#b59759;
+.admin-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 25px; margin: 0 0 14px; color: var(--ink); }
+.ui-btn {
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(200,169,106,0.5);
+  background: #faf5ef;
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
-
-
-/* =====================================================
-   TICKET
-===================================================== */
-
-.ticket{
-display:none;
-margin-top:30px;
-padding:40px;
-border-radius:20px;
-box-shadow:0 15px 50px rgba(0,0,0,.15);
+.ui-btn.gold { background: var(--gold); color: #fff; border-color: var(--gold); }
+.ui-btn.green { background: #15803d; color: #fff; border-color: #15803d; }
+.cat-bars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  gap: 10px;
 }
-
-#ticket h2{
-font-family:'Dancing Script',cursive;
+.cat-item {
+  background: #fcfaf7;
+  border: 1px solid #e7dac8;
+  border-radius: 12px;
+  padding: 11px 14px;
+  cursor: pointer;
 }
-
-#ticket h3{
-font-family:'Dancing Script',cursive;
+.cat-item.is-flex-cat { border-color: #0d9488; background: #f0fdfa; }
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.toolbar input, .toolbar select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #d5c5b0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  background: #fff;
 }
-
-#ticket p{
-font-family:'Dancing Script',cursive;
+.table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid #eadfce; }
+table.priv-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.priv-table th {
+  background: #f8f2e9;
+  color: #4a3c31;
+  text-align: left;
+  padding: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e5d5be;
 }
+table.priv-table td { padding: 9px 12px; border-bottom: 1px solid #f1e8dc; vertical-align: middle; }
+.edit-inp { padding: 6px 8px; border-radius: 8px; border: 1px solid #dfd2c0; font-size: 12.5px; width: 100%; font-family: 'Plus Jakarta Sans', sans-serif; }
+.side-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+.side-pill.estefania { background: var(--estefania-bg); color: var(--estefania); }
+.side-pill.jorge { background: var(--jorge-bg); color: var(--jorge); }
+.seating-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+.mesa-card { background: #fdfbf8; border: 1.5px solid rgba(200,169,106,0.45); border-radius: 18px; padding: 16px; }
+.mesa-card.over-cap { border-color: #d97706; background: #fffbeb; }
+.progress-bar { height: 8px; background: #e9dfd3; border-radius: 999px; overflow: hidden; margin: 8px 0 10px; }
+.progress-fill { height: 100%; border-radius: 999px; }
+.mesa-guests-list { font-size: 12px; color: var(--muted); max-height: 150px; overflow-y: auto; }
+.mesa-guest-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px dashed #e6dacb; }
 
-#qr{
-width:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-margin:20px auto;
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
 }
+.modal img { max-width: 90%; max-height: 90%; border-radius: 20px; }
 
-#qr canvas,
-#qr img{
-display:block;
-margin:auto;
+@media(max-width:600px) {
+  .hero-text h1 { font-size: 58px; }
+  .hero-text p { font-size: 20px; }
+  .envelope-wrapper { width: 100vw; height: 100vh; border-radius: 0; }
+  .seal { width: 82px; height: 82px; font-size: 32px; }
+  .vip-grid { grid-template-columns: 1fr; }
 }
-
-
-/* =====================================================
-   VESTIMENTA
-===================================================== */
-
-.dress-img{
-width:100%;
-max-width:420px;
-border-radius:20px;
-box-shadow:0 10px 40px rgba(0,0,0,.15);
-}
-
-
-/* =====================================================
-   MUSICA
-===================================================== */
-
-#music-btn{
-position:fixed;
-top:20px;
-right:20px;
-background:#c8a96a;
-color:white;
-border:none;
-padding:10px 16px;
-border-radius:12px;
-cursor:pointer;
-z-index:10;
-font-family:'Dancing Script',cursive;
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media(max-width:600px){
-
-.hero-text h1{
-font-size:60px;
-}
-
-.hero-text p{
-font-size:20px;
-}
-
-}
-
-
-/* =====================================================
-   SOBRE / APERTURA ELEGANTE
-===================================================== */
-
-#contenido{
-display:none;
-}
-
-
-/* =====================================================
-   INTRO
-===================================================== */
-
-#intro{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100vh;
-
-background:#efe9e1;
-
-display:flex;
-
-justify-content:center;
-align-items:center;
-
-z-index:999999;
-
-overflow:hidden;
-
-opacity:1;
-
-transition:
-opacity 1.8s ease,
-visibility 1.8s ease;
-
-}
-
-
-/* =====================================================
-   SOBRE
-===================================================== */
-
-.envelope-wrapper{
-
-position:relative;
-
-width:380px;
-height:540px;
-
-background-image:url("images/sobre.jpg");
-
-background-size:cover;
-background-position:center;
-
-border-radius:3px;
-
-box-shadow:
-0 25px 80px rgba(0,0,0,.25);
-
-transition:
-filter 2s ease,
-opacity 2s ease;
-
-}
-
-
-/* =====================================================
-   BRILLO DEL SOBRE
-===================================================== */
-
-.envelope-wrapper::after{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-radial-gradient(
-circle at center,
-rgba(255,255,255,.18),
-transparent 45%
-);
-
-opacity:.7;
-
-pointer-events:none;
-
-transition:
-opacity 1.5s ease;
-
-}
-
-
-/* =====================================================
-   SELLO
-===================================================== */
-
-.seal{
-
-position:absolute;
-
-left:50%;
-
-top:46%;
-
-transform:
-translate(-50%,-50%)
-scale(1);
-
-width:90px;
-height:90px;
-
-border-radius:50%;
-
-background:#f4eee7;
-
-display:flex;
-
-align-items:center;
-justify-content:center;
-
-font-family:'Dancing Script',cursive;
-
-font-size:34px;
-
-color:#777;
-
-cursor:pointer;
-
-z-index:10;
-
-box-shadow:
-0 8px 30px rgba(0,0,0,.18);
-
-transition:
-transform 1.3s cubic-bezier(.19,1,.22,1),
-opacity 1.2s ease,
-box-shadow 1.3s ease;
-
-}
-
-
-/* =====================================================
-   AURA DEL SELLO
-===================================================== */
-
-.seal::before{
-
-content:"";
-
-position:absolute;
-
-width:112px;
-height:112px;
-
-border-radius:50%;
-
-border:1px solid rgba(255,255,255,.85);
-
-box-shadow:
-0 0 20px rgba(255,255,255,.45),
-0 0 45px rgba(255,255,255,.25);
-
-animation:
-halo 3s ease-in-out infinite;
-
-}
-
-
-/* =====================================================
-   SEGUNDA AURA
-===================================================== */
-
-.seal::after{
-
-content:"";
-
-position:absolute;
-
-width:135px;
-height:135px;
-
-border-radius:50%;
-
-border:1px solid rgba(255,255,255,.25);
-
-animation:
-haloOuter 3.5s ease-in-out infinite;
-
-}
-
-
-@keyframes halo{
-
-0%,100%{
-
-transform:scale(.94);
-
-opacity:.4;
-
-}
-
-50%{
-
-transform:scale(1.10);
-
-opacity:1;
-
-}
-
-}
-
-
-@keyframes haloOuter{
-
-0%,100%{
-
-transform:scale(.92);
-
-opacity:.15;
-
-}
-
-50%{
-
-transform:scale(1.08);
-
-opacity:.5;
-
-}
-
-}
-
-
-/* =====================================================
-   EFECTO DE APERTURA
-===================================================== */
-
-.abrir .seal{
-
-animation:
-sealReveal 1.4s cubic-bezier(.19,1,.22,1)
-forwards;
-
-}
-
-
-@keyframes sealReveal{
-
-0%{
-
-transform:
-translate(-50%,-50%)
-scale(1);
-
-opacity:1;
-
-}
-
-45%{
-
-transform:
-translate(-50%,-50%)
-scale(1.08);
-
-opacity:1;
-
-box-shadow:
-0 0 30px rgba(255,255,255,.8),
-0 0 70px rgba(255,255,255,.5);
-
-}
-
-100%{
-
-transform:
-translate(-50%,-50%)
-scale(.7);
-
-opacity:0;
-
-}
-
-}
-
-
-/* =====================================================
-   LUZ QUE SALE DEL SELLO
-===================================================== */
-
-.abrir .envelope-wrapper::before{
-
-content:"";
-
-position:absolute;
-
-left:50%;
-top:50%;
-
-width:40px;
-height:40px;
-
-border-radius:50%;
-
-background:white;
-
-transform:
-translate(-50%,-50%)
-scale(1);
-
-opacity:0;
-
-z-index:5;
-
-animation:
-lightReveal 1.8s ease-out forwards;
-
-}
-
-
-@keyframes lightReveal{
-
-0%{
-
-opacity:0;
-
-transform:
-translate(-50%,-50%)
-scale(.2);
-
-}
-
-25%{
-
-opacity:.8;
-
-}
-
-60%{
-
-opacity:.45;
-
-transform:
-translate(-50%,-50%)
-scale(5);
-
-}
-
-100%{
-
-opacity:0;
-
-transform:
-translate(-50%,-50%)
-scale(15);
-
-}
-
-}
-
-
-/* =====================================================
-   SOBRE SE DISUELVE
-===================================================== */
-
-.abrir .envelope-wrapper{
-
-animation:
-envelopeFade 2.2s ease forwards;
-
-}
-
-
-@keyframes envelopeFade{
-
-0%{
-
-opacity:1;
-
-filter:brightness(1);
-
-}
-
-45%{
-
-opacity:1;
-
-filter:brightness(1.08);
-
-}
-
-100%{
-
-opacity:0;
-
-filter:
-brightness(1.25)
-blur(8px);
-
-}
-
-}
-
-
-/* =====================================================
-   INTRO DESAPARECE
-===================================================== */
-
-#intro.ocultar{
-
-opacity:0;
-
-visibility:hidden;
-
-}
-
-
-/* =====================================================
-   INVITACION APARECE
-===================================================== */
-
-.fade-content{
-
-animation:
-mainReveal 2s cubic-bezier(.19,1,.22,1)
-forwards;
-
-}
-
-
-@keyframes mainReveal{
-
-0%{
-
-opacity:0;
-
-filter:blur(12px);
-
-transform:scale(1.025);
-
-}
-
-45%{
-
-opacity:.5;
-
-filter:blur(5px);
-
-}
-
-100%{
-
-opacity:1;
-
-filter:blur(0);
-
-transform:scale(1);
-
-}
-
-}
-
-
-/* =====================================================
-   CELULAR
-===================================================== */
-
-@media(max-width:600px){
-
-.envelope-wrapper{
-
-width:100vw;
-height:100vh;
-
-border-radius:0;
-
-background-size:cover;
-
-}
-
-.seal{
-
-width:80px;
-height:80px;
-
-font-size:32px;
-
-}
-
-.seal::before{
-
-width:100px;
-height:100px;
-
-}
-
-.seal::after{
-
-width:120px;
-height:120px;
-
-}
-
-}
-
 </style>
-
 </head>
-
 <body>
 
+<!-- =====================================================
+     BARRA SUPERIOR EXCLUSIVA PARA NOVIOS (SOLO TRAS DESBLOQUEAR)
+===================================================== -->
+<div id="novios-topbar">
+  <div class="brand-pill">
+    <span class="brand-monogram">E&J</span>
+    <span>Panel Privado Novios · Estefanía & Jorge</span>
+  </div>
+  <div class="mode-tabs">
+    <button class="mode-tab" id="tabBtnInv" onclick="cambiarModoNovios('invitacion')">💌 Ver Invitación</button>
+    <button class="mode-tab active" id="tabBtnDir" onclick="cambiarModoNovios('directorio')">📲 Directorio & WhatsApp (205 pax)</button>
+    <button class="mode-tab" id="tabBtnMesas" onclick="cambiarModoNovios('mesas')">🪑 Simulador de 16 Mesas / FLEX</button>
+  </div>
+  <button class="lock-btn" onclick="bloquearPanelNovios()">🔒 Cerrar Sesión Novios</button>
+</div>
 
 <!-- =====================================================
-     SOBRE
+     MODAL DE CONTRASEÑA ENCRIPTADA (ACCESO PRIVADO)
 ===================================================== -->
-
-<div id="intro">
-
-<div class="envelope-wrapper">
-
-<div
-class="seal"
-onclick="abrirInvitacion()">
-
-E & J
-
+<div id="passwordModal">
+  <div class="pwd-card">
+    <div class="pwd-head">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#f5ebd9;">🔒 Acceso Cifrado</div>
+      <h3>Exclusivo Estefanía & Jorge</h3>
+    </div>
+    <div class="pwd-body">
+      <p style="font-size:13px;color:var(--muted);margin:0;">Ingresa su contraseña privada para desencriptar los teléfonos y abrir el Dashboard de Control:</p>
+      <input type="password" id="pwdInput" class="pwd-input" placeholder="••••••••" onkeydown="if(event.key==='Enter') intentarDesbloqueo()">
+      <div id="pwdError" class="pwd-err"></div>
+      <div style="display:flex;gap:10px;justify-content:center;">
+        <button type="button" class="ui-btn" onclick="cerrarModalPassword()">Cancelar</button>
+        <button type="button" class="ui-btn gold" onclick="intentarDesbloqueo()">🔓 Desbloquear Dashboard</button>
+      </div>
+    </div>
+  </div>
 </div>
-
-</div>
-
-</div>
-
-
-<div id="contenido">
-
 
 <!-- =====================================================
-     MUSICA
+     VISTA PÚBLICA: INVITACIÓN DE BODA
 ===================================================== -->
+<div id="vista-publica-invitacion">
 
-<audio id="audio" loop>
+  <!-- SOBRE DE APERTURA -->
+  <div id="intro">
+    <div class="envelope-wrapper">
+      <div class="seal" onclick="abrirInvitacion()">E & J</div>
+    </div>
+    <div class="envelope-hint">Toca el sello para abrir nuestra invitación</div>
+  </div>
 
-<source
-src="audio/romantic-piano.mp3"
-type="audio/mpeg">
+  <!-- CONTENIDO DE LA INVITACION -->
+  <div id="contenido">
 
-</audio>
+    <audio id="audio" loop>
+      <source src="audio/romantic-piano.mp3" type="audio/mpeg">
+      <source src="https://bodajng0297.github.io/BodaSteffJorge/audio/romantic-piano.mp3" type="audio/mpeg">
+    </audio>
 
-<button id="music-btn">
-🎵 Música
-</button>
+    <button id="music-btn">🎵 Música</button>
 
+    <!-- HERO -->
+    <div class="hero">
+      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866" alt="Estefanía y Jorge">
+      <div class="hero-text">
+        <div class="hero-kicker">¡Nos Casamos!</div>
+        <h1>Estefanía & Jorge</h1>
+        <p>16 Enero 2027 — 7:30 PM</p>
+        <p>Quinta Agapantos</p>
+        <div class="hero-btns">
+          <button onclick="document.getElementById('sec-pase').scrollIntoView({behavior:'smooth'})">🎟️ Ver mi Pase y Mesa</button>
+          <button onclick="agendarCalendario()" style="background:rgba(255,255,255,0.18);border:1.5px solid #fff;backdrop-filter:blur(6px);">📅 Agendar Fecha</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN FLOTANTE -->
+    <nav class="quick-nav">
+      <a href="#sec-contador">⏳ Cuenta Regresiva</a>
+      <a href="#sec-itinerario">⛪ Itinerario</a>
+      <a href="#sec-vestimenta">👔 Vestimenta</a>
+      <a href="#sec-regalos">🎁 Mesa de Regalos</a>
+      <a href="#sec-galeria">📸 Fotos</a>
+      <a href="#sec-pase" class="gold-pill">🎟️ Mi Pase / Mesa</a>
+    </nav>
+
+    <!-- MENSAJE DE BIENVENIDA -->
+    <section class="section visible">
+      <h2>Nuestra Boda</h2>
+      <div class="ornament-line"></div>
+      <p class="quote-text">
+        “Las mejores cosas de la vida merecen ser compartidas. Con la bendición de Dios y el amor de nuestras familias, tenemos el honor de invitarlos a celebrar el comienzo de nuestra vida juntos.”
+      </p>
+    </section>
+
+    <!-- CUENTA REGRESIVA -->
+    <section class="section" id="sec-contador">
+      <h2>Cuenta regresiva</h2>
+      <div class="ornament-line"></div>
+      <div class="timer">
+        <div class="card"><div id="dias" class="number">0</div>Días</div>
+        <div class="card"><div id="horas" class="number">0</div>Horas</div>
+        <div class="card"><div id="minutos" class="number">0</div>Min</div>
+        <div class="card"><div id="segundos" class="number">0</div>Seg</div>
+      </div>
+      <div id="mensaje-final">¡Hoy es el gran día! 💍❤️</div>
+    </section>
+
+    <!-- ITINERARIO -->
+    <section class="section" id="sec-itinerario">
+      <h2>Itinerario</h2>
+      <div class="ornament-line"></div>
+
+      <div class="event-card">
+        <div class="event-time-badge">6:00 PM</div>
+        <h3>⛪ Misa</h3>
+        <p>Templo Nueva Galicia</p>
+        <iframe width="100%" height="220" style="border:0;" loading="lazy" allowfullscreen
+          src="https://www.google.com/maps?q=Nuestra%20Se%C3%B1ora%20del%20Rocio%2C%20Guadalajara%2C%20Jalisco&output=embed"></iframe>
+        <br><br>
+        <a href="https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9" target="_blank">
+          <button>Abrir ubicación</button>
+        </a>
+      </div>
+
+      <div class="event-card">
+        <div class="event-time-badge">7:30 PM</div>
+        <h3>🍸 Coctelería</h3>
+        <p>Recepción de bienvenida en Quinta Agapantos</p>
+      </div>
+
+      <div class="event-card">
+        <div class="event-time-badge">7:30 PM - 1:00 AM</div>
+        <h3>💍 Boda & Recepción</h3>
+        <p>Quinta Agapantos</p>
+        <iframe width="100%" height="220" style="border:0;" loading="lazy" allowfullscreen
+          src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed"></iframe>
+        <br><br>
+        <a href="https://maps.app.goo.gl/gf9h7gvR2p2orKZGA" target="_blank">
+          <button>Abrir ubicación</button>
+        </a>
+      </div>
+    </section>
+
+    <!-- VESTIMENTA -->
+    <section class="section" id="sec-vestimenta">
+      <h2>Código de vestimenta</h2>
+      <div class="ornament-line"></div>
+      <p style="font-size:26px;margin-top:0;">Formal</p>
+      <img src="images/dresscode.jpg" onerror="this.onerror=null;this.src='https://bodajng0297.github.io/BodaSteffJorge/images/dresscode.jpg';" class="dress-img" alt="Código de vestimenta">
+    </section>
+
+    <!-- SOLO ADULTOS -->
+    <section class="section">
+      <img src="images/solo-adultos.jpg" onerror="this.onerror=null;this.src='https://bodajng0297.github.io/BodaSteffJorge/images/solo-adultos.jpg';" class="dress-img" alt="Recepción solo para adultos">
+    </section>
+
+    <!-- MESA DE REGALOS -->
+    <section class="section" id="sec-regalos">
+      <h2>Mesa de Regalos</h2>
+      <div class="ornament-line"></div>
+      <p style="font-size:26px;">Tu presencia es nuestro mejor regalo.</p>
+      <a href="https://www.amazon.com.mx/wedding/guest-view/288H6QT8OE4AW" target="_blank">
+        <button>Ver mesa de regalos</button>
+      </a>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="section" id="sec-galeria">
+      <h2>Nuestras Fotos</h2>
+      <div class="ornament-line"></div>
+      <div class="gallery">
+        <img src="images/foto1.jpg" onerror="this.onerror=null;this.src='https://bodajng0297.github.io/BodaSteffJorge/images/foto1.jpg';" alt="Foto 1">
+        <img src="images/foto2.jpg" onerror="this.onerror=null;this.src='https://bodajng0297.github.io/BodaSteffJorge/images/foto2.jpg';" alt="Foto 2">
+        <img src="images/foto3.jpg" onerror="this.onerror=null;this.src='https://bodajng0297.github.io/BodaSteffJorge/images/foto3.jpg';" alt="Foto 3">
+        <img src="images/foto4.jpg" onerror="this.onerror=null;this.src='https://bodajng0297.github.io/BodaSteffJorge/images/foto4.jpg';" alt="Foto 4">
+      </div>
+    </section>
+
+    <!-- LISTA DE INVITADOS CERRADA + CONSULTA DE PASE OFICIAL (PÚBLICO SIN TELÉFONOS) -->
+    <section class="section" id="sec-pase">
+      <h2 style="font-family:'Dancing Script',cursive;font-size:60px;color:#c8a96a;margin-bottom:14px;">
+        Lista de invitados cerrada
+      </h2>
+      <p style="font-family:'Dancing Script',cursive;font-size:29px;line-height:1.65;max-width:650px;margin:auto;">
+        Nos llena de alegría compartir que hemos alcanzado la capacidad máxima de nuestra celebración.
+        La lista de invitados se encuentra oficialmente cerrada y ya no será posible agregar asistentes adicionales.
+      </p>
+
+      <div class="lookup-box">
+        <h3>🎟️ Consulta tu Pase Digital y Mesa Asignada</h3>
+        <p class="sub">Si ya confirmaste tu asistencia, escribe tu nombre y apellido (mínimo 3 letras) para visualizar tu Pase Oficial de acceso y tu mesa asignada:</p>
+        <input type="text" id="guestNameInput" class="lookup-input" placeholder="Escribe tu nombre y apellido..." oninput="buscarMiPase(this.value)">
+        <div id="guestSuggestions" class="lookup-suggestions"></div>
+
+        <div id="vipPassCard" class="vip-pass-preview">
+          <div class="vip-pass-head">
+            <div id="vipFolio" class="vip-folio">FOLIO #001</div>
+            <div style="font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:#e6d5b8;">✓ Invitado Confirmado en Lista Oficial</div>
+            <h4>Estefanía & Jorge</h4>
+          </div>
+          <div class="vip-pass-body">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#7a6c5d;">Pase reservado para</div>
+            <div id="vipNombre" style="font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700;color:#2b231d;margin:4px 0 12px;"></div>
+            <div class="vip-grid">
+              <div class="vip-stat">
+                <div class="lbl">🎟️ Pases Válidos</div>
+                <div id="vipPersonas" class="val"></div>
+                <div id="vipIcons" style="font-size:13px;margin-top:4px;color:#9a7b3e;"></div>
+              </div>
+              <div class="vip-stat">
+                <div class="lbl">🍽️ Mesa / Grupo</div>
+                <div id="vipMesa" class="val" style="font-size:19px;margin-top:6px;color:#2b231d;"></div>
+                <div style="font-size:10.5px;color:#7a6c5d;margin-top:4px;">Quinta Agapantos</div>
+              </div>
+            </div>
+            <div id="vipQr" style="display:flex;justify-content:center;margin:16px auto;"></div>
+            <div style="font-size:11.5px;color:#6f6257;margin-bottom:14px;">Presenta este código QR en la entrada de Quinta Agapantos</div>
+            <a id="vipDirectLink" href="invitado.html" target="_blank" class="action-pill">📲 Abrir mi Pase Individual en Pantalla Completa</a>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-family:'Dancing Script',cursive;font-size:34px;color:#c8a96a;margin-top:26px;">
+        Gracias por su cariño, comprensión y por acompañarnos en este momento tan especial ❤️
+      </p>
+    </section>
+
+    <footer style="padding:18px 16px 40px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;color:#8c7d6e;">
+      Estefanía & Jorge · 16 de Enero 2027 ·
+      <a href="javascript:void(0)" onclick="abrirModalPassword()" style="color:#9a7b3e;text-decoration:none;font-weight:600;margin-left:6px;">🔒 Acceso Novios</a>
+    </footer>
+  </div>
+</div>
 
 <!-- =====================================================
-     HERO
+     SECCIÓN PRIVADA DESBLOQUEABLE: DIRECTORIO & WHATSAPP
 ===================================================== -->
+<div id="vista-privada-directorio" class="admin-section">
+  <div class="admin-banner">
+    <div>
+      <h2>📊 Centro de Control Privado — Estefanía & Jorge</h2>
+      <p>Sesión desbloqueada con cifrado · Teléfonos, control de WhatsApp y categorías listos</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button type="button" class="ui-btn gold" onclick="sincronizarGoogleSheetPrivado()">🔄 Sincronizar Google Sheet</button>
+      <button type="button" class="ui-btn" onclick="exportarCSVPrivado()">📥 Descargar CSV</button>
+      <button type="button" class="ui-btn" onclick="copiarTablaPrivada()">📋 Copiar para Google Sheets</button>
+    </div>
+  </div>
 
-<div class="hero">
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="lbl">Total Confirmados</div>
+      <div class="num" id="kpiTotalPax">205</div>
+      <div class="sub" id="kpiTotalGrupos">En 87 pases / familias</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">Invitados Estefanía</div>
+      <div class="num" id="kpiEstPax" style="color:var(--estefania);">112</div>
+      <div class="sub" id="kpiEstGrupos">52 grupos (54.6%)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">Invitados Jorge</div>
+      <div class="num" id="kpiJorPax" style="color:var(--jorge);">93</div>
+      <div class="sub" id="kpiJorGrupos">35 grupos (45.4%)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">Categoría FLEX (Trabajo)</div>
+      <div class="num" id="kpiFlexPax" style="color:var(--flex-color);">22</div>
+      <div class="sub" id="kpiFlexGrupos">10 grupos confirmados de Flex</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">Pases Enviados WhatsApp</div>
+      <div class="num" id="kpiEnviados" style="color:#15803d;">0 / 87</div>
+      <div class="sub" id="kpiConTelSub">68 con teléfono · 19 sin teléfono</div>
+    </div>
+  </div>
 
-<img
-src="https://images.unsplash.com/photo-1606800052052-a08af7148866">
+  <div class="admin-card">
+    <h3>🍽️ Resumen Interactivo por las 16 Categorías / Mesas (Haz clic en una para filtrar)</h3>
+    <div id="categoriasResumenGrid" class="cat-bars"></div>
+  </div>
 
-<div class="hero-text">
+    <!-- ASISTENTE DE ENVÍO MASIVO POR WHATSAPP (MODO RÁFAGA) -->
+  <div class="admin-card" style="background:linear-gradient(145deg,#f0fdf4,#dcfce7);border:1.5px solid #16a34a;">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div>
+        <h3 style="margin:0;color:#14532d;">🚀 Asistente de Envío Masivo por WhatsApp (Modo Ráfaga)</h3>
+        <p style="margin:4px 0 0;font-size:13px;color:#166534;">Envía los 68 pases con teléfono uno tras otro en segundos sin que WhatsApp bloquee tu número por spam.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button type="button" class="ui-btn green" onclick="abrirAsistenteMasivo()">⚡ Abrir Cola de Envío Masivo</button>
+        <button type="button" class="ui-btn" onclick="marcarTodosPendientes()">🔄 Reiniciar Checklist de Enviados</button>
+      </div>
+    </div>
 
-<h1>
-Estefania & Jorge
-</h1>
+    <div id="panelMasivoBox" style="display:none;margin-top:16px;background:#fff;border-radius:16px;padding:20px;border:1px solid #86efac;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;">
+        <div>
+          <label style="font-size:12px;font-weight:700;color:#14532d;display:block;margin-bottom:6px;">1️⃣ Personaliza tu Plantilla de Mensaje:</label>
+          <textarea id="waTemplateInput" rows="7" style="width:100%;padding:10px;border-radius:10px;border:1px solid #cbd5e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;line-height:1.45;" oninput="actualizarColaMasiva()">¡Hola *{NOMBRE}*! 💍✨
 
-<p>
-16 Enero 2027 — 7:30 PM
-</p>
+Nos llena de alegría que nos acompañes a celebrar nuestra boda el próximo *16 de Enero de 2027*.
 
-<p>
-Quinta Agapantos
-</p>
+🎟️ Aquí tienes tu *Pase Digital Oficial* reservado para *{PERSONAS}* (Mesa / Grupo: *{MESA}*):
+{LINK}
 
+¡Te esperamos en Quinta Agapantos!
+Con cariño, *Estefanía & Jorge* ❤️</textarea>
+          <div style="font-size:11px;color:#64748b;margin-top:4px;">Variables automáticas: <code>{NOMBRE}</code>, <code>{PERSONAS}</code>, <code>{MESA}</code>, <code>{LINK}</code></div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;justify-content:space-between;background:#f8fafc;border-radius:14px;padding:16px;border:1px solid #e2e8f0;">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <span style="font-size:11.5px;font-weight:700;text-transform:uppercase;color:#15803d;">🎯 Siguiente Invitado en la Cola</span>
+              <span id="colaContadorBadge" style="font-size:12px;font-weight:700;background:#dcfce7;color:#166534;padding:3px 10px;border-radius:999px;">Pendientes: 68</span>
+            </div>
+            <div id="colaNombreActual" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#1e293b;margin:4px 0;">-</div>
+            <div id="colaDetalleActual" style="font-size:12.5px;color:#475569;margin-bottom:10px;">-</div>
+            <div id="colaPreviewMsg" style="background:#e2f7cb;padding:10px 12px;border-radius:10px;font-size:11.5px;color:#1e293b;white-space:pre-wrap;max-height:125px;overflow-y:auto;border:1px solid #bbf7d0;"></div>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">
+            <button type="button" class="ui-btn green" style="flex:1;justify-content:center;padding:12px;font-size:13.5px;" onclick="dispararSiguienteMasivo()">
+              📲 Enviar a este Invitado y Pasar al Siguiente →
+            </button>
+            <button type="button" class="ui-btn" onclick="saltarInvitadoCola()">⏭️ Saltar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+      <h3 style="margin:0;">📋 Directorio Privado con Teléfonos y Envío de Pases QR por WhatsApp</h3>
+      <button type="button" class="ui-btn green" onclick="agregarInvitadoPrivado()">➕ Agregar Invitado</button>
+    </div>
+
+    <div class="toolbar">
+      <input type="text" id="searchInp" placeholder="🔍 Buscar por nombre, teléfono o categoría (ej. FLEX, Miranda)..." oninput="renderizarTablaPrivada()" style="min-width:260px;flex:1;">
+      <select id="filterNovio" onchange="renderizarTablaPrivada()">
+        <option value="TODOS">👫 Ambos Novios</option>
+        <option value="ESTEFANIA">👰 Estefanía</option>
+        <option value="JORGE">🤵 Jorge</option>
+      </select>
+      <select id="filterMesa" onchange="renderizarTablaPrivada()">
+        <option value="TODAS">🍽️ Todas las Categorías / Mesas</option>
+      </select>
+      <select id="filterTel" onchange="renderizarTablaPrivada()">
+        <option value="TODOS">📱 Todos los contactos</option>
+        <option value="CONTEL">📲 Con Teléfono</option>
+        <option value="SINTEL">📵 Sin Teléfono</option>
+        <option value="PENDIENTES_WA">⏳ Pendientes de enviar WhatsApp</option>
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table class="priv-table">
+        <thead>
+          <tr>
+            <th>Enviado</th>
+            <th>Folio</th>
+            <th>Nombre del Invitado / Familia</th>
+            <th>Teléfono Privado</th>
+            <th>Pases</th>
+            <th>Categoría / Mesa</th>
+            <th>Novio(a)</th>
+            <th>Acciones WhatsApp & QR</th>
+          </tr>
+        </thead>
+        <tbody id="tablaBodyPrivada"></tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-</div>
-
 
 <!-- =====================================================
-     CUENTA REGRESIVA
+     SECCIÓN PRIVADA DESBLOQUEABLE: SIMULADOR DE MESAS
 ===================================================== -->
-
-<section class="section">
-
-<h2>
-Cuenta regresiva
-</h2>
-
-<div class="timer">
-
-<div class="card">
-
-<div id="dias" class="number"></div>
-
-Días
-
+<div id="vista-privada-mesas" class="admin-section">
+  <div class="admin-banner">
+    <div>
+      <h2>🪑 Simulador Físico de Mesas — Quinta Agapantos</h2>
+      <p>Calcula cuántas mesas físicas de 10, 11 o 12 sillas necesita cada categoría (incluyendo FLEX con 22 personas)</p>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <select id="capMesaSel" onchange="renderizarMesasPrivadas()" style="padding:9px 12px;border-radius:10px;border:1px solid var(--gold);font-weight:700;">
+        <option value="10" selected>Mesas de 10 personas</option>
+        <option value="11">Mesas de 11 personas</option>
+        <option value="12">Mesas de 12 personas</option>
+      </select>
+      <button type="button" class="ui-btn gold" onclick="autoNumerarMesasPrivadas()">✨ Auto-Dividir Categorías Grandes (Ej. FLEX 1, FLEX 2)</button>
+      <button type="button" class="ui-btn" onclick="restaurarOriginalPrivado()">↩️ Restaurar Original</button>
+    </div>
+  </div>
+  <div class="admin-card">
+    <div id="resumenSeatingBanner" style="background:#faf5ef;border-left:4px solid var(--gold);padding:14px 18px;border-radius:12px;font-size:13.5px;line-height:1.6;"></div>
+    <div id="seatingGridPrivado" class="seating-grid"></div>
+  </div>
 </div>
 
-
-<div class="card">
-
-<div id="horas" class="number"></div>
-
-Horas
-
+<!-- MODAL DE FOTOS -->
+<div class="modal" id="modal">
+  <img id="modalImg" alt="Foto ampliada">
 </div>
-
-
-<div class="card">
-
-<div id="minutos" class="number"></div>
-
-Min
-
-</div>
-
-
-<div class="card">
-
-<div id="segundos" class="number"></div>
-
-Seg
-
-</div>
-
-</div>
-
-
-<div id="mensaje-final">
-¡Hoy es el gran día! 💍❤️
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     ITINERARIO
-===================================================== -->
-
-<section class="section">
-
-<h2>
-Itinerario
-</h2>
-
-
-<!-- MISA -->
-
-<div class="event-card">
-
-<h3>
-⛪ Misa
-</h3>
-
-<p>
-Templo Nueva Galicia — 6:00 PM
-</p>
-
-
-<!-- MAPA CORREGIDO -->
-
-<iframe
-width="100%"
-height="220"
-style="border:0;"
-loading="lazy"
-allowfullscreen
-src="https://www.google.com/maps?q=Nuestra%20Se%C3%B1ora%20del%20Rocio%2C%20Guadalajara%2C%20Jalisco&output=embed">
-</iframe>
-
-
-<br>
-<br>
-
-
-<a
-href="https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9"
-target="_blank">
-
-<button>
-Abrir ubicación
-</button>
-
-</a>
-
-</div>
-
-
-<!-- BODA -->
-
-<div class="event-card">
-
-<h3>
-💍 Boda
-</h3>
-
-<p>
-Quinta Agapantos — 7:30 PM - 1AM
-</p>
-
-
-<iframe
-width="100%"
-height="220"
-src="https://maps.google.com/maps?q=Quinta%20Agapantos&output=embed">
-</iframe>
-
-
-<br>
-<br>
-
-
-<a
-href="https://maps.app.goo.gl/gf9h7gvR2p2orKZGA"
-target="_blank">
-
-<button>
-Abrir ubicación
-</button>
-
-</a>
-
-</div>
-
-
-<!-- COCTELERIA -->
-
-<div class="event-card">
-
-<h3>
-🍸 Coctelería
-</h3>
-
-<p>
-7:30 PM
-</p>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     VESTIMENTA
-===================================================== -->
-
-<section class="section">
-
-<h2>
-Código de vestimenta
-</h2>
-
-<p style="font-size:22px">
-Formal
-</p>
-
-<img
-src="images/dresscode.jpg"
-class="dress-img">
-
-</section>
-
-
-<!-- =====================================================
-     SOLO ADULTOS
-===================================================== -->
-
-<section class="section">
-
-<img
-src="images/solo-adultos.jpg"
-class="dress-img"
-alt="Recepción solo para adultos">
-
-</section>
-
-
-<!-- =====================================================
-     MESA DE REGALOS
-===================================================== -->
-
-<section class="section">
-
-<h2>
-Mesa de Regalos
-</h2>
-
-<p>
-Tu presencia es nuestro mejor regalo.
-</p>
-
-
-<a
-href="https://www.amazon.com.mx/wedding/guest-view/288H6QT8OE4AW"
-target="_blank">
-
-<button>
-Ver mesa de regalos
-</button>
-
-</a>
-
-</section>
-
-
-<!-- =====================================================
-     GALERIA
-===================================================== -->
-
-<section class="section">
-
-<h2>
-Nuestras Fotos
-</h2>
-
-
-<div class="gallery">
-
-<img src="images/foto1.jpg">
-
-<img src="images/foto2.jpg">
-
-<img src="images/foto3.jpg">
-
-<img src="images/foto4.jpg">
-
-</div>
-
-</section>
-
-<!-- =====================================================
-     LISTA DE INVITADOS CERRADA
-===================================================== -->
-
-<section class="section">
-
-<h2 style="
-font-family:'Dancing Script',cursive;
-font-size:62px;
-color:#c8a96a;
-margin-bottom:20px;
-">
-Lista de invitados cerrada
-</h2>
-
-<p style="
-font-family:'Dancing Script',cursive;
-font-size:30px;
-line-height:1.7;
-max-width:650px;
-margin:auto;
-">
-Nos llena de alegría compartir que hemos alcanzado la capacidad máxima de nuestra celebración.
-</p>
-
-<p style="
-font-family:'Dancing Script',cursive;
-font-size:28px;
-line-height:1.7;
-max-width:650px;
-margin:25px auto;
-">
-La lista de invitados se encuentra oficialmente cerrada y ya no será posible agregar asistentes adicionales.
-</p>
-
-<p style="
-font-family:'Dancing Script',cursive;
-font-size:34px;
-color:#c8a96a;
-margin-top:15px;
-">
-Gracias por su cariño, comprensión y por acompañarnos en este momento tan especial ❤️
-</p>
-
-</section>
-
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div
-class="modal"
-id="modal">
-
-<img
-id="modalImg">
-
-</div>
-
 
 <script>
+const SHEET_ID = "15RIQsWmivJNDrVcFkx1-ryDLIeJ4z3dRRKxUd_8eWUo";
+// 1. LISTA PÚBLICA (CERO TELÉFONOS)
+let PUBLIC_GUESTS = [{"id":1,"nombre":"MARGARITA GUTIERREZ","personas":4,"mesa":"FAMILIA NARANJO GUTIÉRREZ"},{"id":2,"nombre":"GERARDO OCEGUERA","personas":2,"mesa":"FLEX"},{"id":3,"nombre":"FERNANDO NUÑO CAPETILLO","personas":2,"mesa":"AMIGOS J"},{"id":4,"nombre":"JULIA Y RAFAEL","personas":2,"mesa":"AMIGOS J"},{"id":5,"nombre":"DANIELA GUTIERREZ","personas":2,"mesa":"AMIGOS E"},{"id":6,"nombre":"EDITH MHONTSERRAT GRANADOS CARRETO","personas":2,"mesa":"AMIGOS E"},{"id":7,"nombre":"RICARDO GUERRERO ACEVES","personas":5,"mesa":"FAMILIA GUERRERO"},{"id":8,"nombre":"PAULINA GARCIA SANTANA","personas":2,"mesa":"AMIGOS E"},{"id":9,"nombre":"LILIANA MIRANDA Y RAFAEL GTZ","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":10,"nombre":"KARLA LIZETT GOMEZ PEREZ","personas":2,"mesa":"AMIGOS E"},{"id":11,"nombre":"CHRISTIAN MIRANDA ESPINOZA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":12,"nombre":"EDITH ARANDA","personas":2,"mesa":"AMIGOS E"},{"id":13,"nombre":"LUIS GONZALEZ","personas":2,"mesa":"FLEX"},{"id":14,"nombre":"JOSE LARA GUERRERO","personas":1,"mesa":"FAMILIA GUERRERO"},{"id":15,"nombre":"MARIA EUGENIA MIRANDA Y JORGE SANDOVAL","personas":3,"mesa":"FAMILIA MIRANDA"},{"id":16,"nombre":"HUMBERTO SOTELO Y JEANETTE GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":17,"nombre":"BEATRIZ CANO","personas":2,"mesa":"AMIGOS E"},{"id":18,"nombre":"ERICK CASILLAS","personas":2,"mesa":"FLEX"},{"id":19,"nombre":"SOFIA SANDOVAL MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":20,"nombre":"ROGELIO GUTIERREZ Y ELSA HERNANDEZ DE GTZ","personas":2,"mesa":"AMIGOS E"},{"id":21,"nombre":"GORETY SALAZAR","personas":2,"mesa":"AMIGOS E"},{"id":22,"nombre":"LORENA QUILES ACEVES","personas":2,"mesa":"FAMILIA QUILES ACEVES"},{"id":23,"nombre":"YANET NAVARRO","personas":2,"mesa":"AMIGOS E"},{"id":24,"nombre":"ALONDRA RUVALCABA","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":25,"nombre":"CARLOS MIRANDA NUÑEZ","personas":3,"mesa":"FAMILIA MIRANDA"},{"id":26,"nombre":"RADA CARRILLO","personas":1,"mesa":"AMIGOS J"},{"id":27,"nombre":"JARETH","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":28,"nombre":"FERNANDO Y SOILA","personas":2,"mesa":"AMIGOS E"},{"id":29,"nombre":"JOAQUIN MIRANDA ESPINOZA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":30,"nombre":"EDUARDO GUERRERO MIRANDA Y ASTRID DE GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO MIRANDA"},{"id":31,"nombre":"BENJAMIN NARANJO","personas":4,"mesa":"FAMILIA NARANJO PÉREZ"},{"id":32,"nombre":"EDUARDO ROJAS","personas":1,"mesa":"FLEX"},{"id":33,"nombre":"ALEJANDRO CHAVEZ","personas":2,"mesa":"FLEX"},{"id":34,"nombre":"DANIEL CARDENAS HERNANDEZ","personas":2,"mesa":"FLEX"},{"id":35,"nombre":"ANA NARANJO","personas":4,"mesa":"FAMILIA NARANJO PÉREZ"},{"id":36,"nombre":"ERNESTO LUNA ORTEGA","personas":4,"mesa":"FAMILIA TÍA CHAYO"},{"id":37,"nombre":"AIMAR CONTRERAS","personas":2,"mesa":"FLEX"},{"id":38,"nombre":"RUBEN CARDONA","personas":2,"mesa":"FLEX"},{"id":39,"nombre":"ALAN OJEDA","personas":2,"mesa":"AMIGOS J"},{"id":40,"nombre":"JOSE GUTIERREZ GOMEZ Y PALOMA HERNANDEZ","personas":2,"mesa":"FAMILIA GUTIERREZ GOMEZ"},{"id":41,"nombre":"JOSÉ GERMÁN GUTIÉRREZ CORONA","personas":4,"mesa":"FAMILIA TIA PERA"},{"id":42,"nombre":"ESPERANZA PAULETTE GUTIERREZ GUTIERREZ","personas":1,"mesa":"FAMILIA TIA PERA"},{"id":43,"nombre":"SANTIAGO SANTOS GARCIA","personas":2,"mesa":"AMIGOS J"},{"id":44,"nombre":"GABRIEL GIL","personas":5,"mesa":"FLEX"},{"id":45,"nombre":"LUIS FERNANDO","personas":1,"mesa":"AMIGOS J"},{"id":46,"nombre":"ALEJANDRO SERRANO VARGAS","personas":1,"mesa":"AMIGOS J"},{"id":47,"nombre":"EMILIANO JACOB OJEDA ROMERO","personas":2,"mesa":"AMIGOS J"},{"id":48,"nombre":"ANGELICA GUERRERO Y MANUEL CORDERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":49,"nombre":"CAROL PRIETO FRIEDERICH","personas":2,"mesa":"FLEX"},{"id":50,"nombre":"TERESA DE JESUS NARANJO PEREZ","personas":4,"mesa":"FAMILIA NARANJO PÉREZ"},{"id":51,"nombre":"ANA KAREN ANGULO VAZQUEZ","personas":2,"mesa":"AMIGOS E"},{"id":52,"nombre":"CESAR JOEL CORTES CISNEROS","personas":2,"mesa":"AMIGOS J"},{"id":53,"nombre":"ANGEL TORRES","personas":6,"mesa":"FAMILIA SILVIA"},{"id":54,"nombre":"ADA TORREBLANCA","personas":2,"mesa":"AMIGOS E"},{"id":55,"nombre":"CAROLINA GUERRERO MIRANDA","personas":2,"mesa":"FAMILIA GUERRERO MIRANDA"},{"id":56,"nombre":"MARTHA PONCE DE LEON ESPINOSA","personas":1,"mesa":"FAMILIA PONCE DE LEON"},{"id":57,"nombre":"GILBERTO AMARO PONCE DE LEON","personas":2,"mesa":"FAMILIA PONCE DE LEON"},{"id":58,"nombre":"LIZETTE SAINZ","personas":1,"mesa":"AMIGOS E"},{"id":59,"nombre":"ANA OROZCO","personas":2,"mesa":"AMIGOS E"},{"id":60,"nombre":"LORENA MIRANDA","personas":3,"mesa":"FAMILIA GUERRERO MIRANDA"},{"id":61,"nombre":"OSWALDO CORTES","personas":2,"mesa":"AMIGOS J"},{"id":62,"nombre":"ANDREA LARA GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":63,"nombre":"ANDREA NARANJO GUTIÉRREZ","personas":3,"mesa":"FAMILIA NARANJO GUTIÉRREZ"},{"id":64,"nombre":"SONIA GUADALUPE DE ANDA CASTILLO","personas":5,"mesa":"FAMILIA DE ANDA CASTILLO"},{"id":65,"nombre":"EVELYN CASTILLO","personas":3,"mesa":"FAMILIA DE ANDA CASTILLO"},{"id":66,"nombre":"JULISSA GUTIERREZ","personas":5,"mesa":"FAMILIA GUTIERREZ GOMEZ"},{"id":67,"nombre":"LUZ SANTOYO CASTILLO","personas":3,"mesa":"FAMILIA SANTOYO CASTILLO"},{"id":68,"nombre":"EDGAR GUTIERREZ","personas":2,"mesa":"FAMILIA GUTIERREZ GOMEZ"},{"id":69,"nombre":"ANTONIO GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":70,"nombre":"LEONARDO GUERRERO","personas":3,"mesa":"FAMILIA GUERRERO"},{"id":71,"nombre":"ERICK GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":72,"nombre":"ATHZIRI GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":73,"nombre":"ELVA MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":74,"nombre":"VIRGINIA MIRANDA","personas":6,"mesa":"FAMILIA MIRANDA"},{"id":75,"nombre":"MECHE PONCE DE LEÓN Y TÍA TRINY","personas":4,"mesa":"FAMILIA MIRANDA"},{"id":76,"nombre":"LOURDES MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":77,"nombre":"SANDRA JUAREZ","personas":2,"mesa":"AMIGOS E"},{"id":78,"nombre":"MIRIAM PRIMA","personas":1,"mesa":"FAMILIA MIRANDA"},{"id":79,"nombre":"ROGELIO MONTES","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":80,"nombre":"KAREN GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":81,"nombre":"PAMELA MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":82,"nombre":"RUBEN MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":83,"nombre":"KATIA MIRANDA","personas":1,"mesa":"FAMILIA MIRANDA"},{"id":84,"nombre":"ANA LAURA MIRANDA HIJA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":85,"nombre":"FELIPE GONZALEZ VALLEJO","personas":2,"mesa":"AMIGOS E"},{"id":86,"nombre":"HILARIO HERNANDEZ","personas":2,"mesa":"AMIGOS E"},{"id":87,"nombre":"BETO ACEVES","personas":2,"mesa":"FAMILIA GUERRERO"}];
 
+// 2. PAYLOAD PRIVADO CIFRADO (SOLO SE DESENCRIPTA EN MEMORIA CON CLAVE PRIVADA)
+const ENCRYPTED_PRIVATE_B64 = "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";
+const VERIFY_TOKEN = 1628143153;
+let PRIVATE_GUESTS = null;
+let ORIGINAL_PRIVATE_GUESTS = null;
+let WA_SENT = {};
+
+try {
+  const savedWa = localStorage.getItem("boda_ej_wa_sent_v3");
+  if (savedWa) WA_SENT = JSON.parse(savedWa) || {};
+} catch(e) {}
+
+function normalizar(str) {
+  return (str || "").toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/\s+/g, " ").trim();
+}
+
+function formatearMesa(mesa) {
+  if (!mesa) return "POR ASIGNAR";
+  if (mesa.toLowerCase() === "flex") return "FLEX";
+  return mesa.toUpperCase();
+}
 
 /* =====================================================
-   ABRIR INVITACION
+   CIFRADO Y DESBLOQUEO CON CONTRASEÑA (CIFRADA)
 ===================================================== */
-
-function abrirInvitacion(){
-
-const intro=
-document.getElementById("intro");
-
-
-/* ACTIVAR TRANSICION */
-
-intro.classList.add("abrir");
-
-
-/* MOSTRAR INVITACION */
-
-setTimeout(()=>{
-
-const contenido=
-document.getElementById("contenido");
-
-contenido.style.display="block";
-
-contenido.classList.add("fade-content");
-
-
-/* MUSICA */
-
-const audio=
-document.getElementById("audio");
-
-audio.play().catch(()=>{});
-
-},1200);
-
-
-/* DESAPARECER INTRO */
-
-setTimeout(()=>{
-
-intro.classList.add("ocultar");
-
-},1900);
-
-
-/* ELIMINAR INTRO */
-
-setTimeout(()=>{
-
-intro.style.display="none";
-
-},3700);
-
+function obtenerSemillaClave(pass) {
+  const str = "BODA_STEFF_JORGE_2027::" + (pass || "").toUpperCase().trim();
+  let h = 123456789;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h * 31) + str.charCodeAt(i)) % 2147483647;
+  }
+  return h;
 }
 
+function desencriptarConClave(pass) {
+  const seed = obtenerSemillaClave(pass);
+  let vState = seed;
+  for (let k = 0; k < 10; k++) {
+    vState = (vState * 48271) % 2147483647;
+  }
+  if (vState !== VERIFY_TOKEN) return null;
+
+  const binStr = atob(ENCRYPTED_PRIVATE_B64);
+  const bytes = new Uint8Array(binStr.length);
+  let state = seed;
+  for (let i = 0; i < binStr.length; i++) {
+    state = (state * 48271) % 2147483647;
+    const keyByte = state % 256;
+    bytes[i] = binStr.charCodeAt(i) ^ keyByte;
+  }
+  const jsonStr = new TextDecoder("utf-8").decode(bytes);
+  return JSON.parse(jsonStr);
+}
+
+function abrirModalPassword() {
+  if (PRIVATE_GUESTS) {
+    document.getElementById("novios-topbar").style.display = "flex";
+    cambiarModoNovios("directorio");
+    return;
+  }
+  document.getElementById("pwdInput").value = "";
+  document.getElementById("pwdError").innerText = "";
+  document.getElementById("passwordModal").style.display = "flex";
+  setTimeout(() => document.getElementById("pwdInput").focus(), 80);
+}
+
+function cerrarModalPassword() {
+  document.getElementById("passwordModal").style.display = "none";
+}
+
+function intentarDesbloqueo() {
+  const val = document.getElementById("pwdInput").value;
+  const decrypted = desencriptarConClave(val);
+  if (!decrypted) {
+    document.getElementById("pwdError").innerText = "❌ Contraseña incorrecta. Acceso exclusivo para Estefanía y Jorge.";
+    return;
+  }
+  ORIGINAL_PRIVATE_GUESTS = JSON.parse(JSON.stringify(decrypted));
+  PRIVATE_GUESTS = decrypted;
+  try {
+    const saved = localStorage.getItem("boda_ej_priv_v3");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length > 0) PRIVATE_GUESTS = parsed;
+    }
+  } catch(e) {}
+
+  cerrarModalPassword();
+  document.getElementById("novios-topbar").style.display = "flex";
+  actualizarResumenPrivado();
+  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+  cambiarModoNovios("directorio");
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function bloquearPanelNovios() {
+  PRIVATE_GUESTS = null;
+  document.getElementById("tablaBodyPrivada").innerHTML = "";
+  document.getElementById("seatingGridPrivado").innerHTML = "";
+  document.getElementById("novios-topbar").style.display = "none";
+  document.getElementById("vista-privada-directorio").style.display = "none";
+  document.getElementById("vista-privada-mesas").style.display = "none";
+  document.getElementById("vista-publica-invitacion").style.display = "block";
+}
+
+function cambiarModoNovios(modo) {
+  document.getElementById("vista-publica-invitacion").style.display = (modo === "invitacion") ? "block" : "none";
+  document.getElementById("vista-privada-directorio").style.display = (modo === "directorio") ? "block" : "none";
+  document.getElementById("vista-privada-mesas").style.display = (modo === "mesas") ? "block" : "none";
+
+  document.getElementById("tabBtnInv").className = "mode-tab" + (modo === "invitacion" ? " active" : "");
+  document.getElementById("tabBtnDir").className = "mode-tab" + (modo === "directorio" ? " active" : "");
+  document.getElementById("tabBtnMesas").className = "mode-tab" + (modo === "mesas" ? " active" : "");
+
+  if (modo === "mesas") renderizarMesasPrivadas();
+}
+
+function guardarEstadoPrivado() {
+  if (!PRIVATE_GUESTS) return;
+  try {
+    localStorage.setItem("boda_ej_priv_v3", JSON.stringify(PRIVATE_GUESTS));
+    localStorage.setItem("boda_ej_wa_sent_v3", JSON.stringify(WA_SENT));
+  } catch(e) {}
+}
 
 /* =====================================================
-   CONTADOR
+   FUNCIONES DEL DASHBOARD PRIVADO (SOLO CUANDO ESTÁ DESBLOQUEADO)
 ===================================================== */
+function actualizarResumenPrivado() {
+  if (!PRIVATE_GUESTS) return;
+  const totalGrupos = PRIVATE_GUESTS.length;
+  const totalPax = PRIVATE_GUESTS.reduce((s, g) => s + (parseInt(g.personas) || 0), 0);
+  const estG = PRIVATE_GUESTS.filter(g => normalizar(g.familia) === "ESTEFANIA");
+  const estP = estG.reduce((s, g) => s + (parseInt(g.personas) || 0), 0);
+  const jorG = PRIVATE_GUESTS.filter(g => normalizar(g.familia) === "JORGE");
+  const jorP = jorG.reduce((s, g) => s + (parseInt(g.personas) || 0), 0);
+  const flexG = PRIVATE_GUESTS.filter(g => normalizar(g.mesa).startsWith("FLEX"));
+  const flexP = flexG.reduce((s, g) => s + (parseInt(g.personas) || 0), 0);
+  const conTel = PRIVATE_GUESTS.filter(g => g.telefono && g.telefono.trim() !== "").length;
+  const sinTel = totalGrupos - conTel;
+  const enviadosCount = PRIVATE_GUESTS.filter(g => WA_SENT[g.id]).length;
 
-const fecha=
-new Date("Jan 16, 2027 19:00:00").getTime();
+  document.getElementById("kpiTotalPax").innerText = totalPax;
+  document.getElementById("kpiTotalGrupos").innerText = "En " + totalGrupos + " pases / familias";
+  document.getElementById("kpiEstPax").innerText = estP;
+  document.getElementById("kpiEstGrupos").innerText = estG.length + " grupos (" + ((estP/Math.max(totalPax,1))*100).toFixed(1) + "%)";
+  document.getElementById("kpiJorPax").innerText = jorP;
+  document.getElementById("kpiJorGrupos").innerText = jorG.length + " grupos (" + ((jorP/Math.max(totalPax,1))*100).toFixed(1) + "%)";
+  document.getElementById("kpiFlexPax").innerText = flexP;
+  document.getElementById("kpiFlexGrupos").innerText = flexG.length + " grupos de trabajo Flex";
+  document.getElementById("kpiEnviados").innerText = enviadosCount + " / " + totalGrupos;
+  document.getElementById("kpiConTelSub").innerText = conTel + " con teléfono · " + sinTel + " sin teléfono";
 
+  const mapCat = {};
+  PRIVATE_GUESTS.forEach(g => {
+    const m = (g.mesa || "SIN MESA").trim().toUpperCase();
+    if (!mapCat[m]) mapCat[m] = { pax: 0, grupos: 0, familia: g.familia };
+    mapCat[m].pax += (parseInt(g.personas) || 0);
+    mapCat[m].grupos += 1;
+  });
+  const sortedCats = Object.entries(mapCat).sort((a,b) => b[1].pax - a[1].pax);
+  const catGrid = document.getElementById("categoriasResumenGrid");
+  catGrid.innerHTML = sortedCats.map(([name, info]) => {
+    const isFlex = name.startsWith("FLEX");
+    const mesas10 = Math.ceil(info.pax / 10);
+    return '<div class="cat-item ' + (isFlex ? 'is-flex-cat' : '') + '" onclick="filtrarPorCategoriaClick(\'' + name.replace(/'/g, "\\'") + '\')">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;">' +
+        '<strong style="font-size:13px;">' + (isFlex ? '🏢 ' : '🍽️ ') + name + '</strong>' +
+        '<span style="font-weight:700;font-size:13px;color:var(--gold-dark);">' + info.pax + ' pax</span>' +
+      '</div>' +
+      '<div style="font-size:11.5px;color:var(--muted);margin-top:4px;display:flex;justify-content:space-between;">' +
+        '<span>' + info.grupos + (info.grupos === 1 ? ' grupo' : ' grupos') + ' · ' + info.familia + '</span>' +
+        '<span>~' + mesas10 + (mesas10 === 1 ? ' mesa' : ' mesas') + ' de 10</span>' +
+      '</div>' +
+    '</div>';
+  }).join("");
 
-function actualizarContador(){
-
-let now=
-new Date().getTime();
-
-let diff=
-fecha-now;
-
-
-/* SI YA LLEGO EL DIA */
-
-if(diff<=0){
-
-document.getElementById("dias").innerHTML="0";
-
-document.getElementById("horas").innerHTML="0";
-
-document.getElementById("minutos").innerHTML="0";
-
-document.getElementById("segundos").innerHTML="0";
-
-document.getElementById("mensaje-final").style.display="block";
-
-return;
-
+  const sel = document.getElementById("filterMesa");
+  const cur = sel.value;
+  sel.innerHTML = '<option value="TODAS">🍽️ Todas las Categorías (' + sortedCats.length + ')</option>' +
+    sortedCats.map(([name, info]) => '<option value="' + name.replace(/"/g, '&quot;') + '">' + name + ' (' + info.pax + ' pax)</option>').join("");
+  if (sortedCats.some(([n]) => n === cur)) sel.value = cur;
 }
 
-
-/* DIAS */
-
-document.getElementById("dias").innerHTML=
-Math.floor(
-diff/(1000*60*60*24)
-);
-
-
-/* HORAS */
-
-document.getElementById("horas").innerHTML=
-Math.floor(
-(diff%(1000*60*60*24))/
-(1000*60*60)
-);
-
-
-/* MINUTOS */
-
-document.getElementById("minutos").innerHTML=
-Math.floor(
-(diff%(1000*60*60))/
-(1000*60)
-);
-
-
-/* SEGUNDOS */
-
-document.getElementById("segundos").innerHTML=
-Math.floor(
-(diff%(1000*60))/
-1000
-);
-
+function filtrarPorCategoriaClick(catName) {
+  document.getElementById("filterMesa").value = catName;
+  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
 }
 
+function renderizarTablaPrivada() {
+  if (!PRIVATE_GUESTS) return;
+  const q = normalizar(document.getElementById("searchInp").value);
+  const nov = document.getElementById("filterNovio").value;
+  const mesa = document.getElementById("filterMesa").value;
+  const telF = document.getElementById("filterTel").value;
 
-/* ACTUALIZAR INMEDIATAMENTE */
+  const list = PRIVATE_GUESTS.filter(g => {
+    if (q && !(normalizar(g.nombre).includes(q) || normalizar(g.telefono).includes(q) || normalizar(g.mesa).includes(q))) return false;
+    if (nov !== "TODOS" && normalizar(g.familia) !== nov) return false;
+    if (mesa !== "TODAS" && (g.mesa || "").trim().toUpperCase() !== mesa) return false;
+    const hasT = g.telefono && g.telefono.trim() !== "";
+    if (telF === "CONTEL" && !hasT) return false;
+    if (telF === "SINTEL" && hasT) return false;
+    if (telF === "PENDIENTES_WA" && WA_SENT[g.id]) return false;
+    return true;
+  });
 
+  const tbody = document.getElementById("tablaBodyPrivada");
+  tbody.innerHTML = list.map(g => {
+    const isEst = normalizar(g.familia) === "ESTEFANIA";
+    const hasPhone = g.telefono && g.telefono.trim() !== "";
+    const sent = !!WA_SENT[g.id];
+    return '<tr>' +
+      '<td style="text-align:center;"><input type="checkbox" ' + (sent ? 'checked' : '') + ' onchange="toggleWaSent(' + g.id + ', this.checked)" style="width:17px;height:17px;cursor:pointer;"></td>' +
+      '<td style="font-weight:700;color:#7a6c5d;">#' + String(g.id).padStart(3, "0") + '</td>' +
+      '<td><input class="edit-inp" value="' + g.nombre.replace(/"/g, '&quot;') + '" onchange="editarPrivado(' + g.id + ', \'nombre\', this.value)"></td>' +
+      '<td><input class="edit-inp" style="width:135px;" placeholder="Agregar celular..." value="' + (g.telefono || "") + '" onchange="editarPrivado(' + g.id + ', \'telefono\', this.value)"></td>' +
+      '<td><input type="number" min="1" max="15" class="edit-inp" style="width:65px;text-align:center;font-weight:700;" value="' + g.personas + '" onchange="editarPrivado(' + g.id + ', \'personas\', this.value)"></td>' +
+      '<td><input class="edit-inp" value="' + (g.mesa || "").toUpperCase().replace(/"/g, '&quot;') + '" onchange="editarPrivado(' + g.id + ', \'mesa\', this.value)"></td>' +
+      '<td><span class="side-pill ' + (isEst ? 'estefania' : 'jorge') + '">' + (g.familia || "NOVIOS") + '</span></td>' +
+      '<td style="white-space:nowrap;">' +
+        (hasPhone
+          ? '<button type="button" class="ui-btn green" style="padding:6px 10px;font-size:11.5px;" onclick="enviarWhatsAppPrivado(' + g.id + ')">📲 WhatsApp</button> '
+          : '<button type="button" class="ui-btn" style="padding:6px 10px;font-size:11.5px;" onclick="enviarWhatsAppPrivado(' + g.id + ')">📋 Copiar Pase</button> ') +
+        '<a href="invitado.html?invitado=' + encodeURIComponent(g.nombre) + '" target="_blank" class="ui-btn gold" style="padding:6px 10px;font-size:11.5px;text-decoration:none;">🎟️ QR</a>' +
+      '</td>' +
+    '</tr>';
+  }).join("");
+}
+
+function toggleWaSent(id, checked) {
+  WA_SENT[id] = checked;
+  guardarEstadoPrivado();
+  actualizarResumenPrivado();
+}
+
+function editarPrivado(id, campo, val) {
+  if (!PRIVATE_GUESTS) return;
+  const g = PRIVATE_GUESTS.find(x => x.id === id);
+  if (!g) return;
+  if (campo === "personas") g.personas = Math.max(1, parseInt(val) || 1);
+  else if (campo === "mesa") g.mesa = val.trim().toUpperCase();
+  else g[campo] = val.trim();
+  guardarEstadoPrivado();
+  actualizarResumenPrivado();
+}
+
+function agregarInvitadoPrivado() {
+  if (!PRIVATE_GUESTS) return;
+  const maxId = PRIVATE_GUESTS.reduce((m, g) => Math.max(m, g.id), 0);
+  PRIVATE_GUESTS.unshift({
+    id: maxId + 1,
+    fecha: new Date().toISOString().slice(0,19).replace("T", " "),
+    nombre: "NUEVO INVITADO",
+    telefono: "",
+    confirmacion: "Confirmado",
+    personas: 2,
+    mesa: "FLEX",
+    familia: "JORGE"
+  });
+  guardarEstadoPrivado();
+  actualizarResumenPrivado();
+  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+}
+
+let colaSkipIds = {};
+
+function abrirAsistenteMasivo() {
+  const box = document.getElementById("panelMasivoBox");
+  box.style.display = (box.style.display === "none") ? "block" : "none";
+  if (box.style.display === "block") actualizarColaMasiva();
+}
+
+function construirMensajePersonalizado(g) {
+  const tplEl = document.getElementById("waTemplateInput");
+  const tpl = tplEl ? tplEl.value : "¡Hola *{NOMBRE}*! Aquí tienes tu pase para *{PERSONAS}* (Mesa: *{MESA}*): {LINK}";
+  const link = "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado=" + encodeURIComponent(g.nombre);
+  const pTxt = g.personas + (parseInt(g.personas) === 1 ? " persona" : " personas");
+  const mTxt = (g.mesa || "ASIGNADA").toUpperCase();
+  return tpl
+    .replace(/\{NOMBRE\}/g, g.nombre)
+    .replace(/\{PERSONAS\}/g, pTxt)
+    .replace(/\{MESA\}/g, mTxt)
+    .replace(/\{LINK\}/g, link);
+}
+
+function obtenerColaPendientesConTelefono() {
+  if (!PRIVATE_GUESTS) return [];
+  const nov = document.getElementById("filterNovio").value;
+  const mesa = document.getElementById("filterMesa").value;
+  return PRIVATE_GUESTS.filter(g => {
+    const hasT = g.telefono && g.telefono.replace(/\D/g, "").length >= 10;
+    if (!hasT) return false;
+    if (WA_SENT[g.id] || colaSkipIds[g.id]) return false;
+    if (nov !== "TODOS" && normalizar(g.familia) !== nov) return false;
+    if (mesa !== "TODAS" && (g.mesa || "").trim().toUpperCase() !== mesa) return false;
+    return true;
+  });
+}
+
+function actualizarColaMasiva() {
+  if (!PRIVATE_GUESTS) return;
+  const pendientes = obtenerColaPendientesConTelefono();
+  document.getElementById("colaContadorBadge").innerText = "Pendientes en filtro: " + pendientes.length;
+  if (pendientes.length === 0) {
+    document.getElementById("colaNombreActual").innerText = "🎉 ¡Todos enviados en este filtro!";
+    document.getElementById("colaDetalleActual").innerText = "No quedan invitados pendientes con teléfono en la selección actual.";
+    document.getElementById("colaPreviewMsg").innerText = "";
+    return;
+  }
+  const actual = pendientes[0];
+  document.getElementById("colaNombreActual").innerText = actual.nombre;
+  document.getElementById("colaDetalleActual").innerText = "📱 Tel: " + actual.telefono + " · 🎟️ " + actual.personas + " pases · 🍽️ Mesa: " + actual.mesa + " (" + actual.familia + ")";
+  document.getElementById("colaPreviewMsg").innerText = construirMensajePersonalizado(actual);
+}
+
+function dispararSiguienteMasivo() {
+  const pendientes = obtenerColaPendientesConTelefono();
+  if (pendientes.length === 0) {
+    alert("🎉 ¡Ya enviaste todos los pases pendientes de este filtro!");
+    return;
+  }
+  const actual = pendientes[0];
+  WA_SENT[actual.id] = true;
+  guardarEstadoPrivado();
+  actualizarResumenPrivado();
+  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+
+  const msg = construirMensajePersonalizado(actual);
+  const cleanTel = (actual.telefono || "").replace(/\D/g, "");
+  const phoneFinal = cleanTel.length === 10 ? ("52" + cleanTel) : cleanTel;
+  window.open("https://wa.me/" + phoneFinal + "?text=" + encodeURIComponent(msg), "_blank");
+
+  actualizarColaMasiva();
+}
+
+function saltarInvitadoCola() {
+  const pendientes = obtenerColaPendientesConTelefono();
+  if (pendientes.length === 0) return;
+  colaSkipIds[pendientes[0].id] = true;
+  actualizarColaMasiva();
+}
+
+function marcarTodosPendientes() {
+  if (!confirm("¿Deseas reiniciar las casillas de 'Enviado' a 0 para volver a empezar la cola?")) return;
+  WA_SENT = {};
+  colaSkipIds = {};
+  guardarEstadoPrivado();
+  actualizarResumenPrivado();
+  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+  actualizarColaMasiva();
+}
+
+function enviarWhatsAppPrivado(id) {
+  if (!PRIVATE_GUESTS) return;
+  const g = PRIVATE_GUESTS.find(x => x.id === id);
+  if (!g) return;
+  WA_SENT[id] = true;
+  guardarEstadoPrivado();
+  actualizarResumenPrivado();
+  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+
+  const link = "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado=" + encodeURIComponent(g.nombre);
+  const mesaNombre = (g.mesa || "").toUpperCase();
+  const msg = "¡Hola *" + g.nombre + "*! 💍✨\n\nNos llena de alegría que nos acompañes a celebrar nuestra boda el próximo *16 de Enero de 2027*.\n\n🎟️ Aquí tienes tu *Pase Digital Oficial* reservado para *" + g.personas + (g.personas === 1 ? " persona" : " personas") + "* (Mesa / Grupo: *" + mesaNombre + "*):\n" + link + "\n\n¡Te esperamos en Quinta Agapantos!\nCon cariño, *Estefanía & Jorge* ❤️";
+
+  const cleanTel = (g.telefono || "").replace(/\D/g, "");
+  if (!cleanTel) {
+    navigator.clipboard.writeText(msg);
+    alert("✅ Copiamos el mensaje personalizado y el link del Pase QR al portapapeles.");
+    return;
+  }
+  const phoneFinal = cleanTel.length === 10 ? ("52" + cleanTel) : cleanTel;
+  window.open("https://wa.me/" + phoneFinal + "?text=" + encodeURIComponent(msg), "_blank");
+}
+
+function renderizarMesasPrivadas() {
+  if (!PRIVATE_GUESTS) return;
+  const cap = parseInt(document.getElementById("capMesaSel").value) || 10;
+  const grupos = {};
+  PRIVATE_GUESTS.forEach(g => {
+    const m = (g.mesa || "SIN MESA").trim().toUpperCase();
+    if (!grupos[m]) grupos[m] = [];
+    grupos[m].push(g);
+  });
+
+  const entries = Object.entries(grupos).map(([nombreMesa, lista]) => {
+    const pax = lista.reduce((s, x) => s + (parseInt(x.personas) || 0), 0);
+    const mesasFisicas = Math.ceil(pax / cap);
+    return { nombreMesa, lista, pax, mesasFisicas };
+  }).sort((a,b) => b.pax - a.pax);
+
+  const totalMesas = entries.reduce((s, e) => s + e.mesasFisicas, 0);
+  document.getElementById("resumenSeatingBanner").innerHTML =
+    "<strong>📌 Análisis de Banquete (" + cap + " sillas por mesa):</strong> Tus <strong>" + entries.length + " categorías/mesas</strong> suman <strong>205 invitados</strong> y requieren <strong>" + totalMesas + " mesas físicas</strong>.<br>" +
+    "• La categoría <strong>🏢 FLEX (Trabajo de Jorge)</strong> tiene <strong>22 personas (10 pases)</strong> → equivale a <strong>2 mesas de 11 personas</strong> (o 2 mesas de 10 + 2 lugares).";
+
+  const allMesas = entries.map(e => e.nombreMesa);
+  const grid = document.getElementById("seatingGridPrivado");
+  grid.innerHTML = entries.map(e => {
+    const isOver = e.pax > cap;
+    const pct = Math.min(100, Math.round((e.pax / cap) * 100));
+    return '<div class="mesa-card ' + (isOver ? 'over-cap' : '') + '">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+        '<strong style="font-size:14px;">' + (e.nombreMesa.startsWith("FLEX") ? '🏢 ' : '🍽️ ') + e.nombreMesa + '</strong>' +
+        '<span style="font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--gold-soft);color:var(--gold-dark);">' + e.pax + ' pax · ' + e.mesasFisicas + (e.mesasFisicas === 1 ? ' mesa' : ' mesas') + '</span>' +
+      '</div>' +
+      '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%;background:' + (isOver ? '#d97706' : '#15803d') + ';"></div></div>' +
+      '<div class="mesa-guests-list">' +
+        e.lista.map(g =>
+          '<div class="mesa-guest-row">' +
+            '<span>' + g.nombre + ' <strong>(' + g.personas + ')</strong></span>' +
+            '<select style="font-size:11px;padding:2px 4px;border-radius:6px;border:1px solid #d5c3aa;max-width:115px;" onchange="editarPrivado(' + g.id + ', \'mesa\', this.value);renderizarMesasPrivadas();">' +
+              allMesas.map(m => '<option value="' + m.replace(/"/g, '&quot;') + '" ' + (m === e.nombreMesa ? 'selected' : '') + '>' + m + '</option>').join("") +
+            '</select>' +
+          '</div>'
+        ).join("") +
+      '</div>' +
+    '</div>';
+  }).join("");
+}
+
+function autoNumerarMesasPrivadas() {
+  if (!PRIVATE_GUESTS) return;
+  const cap = parseInt(document.getElementById("capMesaSel").value) || 10;
+  const porBase = {};
+  PRIVATE_GUESTS.forEach(g => {
+    const base = (g.mesa || "MESA").replace(/\s+\d+$/, "").trim().toUpperCase();
+    if (!porBase[base]) porBase[base] = [];
+    porBase[base].push(g);
+  });
+
+  Object.entries(porBase).forEach(([baseName, lista]) => {
+    const total = lista.reduce((s, x) => s + (parseInt(x.personas) || 0), 0);
+    if (total <= cap) {
+      lista.forEach(g => g.mesa = baseName);
+      return;
+    }
+    let num = 1;
+    let acum = 0;
+    lista.forEach(g => {
+      const p = parseInt(g.personas) || 1;
+      if (acum + p > cap && acum > 0) {
+        num++;
+        acum = 0;
+      }
+      g.mesa = baseName + " " + num;
+      acum += p;
+    });
+  });
+  guardarEstadoPrivado();
+  actualizarResumenPrivado();
+  renderizarMesasPrivadas();
+  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+}
+
+function restaurarOriginalPrivado() {
+  if (!ORIGINAL_PRIVATE_GUESTS) return;
+  localStorage.removeItem("boda_ej_priv_v3");
+  PRIVATE_GUESTS = JSON.parse(JSON.stringify(ORIGINAL_PRIVATE_GUESTS));
+  actualizarResumenPrivado();
+  renderizarMesasPrivadas();
+  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+}
+
+function generarTextoCSVPrivado(sep) {
+  if (!PRIVATE_GUESTS) return "";
+  const header = ["Fecha","Nombre","Telefono","Confirmacion","personas","MESA","FAMLIA"].join(sep);
+  const lines = PRIVATE_GUESTS.map(g => [
+    g.fecha || "",
+    g.nombre || "",
+    g.telefono || "",
+    g.confirmacion || "Confirmado",
+    g.personas || 1,
+    g.mesa || "",
+    g.familia || ""
+  ].join(sep));
+  return [header].concat(lines).join("\n");
+}
+
+function exportarCSVPrivado() {
+  const csv = "\uFEFF" + generarTextoCSVPrivado(",");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "Lista_Invitados_Boda_Estefania_Jorge.csv";
+  a.click();
+}
+
+function copiarTablaPrivada() {
+  navigator.clipboard.writeText(generarTextoCSVPrivado("\t"));
+  alert("✅ ¡Tabla copiada! Ve a tu Google Sheet, selecciona la celda A1 y presiona Ctrl+V.");
+}
+
+/* =====================================================
+   FUNCIONES PÚBLICAS DE LA INVITACION
+===================================================== */
+function abrirInvitacion() {
+  const intro = document.getElementById("intro");
+  intro.classList.add("abrir");
+  setTimeout(() => {
+    const contenido = document.getElementById("contenido");
+    contenido.style.display = "block";
+    contenido.classList.add("fade-content");
+    const audio = document.getElementById("audio");
+    audio.play().catch(() => {});
+  }, 1200);
+  setTimeout(() => { intro.classList.add("ocultar"); }, 1900);
+  setTimeout(() => { intro.style.display = "none"; }, 3700);
+}
+
+const fecha = new Date("Jan 16, 2027 19:00:00").getTime();
+function actualizarContador() {
+  const now = new Date().getTime();
+  const diff = fecha - now;
+  if (diff <= 0) {
+    ["dias","horas","minutos","segundos"].forEach(id => document.getElementById(id).innerHTML = "0");
+    document.getElementById("mensaje-final").style.display = "block";
+    return;
+  }
+  document.getElementById("dias").innerHTML = Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("horas").innerHTML = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  document.getElementById("minutos").innerHTML = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  document.getElementById("segundos").innerHTML = Math.floor((diff % (1000 * 60)) / 1000);
+}
 actualizarContador();
+setInterval(actualizarContador, 1000);
 
-
-/* ACTUALIZAR CADA SEGUNDO */
-
-setInterval(
-actualizarContador,
-1000
-);
-
-
-/* =====================================================
-   GENERAR PASE
-===================================================== */
-
-let link="";
-
-
-function generar(){
-
-let nombre=
-document
-.getElementById("nombre")
-.value
-.trim();
-
-
-let tel=
-document
-.getElementById("telefono")
-.value
-.trim();
-
-
-let personas=
-document
-.getElementById("personas")
-.value
-.trim();
-
-
-/* NOMBRE */
-
-if(nombre===""){
-
-alert(
-"⚠️ Por favor ingresa tu nombre."
-);
-
-document
-.getElementById("nombre")
-.focus();
-
-return;
-
+function agendarCalendario() {
+  const url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" +
+    encodeURIComponent("💍 Boda Estefanía & Jorge") +
+    "&dates=20270117T000000Z/20270117T070000Z" +
+    "&details=" + encodeURIComponent("Misa 6:00 PM en Templo Nueva Galicia. Recepción 7:30 PM en Quinta Agapantos.") +
+    "&location=" + encodeURIComponent("Quinta Agapantos, Guadalajara, Jalisco");
+  window.open(url, "_blank");
 }
 
-
-/* TELEFONO */
-
-if(tel===""){
-
-alert(
-"⚠️ Por favor ingresa tu teléfono."
-);
-
-document
-.getElementById("telefono")
-.focus();
-
-return;
-
+function buscarMiPase(val) {
+  const sugBox = document.getElementById("guestSuggestions");
+  const q = normalizar(val);
+  if (q.length < 3) {
+    sugBox.innerHTML = "";
+    return;
+  }
+  const matches = PUBLIC_GUESTS.filter(g => normalizar(g.nombre).includes(q)).slice(0, 6);
+  if (matches.length === 0) {
+    sugBox.innerHTML = '<div style="padding:12px;font-size:13px;color:#7a6c5d;text-align:center;">No se encontró coincidencia con ese nombre. Verifica cómo registraste tu confirmación.</div>';
+    return;
+  }
+  sugBox.innerHTML = matches.map(g =>
+    '<div class="lookup-item" onclick="seleccionarMiPase(' + g.id + ')">' +
+      '<div><strong>' + g.nombre + '</strong></div>' +
+      '<div style="color:#9a7b3e;font-weight:700;">Ver mi pase →</div>' +
+    '</div>'
+  ).join("");
 }
 
+function seleccionarMiPase(id) {
+  const g = PUBLIC_GUESTS.find(x => x.id === id);
+  if (!g) return;
+  document.getElementById("guestSuggestions").innerHTML = "";
+  document.getElementById("guestNameInput").value = g.nombre;
+  const card = document.getElementById("vipPassCard");
+  card.style.display = "block";
+  document.getElementById("vipFolio").innerText = "FOLIO #" + String(g.id).padStart(3, "0");
+  document.getElementById("vipNombre").innerText = g.nombre;
+  const p = parseInt(g.personas) || 1;
+  document.getElementById("vipPersonas").innerText = p + (p === 1 ? " Persona" : " Personas");
+  document.getElementById("vipIcons").innerText = "👤".repeat(Math.min(p, 8));
+  document.getElementById("vipMesa").innerText = formatearMesa(g.mesa);
 
-/* PERSONAS */
+  const passUrl = "invitado.html?invitado=" + encodeURIComponent(g.nombre);
+  document.getElementById("vipDirectLink").href = passUrl;
 
-if(personas===""){
-
-alert(
-"⚠️ Por favor indica cuántas personas asistirán."
-);
-
-document
-.getElementById("personas")
-.focus();
-
-return;
-
+  const qrBox = document.getElementById("vipQr");
+  qrBox.innerHTML = "";
+  const fullQrUrl = "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado=" + encodeURIComponent(g.nombre);
+  new QRCode(qrBox, { text: fullQrUrl, width: 160, height: 160 });
 }
 
-
-/* MINIMO */
-
-if(parseInt(personas)<1){
-
-alert(
-"⚠️ Debe asistir al menos 1 persona."
-);
-
-document
-.getElementById("personas")
-.focus();
-
-return;
-
-}
-
-
-nombre=
-nombre.toUpperCase();
-
-
-/* =====================================================
-   GOOGLE SHEETS
-===================================================== */
-
-fetch(
-"https://script.google.com/macros/s/AKfycbyDPJbTLQgur2q22GzT5KlmwSH7yJlrfS5rgTS29ssXB-suxXuwdy8b7ORD-67kZrzQBQ/exec",
-{
-
-method:"POST",
-
-body:JSON.stringify({
-
-nombre:nombre,
-
-telefono:tel,
-
-personas:personas,
-
-confirmacion:"Confirmado"
-
-})
-
-});
-
-
-/* =====================================================
-   MOSTRAR PASE
-===================================================== */
-
-document
-.getElementById("ticket")
-.style.display="block";
-
-
-document
-.getElementById("invitado")
-.innerText=nombre;
-
-
-/* =====================================================
-   QR
-===================================================== */
-
-link=
-"https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado="
-+
-encodeURIComponent(nombre);
-
-
-document
-.getElementById("qr")
-.innerHTML="";
-
-
-new QRCode(
-
-document.getElementById("qr"),
-
-{
-
-text:link,
-
-width:180,
-
-height:180
-
-}
-
-);
-
-}
-
-
-/* =====================================================
-   WHATSAPP
-===================================================== */
-
-function enviar(){
-
-let tel=
-document
-.getElementById("telefono")
-.value
-.trim();
-
-
-window.open(
-
-"https://wa.me/"+tel+
-"?text="+
-encodeURIComponent(
-"Te invitamos a nuestra boda "+link
-)
-
-);
-
-}
-
-
-/* =====================================================
-   MUSICA
-===================================================== */
-
-const audio=
-document.getElementById("audio");
-
-
-document
-.getElementById("music-btn")
-.onclick=()=>{
-
-audio.paused
-?
-audio.play()
-:
-audio.pause();
-
+window.google = window.google || {};
+window.google.visualization = window.google.visualization || {};
+window.google.visualization.Query = {
+  setResponse: function(response) {
+    try {
+      if (!response || !response.table || !response.table.rows) return;
+      const rows = response.table.rows;
+      const livePub = [];
+      const livePriv = [];
+      let idx = 1;
+      for (let i = 0; i < rows.length; i++) {
+        const c = rows[i].c;
+        if (!c) continue;
+        const nombre = c[1] && c[1].v ? String(c[1].v).trim() : "";
+        if (!nombre || nombre.toLowerCase() === "nombre") continue;
+        let mesaRaw = c[5] && c[5].v ? String(c[5].v).trim() : "";
+        if (mesaRaw.toLowerCase() === "flex") mesaRaw = "FLEX";
+        const curId = idx++;
+        livePub.push({
+          id: curId,
+          nombre: nombre.replace(/\s+/g, " "),
+          personas: c[4] && c[4].v ? parseInt(c[4].v) || 1 : 1,
+          mesa: mesaRaw.toUpperCase()
+        });
+        if (PRIVATE_GUESTS) {
+          livePriv.push({
+            id: curId,
+            fecha: c[0] && c[0].v ? String(c[0].f || c[0].v) : "",
+            nombre: nombre.replace(/\s+/g, " "),
+            telefono: c[2] && c[2].v ? String(c[2].v).trim() : "",
+            confirmacion: c[3] && c[3].v ? String(c[3].v).trim() : "Confirmado",
+            personas: c[4] && c[4].v ? parseInt(c[4].v) || 1 : 1,
+            mesa: mesaRaw.toUpperCase(),
+            familia: c[6] && c[6].v ? String(c[6].v).trim().toUpperCase() : ""
+          });
+        }
+      }
+      if (livePub.length > 5) PUBLIC_GUESTS = livePub;
+      if (PRIVATE_GUESTS && livePriv.length > 5) {
+        PRIVATE_GUESTS = livePriv;
+        actualizarResumenPrivado();
+        renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+      }
+    } catch(e) {}
+  }
 };
 
-
-/* =====================================================
-   ANIMACION SECCIONES
-===================================================== */
-
-const sections=
-document
-.querySelectorAll('.section');
-
-
-window.addEventListener(
-'scroll',
-()=>{
-
-sections.forEach(sec=>{
-
-let top=
-sec.getBoundingClientRect().top;
-
-
-if(top<
-window.innerHeight-100){
-
-sec.classList.add('visible');
-
+function sincronizarGoogleSheetPrivado() {
+  const s = document.createElement("script");
+  s.src = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json&gid=0&t=" + Date.now();
+  document.body.appendChild(s);
 }
+sincronizarGoogleSheetPrivado();
 
-});
-
-});
-
-
-/* =====================================================
-   GALERIA
-===================================================== */
-
-document
-.querySelectorAll('.gallery img')
-.forEach(img=>{
-
-img.onclick=()=>{
-
-document
-.getElementById("modal")
-.style.display="flex";
-
-
-document
-.getElementById("modalImg")
-.src=img.src;
-
+const audio = document.getElementById("audio");
+document.getElementById("music-btn").onclick = () => {
+  audio.paused ? audio.play() : audio.pause();
 };
 
+const sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+      sec.classList.add('visible');
+    }
+  });
 });
 
-
-/* =====================================================
-   CERRAR MODAL
-===================================================== */
-
-document
-.getElementById("modal")
-.onclick=()=>{
-
-document
-.getElementById("modal")
-.style.display="none";
-
+document.querySelectorAll('.gallery img').forEach(img => {
+  img.onclick = () => {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modalImg").src = img.src;
+  };
+});
+document.getElementById("modal").onclick = () => {
+  document.getElementById("modal").style.display = "none";
 };
-
 </script>
-
-</div>
-
 </body>
 </html>
+
+

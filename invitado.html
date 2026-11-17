@@ -1,420 +1,390 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Invitación Boda</title>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
-rel="stylesheet">
-
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-</script>
-
+<title>Pase Oficial — Boda Estefanía & Jorge</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-
-/* =========================
-   BODY
-========================= */
-
-body{
-
-margin:0;
-
-font-family:'Dancing Script',cursive;
-
-background:linear-gradient(
-135deg,
-#fdf7f2,
-#f6e9de
-);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-min-height:100vh;
-
-height:100vh;
-
-padding:0;
-
-box-sizing:border-box;
-
-overflow:hidden;
-
+:root {
+  --gold: #c8a96a;
+  --gold-dark: #9a7b3e;
+  --gold-light: #f6ecda;
+  --ink: #29221c;
+  --muted: #6e6258;
+  --ok: #26683b;
+  --ok-bg: #eaf6ee;
 }
-
-
-/* =========================
-   TARJETA
-========================= */
-
-.container{
-
-background:white;
-
-padding:40px 30px;
-
-border-radius:25px;
-
-box-shadow:
-0 15px 60px rgba(0,0,0,0.2);
-
-text-align:center;
-
-width:90%;
-
-max-width:800px;
-
-box-sizing:border-box;
-
-animation:
-fadeIn 1s ease-out;
-
-/* SUBIR TARJETA */
-
-transform:translateY(-35px);
-
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: radial-gradient(circle at top, #fdfaf7 0%, #f1e1d0 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+  color: var(--ink);
 }
-
-
-/* =========================
-   NOMBRE
-========================= */
-
-h1{
-
-font-family:'Dancing Script',cursive;
-
-font-size:36px;
-
-margin:10px 0;
-
-color:#b28c5d;
-
+.pass-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 470px;
+  border-radius: 28px;
+  box-shadow: 0 26px 75px rgba(55, 38, 20, 0.18);
+  border: 1.5px solid rgba(200, 169, 106, 0.45);
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  animation: fadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
-
-
-/* =========================
-   TITULO
-========================= */
-
-h2{
-
-font-family:'Dancing Script',cursive;
-
-font-size:24px;
-
-margin:5px 0 15px 0;
-
-color:#333;
-
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-
-/* =========================
-   TEXTOS
-========================= */
-
-p{
-
-font-family:'Dancing Script',cursive;
-
-font-size:16px;
-
-margin:8px 0;
-
-color:#555;
-
+.pass-header {
+  background: linear-gradient(135deg, #261e18 0%, #423429 100%);
+  color: #fff;
+  padding: 28px 24px 22px;
+  position: relative;
+  border-bottom: 3px solid var(--gold);
 }
-
-
-/* =========================
-   QR
-========================= */
-
-#qr{
-
-margin:20px auto;
-
-width:200px;
-
-height:200px;
-
-padding:10px;
-
-background:white;
-
-border-radius:25px;
-
-box-shadow:
-0 12px 50px rgba(0,0,0,0.25);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-box-sizing:content-box;
-
+.folio-pill {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(200, 169, 106, 0.18);
+  border: 1px solid rgba(200, 169, 106, 0.5);
+  color: var(--gold-light);
 }
-
-
-#qr canvas,
-#qr img{
-
-display:block;
-
-margin:auto;
-
+.monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  font-family: 'Dancing Script', cursive;
+  font-size: 25px;
+  color: var(--gold);
+  margin-bottom: 8px;
+  background: rgba(200, 169, 106, 0.1);
 }
-
-
-/* =========================
-   ANIMACION
-========================= */
-
-@keyframes fadeIn{
-
-0%{
-
-opacity:0;
-
-transform:
-translateY(-20px);
-
+.pass-header h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
 }
-
-100%{
-
-opacity:1;
-
-transform:
-translateY(0);
-
+.pass-header p {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold-light);
 }
-
+.pass-body {
+  padding: 26px 26px 24px;
 }
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:600px){
-
-body{
-
-padding:0;
-
-height:100vh;
-
-min-height:100vh;
-
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  background: var(--ok-bg);
+  color: var(--ok);
+  border: 1px solid rgba(38, 104, 59, 0.25);
+  margin-bottom: 12px;
 }
-
-.container{
-
-width:95%;
-
-max-width:none;
-
-padding:35px 20px;
-
-border-radius:25px;
-
-transform:translateY(-35px);
-
+.guest-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: 4px;
 }
-
-h1{
-
-font-size:36px;
-
+#nombre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 29px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 18px;
+  line-height: 1.2;
 }
-
-h2{
-
-font-size:24px;
-
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
 }
-
-p{
-
-font-size:18px;
-
+.metric-box {
+  background: linear-gradient(180deg, #fcf9f5, #f7efe4);
+  border: 1px solid rgba(200, 169, 106, 0.4);
+  border-radius: 16px;
+  padding: 13px 10px;
 }
-
-#qr{
-
-width:200px;
-
-height:200px;
-
+.metric-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--muted);
+  margin-bottom: 4px;
 }
-
+.metric-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gold-dark);
 }
-
-
-/* =========================
-   IPHONE PEQUEÑO
-========================= */
-
-@media(max-width:380px){
-
-.container{
-
-padding:30px 15px;
-
-transform:translateY(-30px);
-
+.metric-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: var(--ink);
+  font-weight: 700;
+  margin-top: 4px;
+  line-height: 1.15;
 }
-
-h1{
-
-font-size:32px;
-
+.seats-icons {
+  font-size: 13.5px;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  color: var(--gold-dark);
 }
-
-h2{
-
-font-size:22px;
-
+.ticket-divider {
+  position: relative;
+  border-top: 2px dashed rgba(200, 169, 106, 0.45);
+  margin: 20px -26px;
 }
-
-p{
-
-font-size:17px;
-
+.ticket-divider::before,
+.ticket-divider::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  width: 22px;
+  height: 22px;
+  background: #f4e6d6;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 169, 106, 0.4);
 }
-
-#qr{
-
-transform:scale(.9);
-
-margin:10px auto;
-
+.ticket-divider::before { left: -12px; }
+.ticket-divider::after { right: -12px; }
+#qr {
+  margin: 14px auto;
+  width: 188px;
+  height: 188px;
+  padding: 12px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+  border: 1px solid rgba(200,169,106,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+#qr canvas, #qr img { display: block; margin: auto; }
+.event-details {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-top: 12px;
+  background: #faf6f0;
+  padding: 10px 14px;
+  border-radius: 12px;
 }
-
+.event-details strong { color: var(--ink); }
+.actions-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.btn {
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(200, 169, 106, 0.5);
+  background: #faf6f0;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+.btn.primary {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+.btn:hover { transform: translateY(-1px); filter: brightness(0.96); }
+@media print {
+  .actions-row { display: none !important; }
+  body { background: #fff; padding: 0; }
+  .pass-card { box-shadow: none; border: 2px solid #c8a96a; }
+}
 </style>
-
 </head>
-
-
 <body>
 
+<div class="pass-card">
+  <div class="pass-header">
+    <div id="folioPase" class="folio-pill">PASE OFICIAL</div>
+    <div class="monogram">E & J</div>
+    <h2>Estefanía & Jorge</h2>
+    <p>Pase Personal de Acceso · 16 Enero 2027</p>
+  </div>
 
-<!-- =========================
-     INVITACION
-========================= -->
+  <div class="pass-body">
+    <div id="badgeEstado" class="status-badge">✓ Invitado Confirmado en Lista Oficial</div>
+    <div class="guest-label">Pase reservado para</div>
+    <h1 id="nombre">INVITADO ESPECIAL</h1>
 
-<div class="container">
+    <div class="metrics-grid">
+      <div class="metric-box">
+        <div class="metric-label">🎟️ Pases Válidos</div>
+        <div id="pasesNum" class="metric-val">2 Personas</div>
+        <div id="pasesIcons" class="seats-icons">👤👤</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">🍽️ Mesa / Grupo</div>
+        <div id="mesaNombre" class="metric-sub">Mesa Asignada</div>
+        <div style="font-size:10.5px;color:#887a6e;margin-top:4px;">Recepción Quinta Agapantos</div>
+      </div>
+    </div>
 
+    <div class="ticket-divider"></div>
 
-<h1 id="nombre"></h1>
+    <div id="qr"></div>
+    <div style="font-size:11px;color:#887a6e;letter-spacing:1px;text-transform:uppercase;margin-top:6px;">
+      Presenta este código QR en la recepción
+    </div>
 
+    <div class="event-details">
+      <strong>⛪ Misa:</strong> 6:00 PM — Templo Nueva Galicia<br>
+      <strong>💍 Recepción:</strong> 7:30 PM — Quinta Agapantos (Formal · Solo Adultos)
+    </div>
 
-<h2>
-
-Invitado a nuestra boda
-
-</h2>
-
-
-<p>
-
-Estefania & Jorge
-
-</p>
-
-
-<p>
-
-16 Enero 2027 — 7:30 PM
-
-</p>
-
-
-<!-- =========================
-     QR
-========================= -->
-
-<div id="qr"></div>
-
-
-<p>
-
-¡Te esperamos para celebrar juntos este día especial!
-
-</p>
-
-
+    <div class="actions-row">
+      <a href="index.html" class="btn">💌 Abrir Invitación</a>
+      <a href="https://maps.app.goo.gl/gf9h7gvR2p2orKZGA" target="_blank" class="btn">📍 Ubicación Recepción</a>
+      <button onclick="window.print()" class="btn primary">🖨️ Guardar / Imprimir Pase</button>
+    </div>
+  </div>
 </div>
 
-
 <script>
+const SHEET_ID = "15RIQsWmivJNDrVcFkx1-ryDLIeJ4z3dRRKxUd_8eWUo";
+// Lista pública sin números de teléfono ni datos sensibles
+let PUBLIC_GUESTS = [{"id":1,"nombre":"MARGARITA GUTIERREZ","personas":4,"mesa":"FAMILIA NARANJO GUTIÉRREZ"},{"id":2,"nombre":"GERARDO OCEGUERA","personas":2,"mesa":"FLEX"},{"id":3,"nombre":"FERNANDO NUÑO CAPETILLO","personas":2,"mesa":"AMIGOS J"},{"id":4,"nombre":"JULIA Y RAFAEL","personas":2,"mesa":"AMIGOS J"},{"id":5,"nombre":"DANIELA GUTIERREZ","personas":2,"mesa":"AMIGOS E"},{"id":6,"nombre":"EDITH MHONTSERRAT GRANADOS CARRETO","personas":2,"mesa":"AMIGOS E"},{"id":7,"nombre":"RICARDO GUERRERO ACEVES","personas":5,"mesa":"FAMILIA GUERRERO"},{"id":8,"nombre":"PAULINA GARCIA SANTANA","personas":2,"mesa":"AMIGOS E"},{"id":9,"nombre":"LILIANA MIRANDA Y RAFAEL GTZ","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":10,"nombre":"KARLA LIZETT GOMEZ PEREZ","personas":2,"mesa":"AMIGOS E"},{"id":11,"nombre":"CHRISTIAN MIRANDA ESPINOZA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":12,"nombre":"EDITH ARANDA","personas":2,"mesa":"AMIGOS E"},{"id":13,"nombre":"LUIS GONZALEZ","personas":2,"mesa":"FLEX"},{"id":14,"nombre":"JOSE LARA GUERRERO","personas":1,"mesa":"FAMILIA GUERRERO"},{"id":15,"nombre":"MARIA EUGENIA MIRANDA Y JORGE SANDOVAL","personas":3,"mesa":"FAMILIA MIRANDA"},{"id":16,"nombre":"HUMBERTO SOTELO Y JEANETTE GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":17,"nombre":"BEATRIZ CANO","personas":2,"mesa":"AMIGOS E"},{"id":18,"nombre":"ERICK CASILLAS","personas":2,"mesa":"FLEX"},{"id":19,"nombre":"SOFIA SANDOVAL MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":20,"nombre":"ROGELIO GUTIERREZ Y ELSA HERNANDEZ DE GTZ","personas":2,"mesa":"AMIGOS E"},{"id":21,"nombre":"GORETY SALAZAR","personas":2,"mesa":"AMIGOS E"},{"id":22,"nombre":"LORENA QUILES ACEVES","personas":2,"mesa":"FAMILIA QUILES ACEVES"},{"id":23,"nombre":"YANET NAVARRO","personas":2,"mesa":"AMIGOS E"},{"id":24,"nombre":"ALONDRA RUVALCABA","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":25,"nombre":"CARLOS MIRANDA NUÑEZ","personas":3,"mesa":"FAMILIA MIRANDA"},{"id":26,"nombre":"RADA CARRILLO","personas":1,"mesa":"AMIGOS J"},{"id":27,"nombre":"JARETH","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":28,"nombre":"FERNANDO Y SOILA","personas":2,"mesa":"AMIGOS E"},{"id":29,"nombre":"JOAQUIN MIRANDA ESPINOZA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":30,"nombre":"EDUARDO GUERRERO MIRANDA Y ASTRID DE GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO MIRANDA"},{"id":31,"nombre":"BENJAMIN NARANJO","personas":4,"mesa":"FAMILIA NARANJO PÉREZ"},{"id":32,"nombre":"EDUARDO ROJAS","personas":1,"mesa":"FLEX"},{"id":33,"nombre":"ALEJANDRO CHAVEZ","personas":2,"mesa":"FLEX"},{"id":34,"nombre":"DANIEL CARDENAS HERNANDEZ","personas":2,"mesa":"FLEX"},{"id":35,"nombre":"ANA NARANJO","personas":4,"mesa":"FAMILIA NARANJO PÉREZ"},{"id":36,"nombre":"ERNESTO LUNA ORTEGA","personas":4,"mesa":"FAMILIA TÍA CHAYO"},{"id":37,"nombre":"AIMAR CONTRERAS","personas":2,"mesa":"FLEX"},{"id":38,"nombre":"RUBEN CARDONA","personas":2,"mesa":"FLEX"},{"id":39,"nombre":"ALAN OJEDA","personas":2,"mesa":"AMIGOS J"},{"id":40,"nombre":"JOSE GUTIERREZ GOMEZ Y PALOMA HERNANDEZ","personas":2,"mesa":"FAMILIA GUTIERREZ GOMEZ"},{"id":41,"nombre":"JOSÉ GERMÁN GUTIÉRREZ CORONA","personas":4,"mesa":"FAMILIA TIA PERA"},{"id":42,"nombre":"ESPERANZA PAULETTE GUTIERREZ GUTIERREZ","personas":1,"mesa":"FAMILIA TIA PERA"},{"id":43,"nombre":"SANTIAGO SANTOS GARCIA","personas":2,"mesa":"AMIGOS J"},{"id":44,"nombre":"GABRIEL GIL","personas":5,"mesa":"FLEX"},{"id":45,"nombre":"LUIS FERNANDO","personas":1,"mesa":"AMIGOS J"},{"id":46,"nombre":"ALEJANDRO SERRANO VARGAS","personas":1,"mesa":"AMIGOS J"},{"id":47,"nombre":"EMILIANO JACOB OJEDA ROMERO","personas":2,"mesa":"AMIGOS J"},{"id":48,"nombre":"ANGELICA GUERRERO Y MANUEL CORDERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":49,"nombre":"CAROL PRIETO FRIEDERICH","personas":2,"mesa":"FLEX"},{"id":50,"nombre":"TERESA DE JESUS NARANJO PEREZ","personas":4,"mesa":"FAMILIA NARANJO PÉREZ"},{"id":51,"nombre":"ANA KAREN ANGULO VAZQUEZ","personas":2,"mesa":"AMIGOS E"},{"id":52,"nombre":"CESAR JOEL CORTES CISNEROS","personas":2,"mesa":"AMIGOS J"},{"id":53,"nombre":"ANGEL TORRES","personas":6,"mesa":"FAMILIA SILVIA"},{"id":54,"nombre":"ADA TORREBLANCA","personas":2,"mesa":"AMIGOS E"},{"id":55,"nombre":"CAROLINA GUERRERO MIRANDA","personas":2,"mesa":"FAMILIA GUERRERO MIRANDA"},{"id":56,"nombre":"MARTHA PONCE DE LEON ESPINOSA","personas":1,"mesa":"FAMILIA PONCE DE LEON"},{"id":57,"nombre":"GILBERTO AMARO PONCE DE LEON","personas":2,"mesa":"FAMILIA PONCE DE LEON"},{"id":58,"nombre":"LIZETTE SAINZ","personas":1,"mesa":"AMIGOS E"},{"id":59,"nombre":"ANA OROZCO","personas":2,"mesa":"AMIGOS E"},{"id":60,"nombre":"LORENA MIRANDA","personas":3,"mesa":"FAMILIA GUERRERO MIRANDA"},{"id":61,"nombre":"OSWALDO CORTES","personas":2,"mesa":"AMIGOS J"},{"id":62,"nombre":"ANDREA LARA GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":63,"nombre":"ANDREA NARANJO GUTIÉRREZ","personas":3,"mesa":"FAMILIA NARANJO GUTIÉRREZ"},{"id":64,"nombre":"SONIA GUADALUPE DE ANDA CASTILLO","personas":5,"mesa":"FAMILIA DE ANDA CASTILLO"},{"id":65,"nombre":"EVELYN CASTILLO","personas":3,"mesa":"FAMILIA DE ANDA CASTILLO"},{"id":66,"nombre":"JULISSA GUTIERREZ","personas":5,"mesa":"FAMILIA GUTIERREZ GOMEZ"},{"id":67,"nombre":"LUZ SANTOYO CASTILLO","personas":3,"mesa":"FAMILIA SANTOYO CASTILLO"},{"id":68,"nombre":"EDGAR GUTIERREZ","personas":2,"mesa":"FAMILIA GUTIERREZ GOMEZ"},{"id":69,"nombre":"ANTONIO GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":70,"nombre":"LEONARDO GUERRERO","personas":3,"mesa":"FAMILIA GUERRERO"},{"id":71,"nombre":"ERICK GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":72,"nombre":"ATHZIRI GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":73,"nombre":"ELVA MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":74,"nombre":"VIRGINIA MIRANDA","personas":6,"mesa":"FAMILIA MIRANDA"},{"id":75,"nombre":"MECHE PONCE DE LEÓN Y TÍA TRINY","personas":4,"mesa":"FAMILIA MIRANDA"},{"id":76,"nombre":"LOURDES MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":77,"nombre":"SANDRA JUAREZ","personas":2,"mesa":"AMIGOS E"},{"id":78,"nombre":"MIRIAM PRIMA","personas":1,"mesa":"FAMILIA MIRANDA"},{"id":79,"nombre":"ROGELIO MONTES","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":80,"nombre":"KAREN GUERRERO","personas":2,"mesa":"FAMILIA GUERRERO"},{"id":81,"nombre":"PAMELA MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":82,"nombre":"RUBEN MIRANDA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":83,"nombre":"KATIA MIRANDA","personas":1,"mesa":"FAMILIA MIRANDA"},{"id":84,"nombre":"ANA LAURA MIRANDA HIJA","personas":2,"mesa":"FAMILIA MIRANDA"},{"id":85,"nombre":"FELIPE GONZALEZ VALLEJO","personas":2,"mesa":"AMIGOS E"},{"id":86,"nombre":"HILARIO HERNANDEZ","personas":2,"mesa":"AMIGOS E"},{"id":87,"nombre":"BETO ACEVES","personas":2,"mesa":"FAMILIA GUERRERO"}]
+;
 
-
-/* =========================
-   OBTENER NOMBRE
-========================= */
-
-const params =
-new URLSearchParams(
-window.location.search
-);
-
-
-const invitado =
-params.get('invitado')
-|| "Querido Invitado";
-
-
-document
-.getElementById("nombre")
-.innerText =
-invitado.toUpperCase();
-
-
-/* =========================
-   GENERAR QR
-========================= */
-
-const qrURL =
-window.location.href;
-
-
-new QRCode(
-
-document.getElementById("qr"),
-
-{
-
-text:qrURL,
-
-width:200,
-
-height:200
-
+function normalizar(str) {
+  return (str || "").toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/\s+/g, " ").trim();
 }
 
-);
+function formatearMesa(mesa) {
+  if (!mesa) return "POR ASIGNAR";
+  if (mesa.toLowerCase() === "flex") return "FLEX";
+  return mesa.toUpperCase();
+}
 
+function renderizarPase(guestObj, rawNameFallback) {
+  const nombreEl = document.getElementById("nombre");
+  const pasesEl = document.getElementById("pasesNum");
+  const iconsEl = document.getElementById("pasesIcons");
+  const mesaEl = document.getElementById("mesaNombre");
+  const folioEl = document.getElementById("folioPase");
+
+  if (guestObj) {
+    nombreEl.innerText = guestObj.nombre;
+    const p = parseInt(guestObj.personas) || 1;
+    pasesEl.innerText = p + (p === 1 ? " Persona" : " Personas");
+    iconsEl.innerText = "👤".repeat(Math.min(p, 8));
+    mesaEl.innerText = formatearMesa(guestObj.mesa);
+    folioEl.innerText = "FOLIO #" + String(guestObj.id).padStart(3, "0");
+  } else {
+    nombreEl.innerText = (rawNameFallback || "Invitado Especial").toUpperCase();
+    pasesEl.innerText = "Pase Personal";
+    iconsEl.innerText = "🎟️";
+    mesaEl.innerText = "Quinta Agapantos";
+    folioEl.innerText = "PASE OFICIAL";
+  }
+
+  const qrContainer = document.getElementById("qr");
+  qrContainer.innerHTML = "";
+  const targetName = guestObj ? guestObj.nombre : (rawNameFallback || "Invitado");
+  const baseUrl = window.location.origin && window.location.origin !== "null"
+    ? (window.location.origin + window.location.pathname)
+    : "https://bodajng0297.github.io/BodaSteffJorge/invitado.html";
+  const qrURL = baseUrl + "?invitado=" + encodeURIComponent(targetName);
+
+  new QRCode(qrContainer, { text: qrURL, width: 164, height: 164 });
+}
+
+function inicializar() {
+  const params = new URLSearchParams(window.location.search);
+  const qParam = params.get("invitado") || "";
+  const qNorm = normalizar(qParam);
+  let encontrado = null;
+  if (qNorm) {
+    encontrado = PUBLIC_GUESTS.find(g => normalizar(g.nombre) === qNorm) ||
+                 PUBLIC_GUESTS.find(g => normalizar(g.nombre).includes(qNorm) || qNorm.includes(normalizar(g.nombre)));
+  }
+  renderizarPase(encontrado, qParam || "Invitado Especial");
+}
+
+// Sincronización en vivo con Google Sheets (solo lee Nombre, Personas y Mesa; ignora teléfonos)
+window.google = window.google || {};
+window.google.visualization = window.google.visualization || {};
+window.google.visualization.Query = {
+  setResponse: function(response) {
+    try {
+      if (!response || !response.table || !response.table.rows) return;
+      const rows = response.table.rows;
+      const live = [];
+      let idx = 1;
+      for (let i = 0; i < rows.length; i++) {
+        const c = rows[i].c;
+        if (!c) continue;
+        const nombre = c[1] && c[1].v ? String(c[1].v).trim() : "";
+        if (!nombre || nombre.toLowerCase() === "nombre") continue;
+        let mesaRaw = c[5] && c[5].v ? String(c[5].v).trim() : "";
+        if (mesaRaw.toLowerCase() === "flex") mesaRaw = "FLEX";
+        live.push({
+          id: idx++,
+          nombre: nombre.replace(/\s+/g, " "),
+          personas: c[4] && c[4].v ? parseInt(c[4].v) || 1 : 1,
+          mesa: mesaRaw
+        });
+      }
+      if (live.length > 5) {
+        PUBLIC_GUESTS = live;
+        inicializar();
+      }
+    } catch(e) {}
+  }
+};
+
+inicializar();
+const s = document.createElement("script");
+s.src = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json&gid=0";
+document.body.appendChild(s);
 </script>
-
-
 </body>
-
 </html>
+
