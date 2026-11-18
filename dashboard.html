@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -1334,7 +1334,7 @@ function intentarDesbloqueo() {
 
   cerrarModalPassword();
   document.getElementById("novios-topbar").style.display = "flex";
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
   renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
   cambiarModoNovios("directorio");
   window.scrollTo({top: 0, behavior: "smooth"});
@@ -1478,7 +1478,7 @@ function renderizarTablaPrivada() {
 function toggleWaSent(id, checked) {
   WA_SENT[id] = checked;
   guardarEstadoPrivado();
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
 }
 
 function editarPrivado(id, campo, val) {
@@ -1489,7 +1489,7 @@ function editarPrivado(id, campo, val) {
   else if (campo === "mesa") g.mesa = val.trim().toUpperCase();
   else g[campo] = val.trim();
   guardarEstadoPrivado();
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
 }
 
 function agregarInvitadoPrivado() {
@@ -1506,7 +1506,7 @@ function agregarInvitadoPrivado() {
     familia: "JORGE"
   });
   guardarEstadoPrivado();
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
   renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
 }
 
@@ -1514,9 +1514,9 @@ let colaSkipIds = {};
 let bucketActualIdx = 0;
 let tamanoMaxBucket = 30;
 
-const PLANTILLA_INDIVIDUAL = "¡Hola *{NOMBRE}*! 💍 Te compartimos nuestra invitación y tu pase (*16 Enero 2027*):\n\n💌 *Invitación:* https://bodajng0297.github.io/BodaSteffJorge/\n🎟️ *Tu Pase ({PERSONAS} · Mesa {MESA}):* {LINK}\n⛪ *Misa (6:00 PM):* Templo Nueva Galicia https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9\n🥂 *Boda (7:30 PM):* Quinta Agapantos https://maps.app.goo.gl/gf9h7gvR2p2orKZGA\n\n¡Los esperamos! *Estefanía & Jorge* ❤️";
+const PLANTILLA_INDIVIDUAL = "\u00A1Hola *{NOMBRE}*! \uD83D\uDC8D Te compartimos nuestra invitaci\u00F3n y tu pase (*16 Enero 2027*):\n\n\uD83D\uDC8C *Invitaci\u00F3n:* https://bodajng0297.github.io/BodaSteffJorge/\n\uD83C\uDF9F\uFE0F *Tu Pase ({PERSONAS} \u00B7 Mesa {MESA}):* {LINK}\n\u26EA *Misa (6:00 PM):* Templo Nueva Galicia https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9\n\uD83E\uDD42 *Boda (7:30 PM):* Quinta Agapantos https://maps.app.goo.gl/gf9h7gvR2p2orKZGA\n\n\u00A1Los esperamos! *Estefan\u00EDa & Jorge* \u2764\uFE0F";
 
-const PLANTILLA_BROADCAST = "¡Hola! 💍 Con mucha alegría les compartimos nuestra invitación y ubicaciones para nuestra boda (*16 Enero 2027*):\n\n💌 *Invitación y Pase QR:* https://bodajng0297.github.io/BodaSteffJorge/\n⛪ *Misa (6:00 PM):* Templo Nueva Galicia https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9\n🥂 *Boda (7:30 PM):* Quinta Agapantos https://maps.app.goo.gl/gf9h7gvR2p2orKZGA\n\n*(Dentro de la invitación puedes escribir tu nombre para ver tu Pase QR y mesa asignada).* \n¡Los esperamos! *Estefanía & Jorge* ❤️";
+const PLANTILLA_BROADCAST = "\u00A1Hola! \uD83D\uDC8D Con mucha alegr\u00EDa les compartimos nuestra invitaci\u00F3n y ubicaciones para nuestra boda (*16 Enero 2027*):\n\n\uD83D\uDC8C *Invitaci\u00F3n y Pase QR:* https://bodajng0297.github.io/BodaSteffJorge/\n\u26EA *Misa (6:00 PM):* Templo Nueva Galicia https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9\n\uD83E\uDD42 *Boda (7:30 PM):* Quinta Agapantos https://maps.app.goo.gl/gf9h7gvR2p2orKZGA\n\n*(Dentro de la invitaci\u00F3n puedes escribir tu nombre para ver tu Pase QR y mesa asignada).*\n\u00A1Los esperamos! *Estefan\u00EDa & Jorge* \u2764\uFE0F";
 
 function abrirAsistenteMasivo() {
   const box = document.getElementById("panelMasivoBox");
@@ -1636,7 +1636,7 @@ function dispararSiguienteMasivo() {
   const actual = pendientes[0];
   WA_SENT[actual.id] = true;
   guardarEstadoPrivado();
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
   renderizarTablaPrivada();
 
   const msg = construirMensajePersonalizado(actual);
@@ -1719,7 +1719,7 @@ function marcarBucketComoEnviado() {
   const bucketActual = buckets[bucketActualIdx] || [];
   bucketActual.forEach(g => { WA_SENT[g.id] = true; });
   guardarEstadoPrivado();
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
   renderizarTablaPrivada();
   actualizarColaMasiva();
 }
@@ -1729,7 +1729,7 @@ function marcarTodosPendientes() {
   WA_SENT = {};
   colaSkipIds = {};
   guardarEstadoPrivado();
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
   renderizarTablaPrivada();
   actualizarColaMasiva();
 }
@@ -1740,7 +1740,7 @@ function enviarWhatsAppPrivado(id) {
   if (!g) return;
   WA_SENT[id] = true;
   guardarEstadoPrivado();
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
   renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
 
   const msg = construirMensajePersonalizado(g);
@@ -1830,7 +1830,7 @@ function autoNumerarMesasPrivadas() {
     });
   });
   guardarEstadoPrivado();
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
   renderizarMesasPrivadas();
   renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
 }
@@ -1839,7 +1839,7 @@ function restaurarOriginalPrivado() {
   if (!ORIGINAL_PRIVATE_GUESTS) return;
   localStorage.removeItem("boda_ej_priv_v3");
   PRIVATE_GUESTS = JSON.parse(JSON.stringify(ORIGINAL_PRIVATE_GUESTS));
-  actualizarResumenPrivado();
+  if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
   renderizarMesasPrivadas();
   renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
 }
@@ -1999,7 +1999,7 @@ window.google.visualization.Query = {
       if (livePub.length > 5) PUBLIC_GUESTS = livePub;
       if (PRIVATE_GUESTS && livePriv.length > 5) {
         PRIVATE_GUESTS = livePriv;
-        actualizarResumenPrivado();
+        if(document.getElementById("waTemplateInput")) document.getElementById("waTemplateInput").value = PLANTILLA_INDIVIDUAL; actualizarResumenPrivado();
         renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
       }
     } catch(e) {}
