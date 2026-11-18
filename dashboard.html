@@ -1681,11 +1681,15 @@ function descargarVcfBucket() {
   const vcards = bucketActual.map(g => {
     const c = (g.telefono || "").replace(/\D/g, "");
     const tel = c.length === 10 ? ("+52" + c) : ("+" + c);
+    const fullLabel = "BodaB" + bNum + " " + g.nombre;
     return [
       "BEGIN:VCARD",
       "VERSION:3.0",
-      "FN:BodaB" + bNum + " - " + g.nombre,
-      "TEL;TYPE=CELL:" + tel,
+      "PRODID:-//Apple Inc.//iOS//ES",
+      "N;CHARSET=UTF-8:" + g.nombre + ";BodaB" + bNum + ";;;",
+      "FN;CHARSET=UTF-8:" + fullLabel,
+      "ORG;CHARSET=UTF-8:Boda Estefania y Jorge (Bucket " + bNum + " - " + g.mesa + ")",
+      "TEL;TYPE=CELL;TYPE=VOICE;TYPE=pref:" + tel,
       "END:VCARD"
     ].join("\r\n");
   }).join("\r\n");
@@ -1693,7 +1697,7 @@ function descargarVcfBucket() {
   const blob = new Blob([vcards], { type: "text/vcard;charset=utf-8;" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "Contactos_Boda_Bucket_" + bNum + ".vcf";
+  a.download = "Contactos_iPhone_Bucket_" + bNum + ".vcf";
   a.click();
 }
 
