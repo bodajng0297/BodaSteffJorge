@@ -1063,51 +1063,103 @@ table.priv-table td { padding: 9px 12px; border-bottom: 1px solid #f1e8dc; verti
     <div id="categoriasResumenGrid" class="cat-bars"></div>
   </div>
 
-    <!-- ASISTENTE DE ENVÍO MASIVO POR WHATSAPP (MODO RÁFAGA) -->
+      <!-- CENTRO DE ENVÍO MASIVO POR BUCKETS (MÁX. 30 CONTACTOS) Y LISTA DE DIFUSIÓN (BROADCAST) -->
   <div class="admin-card" style="background:linear-gradient(145deg,#f0fdf4,#dcfce7);border:1.5px solid #16a34a;">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
       <div>
-        <h3 style="margin:0;color:#14532d;">🚀 Asistente de Envío Masivo por WhatsApp (Modo Ráfaga)</h3>
-        <p style="margin:4px 0 0;font-size:13px;color:#166534;">Envía los 68 pases con teléfono uno tras otro en segundos sin que WhatsApp bloquee tu número por spam.</p>
+        <h3 style="margin:0;color:#14532d;">🚀 Envío Masivo por Buckets (Máx. 30 Contactos) y Lista de Difusión (Broadcast)</h3>
+        <p style="margin:4px 0 0;font-size:13px;color:#166534;">Divide tus invitados en bloques seguros de máximo 25–30 contactos para enviar por Lista de Difusión o Lote Automático sin bloqueo de spam.</p>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <button type="button" class="ui-btn green" onclick="abrirAsistenteMasivo()">⚡ Abrir Cola de Envío Masivo</button>
-        <button type="button" class="ui-btn" onclick="marcarTodosPendientes()">🔄 Reiniciar Checklist de Enviados</button>
+        <button type="button" class="ui-btn green" onclick="abrirAsistenteMasivo()">📦 Abrir Panel de Buckets (Máx. 30)</button>
+        <button type="button" class="ui-btn" onclick="marcarTodosPendientes()">🔄 Reiniciar Enviados</button>
       </div>
     </div>
 
-    <div id="panelMasivoBox" style="display:none;margin-top:16px;background:#fff;border-radius:16px;padding:20px;border:1px solid #86efac;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;">
+    <div id="panelMasivoBox" style="display:block;margin-top:16px;background:#fff;border-radius:16px;padding:20px;border:1px solid #86efac;">
+      <!-- BARRA SUPERIOR DE BUCKETS Y TAMAÑO -->
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-bottom:14px;border-bottom:1px solid #e2e8f0;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="font-size:12.5px;font-weight:700;color:#14532d;">1️⃣ Elige el Bucket (Bloque):</span>
+          <div id="bucketPillsContainer" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <label style="font-size:12px;font-weight:600;color:#475569;">Tamaño máx. por Bucket:</label>
+          <select id="bucketSizeSelect" onchange="cambiarTamanoBucket(this.value)" style="padding:6px 10px;border-radius:8px;border:1px solid #cbd5e1;font-size:12px;font-weight:700;">
+            <option value="25">25 contactos (Recomendado)</option>
+            <option value="30" selected>30 contactos (Máximo seguro)</option>
+            <option value="20">20 contactos</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px;">
+        <!-- COLUMNA IZQUIERDA: PLANTILLA CORTA CON MISA, BODA E INVITACIÓN -->
         <div>
-          <label style="font-size:12px;font-weight:700;color:#14532d;display:block;margin-bottom:6px;">1️⃣ Personaliza tu Plantilla de Mensaje:</label>
-          <textarea id="waTemplateInput" rows="7" style="width:100%;padding:10px;border-radius:10px;border:1px solid #cbd5e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;line-height:1.45;" oninput="actualizarColaMasiva()">¡Hola *{NOMBRE}*! 💍✨
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px;">
+            <label style="font-size:12.5px;font-weight:700;color:#14532d;">2️⃣ Mensaje Corto (con Misa, Boda e Invitación):</label>
+            <div style="display:flex;gap:6px;">
+              <button type="button" class="ui-btn" style="padding:4px 9px;font-size:11px;" onclick="usarPlantilla('individual')">🎟️ Corto con Pase</button>
+              <button type="button" class="ui-btn" style="padding:4px 9px;font-size:11px;" onclick="usarPlantilla('broadcast')">📢 Corto para Difusión General</button>
+            </div>
+          </div>
+          <textarea id="waTemplateInput" rows="7" style="width:100%;padding:10px;border-radius:10px;border:1px solid #cbd5e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;line-height:1.45;" oninput="actualizarColaMasiva()">¡Hola *{NOMBRE}*! 💍 Te compartimos nuestra invitación y tu pase (*16 Enero 2027*):
 
-Nos llena de alegría que nos acompañes a celebrar nuestra boda el próximo *16 de Enero de 2027*.
+💌 *Invitación:* https://bodajng0297.github.io/BodaSteffJorge/
+🎟️ *Tu Pase ({PERSONAS} · Mesa {MESA}):* {LINK}
+⛪ *Misa (6:00 PM):* Templo Nueva Galicia https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9
+🥂 *Boda (7:30 PM):* Quinta Agapantos https://maps.app.goo.gl/gf9h7gvR2p2orKZGA
 
-🎟️ Aquí tienes tu *Pase Digital Oficial* reservado para *{PERSONAS}* (Mesa / Grupo: *{MESA}*):
-{LINK}
+¡Los esperamos! *Estefanía & Jorge* ❤️</textarea>
 
-¡Te esperamos en Quinta Agapantos!
-Con cariño, *Estefanía & Jorge* ❤️</textarea>
-          <div style="font-size:11px;color:#64748b;margin-top:4px;">Variables automáticas: <code>{NOMBRE}</code>, <code>{PERSONAS}</code>, <code>{MESA}</code>, <code>{LINK}</code></div>
+          <!-- OPCIONES PARA LISTA DE DIFUSIÓN (BROADCAST) DE ESTE BUCKET -->
+          <div style="margin-top:12px;background:#f0fdf4;border:1px dashed #22c55e;border-radius:12px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:#14532d;margin-bottom:6px;">📢 Opción A: Enviar este Bucket como Lista de Difusión (1 solo mensaje a los 30):</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button type="button" class="ui-btn" style="font-size:11.5px;padding:7px 10px;background:#fff;" onclick="copiarTelefonosBucket()">📱 1. Copiar Teléfonos del Bucket</button>
+              <button type="button" class="ui-btn" style="font-size:11.5px;padding:7px 10px;background:#fff;" onclick="descargarVcfBucket()">📇 Descargar Contactos (.vcf)</button>
+              <button type="button" class="ui-btn green" style="font-size:11.5px;padding:7px 10px;" onclick="copiarMensajeBroadcast()">📋 2. Copiar Mensaje de Difusión</button>
+            </div>
+            <div style="font-size:11px;color:#166534;margin-top:6px;">
+              *En WhatsApp del celular: Menú → <strong>Nueva difusión</strong> → selecciona los contactos de este Bucket y pega el mensaje corto general.
+            </div>
+          </div>
         </div>
 
+        <!-- COLUMNA DERECHA: EJECUCIÓN DEL BUCKET SELECCIONADO -->
         <div style="display:flex;flex-direction:column;justify-content:space-between;background:#f8fafc;border-radius:14px;padding:16px;border:1px solid #e2e8f0;">
           <div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-              <span style="font-size:11.5px;font-weight:700;text-transform:uppercase;color:#15803d;">🎯 Siguiente Invitado en la Cola</span>
-              <span id="colaContadorBadge" style="font-size:12px;font-weight:700;background:#dcfce7;color:#166534;padding:3px 10px;border-radius:999px;">Pendientes: 68</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+              <span id="bucketTituloActual" style="font-size:12px;font-weight:700;text-transform:uppercase;color:#15803d;">📦 BUCKET #1 (MÁX. 30 CONTACTOS)</span>
+              <span id="colaContadorBadge" style="font-size:11.5px;font-weight:700;background:#dcfce7;color:#166534;padding:3px 10px;border-radius:999px;">Pendientes en Bucket: 0</span>
             </div>
-            <div id="colaNombreActual" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#1e293b;margin:4px 0;">-</div>
-            <div id="colaDetalleActual" style="font-size:12.5px;color:#475569;margin-bottom:10px;">-</div>
-            <div id="colaPreviewMsg" style="background:#e2f7cb;padding:10px 12px;border-radius:10px;font-size:11.5px;color:#1e293b;white-space:pre-wrap;max-height:125px;overflow-y:auto;border:1px solid #bbf7d0;"></div>
+
+            <div id="colaNombreActual" style="font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;color:#1e293b;margin:2px 0;">-</div>
+            <div id="colaDetalleActual" style="font-size:12px;color:#475569;margin-bottom:8px;">-</div>
+            <div id="colaPreviewMsg" style="background:#e2f7cb;padding:10px 12px;border-radius:10px;font-size:11.5px;color:#1e293b;white-space:pre-wrap;max-height:115px;overflow-y:auto;border:1px solid #bbf7d0;"></div>
+
+            <!-- LISTA COMPACTA DE LOS CONTACTOS DENTRO DE ESTE BUCKET -->
+            <div style="margin-top:10px;">
+              <div style="font-size:11px;font-weight:700;color:#475569;margin-bottom:4px;">👥 Contactos incluidos en este Bucket:</div>
+              <div id="bucketListaContactos" style="max-height:105px;overflow-y:auto;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:6px 8px;font-size:11.5px;"></div>
+            </div>
           </div>
 
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">
-            <button type="button" class="ui-btn green" style="flex:1;justify-content:center;padding:12px;font-size:13.5px;" onclick="dispararSiguienteMasivo()">
-              📲 Enviar a este Invitado y Pasar al Siguiente →
-            </button>
-            <button type="button" class="ui-btn" onclick="saltarInvitadoCola()">⏭️ Saltar</button>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button type="button" class="ui-btn green" style="flex:1;justify-content:center;padding:11px;font-size:13px;" onclick="dispararSiguienteMasivo()">
+                📲 Enviar Siguiente del Bucket →
+              </button>
+              <button type="button" class="ui-btn" style="padding:11px;" onclick="saltarInvitadoCola()">⏭️ Saltar</button>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button type="button" class="ui-btn gold" style="flex:1;justify-content:center;font-size:12px;" onclick="copiarPaqueteLinksBucket()">
+                📋 Copiar Lote de Links de este Bucket (Para enviar desde tu Celular)
+              </button>
+              <button type="button" class="ui-btn" style="font-size:12px;" onclick="marcarBucketComoEnviado()">
+                ✅ Marcar Bucket Enviado
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1459,6 +1511,12 @@ function agregarInvitadoPrivado() {
 }
 
 let colaSkipIds = {};
+let bucketActualIdx = 0;
+let tamanoMaxBucket = 30;
+
+const PLANTILLA_INDIVIDUAL = "¡Hola *{NOMBRE}*! 💍 Te compartimos nuestra invitación y tu pase (*16 Enero 2027*):\n\n💌 *Invitación:* https://bodajng0297.github.io/BodaSteffJorge/\n🎟️ *Tu Pase ({PERSONAS} · Mesa {MESA}):* {LINK}\n⛪ *Misa (6:00 PM):* Templo Nueva Galicia https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9\n🥂 *Boda (7:30 PM):* Quinta Agapantos https://maps.app.goo.gl/gf9h7gvR2p2orKZGA\n\n¡Los esperamos! *Estefanía & Jorge* ❤️";
+
+const PLANTILLA_BROADCAST = "¡Hola! 💍 Con mucha alegría les compartimos nuestra invitación y ubicaciones para nuestra boda (*16 Enero 2027*):\n\n💌 *Invitación y Pase QR:* https://bodajng0297.github.io/BodaSteffJorge/\n⛪ *Misa (6:00 PM):* Templo Nueva Galicia https://maps.app.goo.gl/5GqRkBGwsWq4Zejx9\n🥂 *Boda (7:30 PM):* Quinta Agapantos https://maps.app.goo.gl/gf9h7gvR2p2orKZGA\n\n*(Dentro de la invitación puedes escribir tu nombre para ver tu Pase QR y mesa asignada).* \n¡Los esperamos! *Estefanía & Jorge* ❤️";
 
 function abrirAsistenteMasivo() {
   const box = document.getElementById("panelMasivoBox");
@@ -1466,9 +1524,27 @@ function abrirAsistenteMasivo() {
   if (box.style.display === "block") actualizarColaMasiva();
 }
 
+function usarPlantilla(tipo) {
+  const el = document.getElementById("waTemplateInput");
+  if (!el) return;
+  el.value = (tipo === "broadcast") ? PLANTILLA_BROADCAST : PLANTILLA_INDIVIDUAL;
+  actualizarColaMasiva();
+}
+
+function cambiarTamanoBucket(val) {
+  tamanoMaxBucket = parseInt(val) || 30;
+  bucketActualIdx = 0;
+  actualizarColaMasiva();
+}
+
+function seleccionarBucket(idx) {
+  bucketActualIdx = idx;
+  actualizarColaMasiva();
+}
+
 function construirMensajePersonalizado(g) {
   const tplEl = document.getElementById("waTemplateInput");
-  const tpl = tplEl ? tplEl.value : "¡Hola *{NOMBRE}*! Aquí tienes tu pase para *{PERSONAS}* (Mesa: *{MESA}*): {LINK}";
+  const tpl = tplEl ? tplEl.value : PLANTILLA_INDIVIDUAL;
   const link = "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado=" + encodeURIComponent(g.nombre);
   const pTxt = g.personas + (parseInt(g.personas) === 1 ? " persona" : " personas");
   const mTxt = (g.mesa || "ASIGNADA").toUpperCase();
@@ -1479,47 +1555,89 @@ function construirMensajePersonalizado(g) {
     .replace(/\{LINK\}/g, link);
 }
 
-function obtenerColaPendientesConTelefono() {
+function obtenerTodosConTelefonoEnFiltro() {
   if (!PRIVATE_GUESTS) return [];
   const nov = document.getElementById("filterNovio").value;
   const mesa = document.getElementById("filterMesa").value;
   return PRIVATE_GUESTS.filter(g => {
     const hasT = g.telefono && g.telefono.replace(/\D/g, "").length >= 10;
     if (!hasT) return false;
-    if (WA_SENT[g.id] || colaSkipIds[g.id]) return false;
     if (nov !== "TODOS" && normalizar(g.familia) !== nov) return false;
     if (mesa !== "TODAS" && (g.mesa || "").trim().toUpperCase() !== mesa) return false;
     return true;
   });
 }
 
+function obtenerBucketsActuales() {
+  const todos = obtenerTodosConTelefonoEnFiltro();
+  const buckets = [];
+  for (let i = 0; i < todos.length; i += tamanoMaxBucket) {
+    buckets.push(todos.slice(i, i + tamanoMaxBucket));
+  }
+  if (buckets.length === 0) buckets.push([]);
+  if (bucketActualIdx >= buckets.length) bucketActualIdx = 0;
+  return buckets;
+}
+
 function actualizarColaMasiva() {
   if (!PRIVATE_GUESTS) return;
-  const pendientes = obtenerColaPendientesConTelefono();
-  document.getElementById("colaContadorBadge").innerText = "Pendientes en filtro: " + pendientes.length;
-  if (pendientes.length === 0) {
-    document.getElementById("colaNombreActual").innerText = "🎉 ¡Todos enviados en este filtro!";
-    document.getElementById("colaDetalleActual").innerText = "No quedan invitados pendientes con teléfono en la selección actual.";
+  const buckets = obtenerBucketsActuales();
+  const pillsBox = document.getElementById("bucketPillsContainer");
+  if (pillsBox) {
+    pillsBox.innerHTML = buckets.map((b, idx) => {
+      const startNum = idx * tamanoMaxBucket + 1;
+      const endNum = startNum + b.length - 1;
+      const pendCount = b.filter(g => !WA_SENT[g.id]).length;
+      const isAct = (idx === bucketActualIdx);
+      return '<button type="button" class="ui-btn ' + (isAct ? 'green' : '') + '" style="padding:5px 11px;font-size:11.5px;" onclick="seleccionarBucket(' + idx + ')">' +
+        '📦 Bucket ' + (idx + 1) + ' (' + (b.length ? (startNum + '–' + endNum) : '0') + ') · ' + pendCount + ' pend.' +
+      '</button>';
+    }).join("");
+  }
+
+  const bucketActual = buckets[bucketActualIdx] || [];
+  const pendientesBucket = bucketActual.filter(g => !WA_SENT[g.id] && !colaSkipIds[g.id]);
+
+  document.getElementById("bucketTituloActual").innerText = "📦 BUCKET #" + (bucketActualIdx + 1) + " (" + bucketActual.length + " CONTACTOS EN ESTE BLOQUE)";
+  document.getElementById("colaContadorBadge").innerText = "Pendientes en Bucket: " + pendientesBucket.length + " / " + bucketActual.length;
+
+  // Renderizar lista compacta del bucket
+  const listaEl = document.getElementById("bucketListaContactos");
+  if (listaEl) {
+    listaEl.innerHTML = bucketActual.map((g, i) => {
+      const env = !!WA_SENT[g.id];
+      return '<div style="display:flex;justify-content:space-between;padding:3px 2px;border-bottom:1px dashed #f1f5f9;' + (env ? 'color:#16a34a;text-decoration:line-through;' : '') + '">' +
+        '<span>' + (i + 1) + '. <strong>' + g.nombre + '</strong> (' + g.personas + 'p · ' + g.mesa + ')</span>' +
+        '<span>' + (env ? '✅ Enviado' : g.telefono) + '</span>' +
+      '</div>';
+    }).join("");
+  }
+
+  if (pendientesBucket.length === 0) {
+    document.getElementById("colaNombreActual").innerText = "🎉 ¡Bucket #" + (bucketActualIdx + 1) + " completado!";
+    document.getElementById("colaDetalleActual").innerText = "Selecciona el siguiente Bucket arriba o reinicia el checklist.";
     document.getElementById("colaPreviewMsg").innerText = "";
     return;
   }
-  const actual = pendientes[0];
+  const actual = pendientesBucket[0];
   document.getElementById("colaNombreActual").innerText = actual.nombre;
   document.getElementById("colaDetalleActual").innerText = "📱 Tel: " + actual.telefono + " · 🎟️ " + actual.personas + " pases · 🍽️ Mesa: " + actual.mesa + " (" + actual.familia + ")";
   document.getElementById("colaPreviewMsg").innerText = construirMensajePersonalizado(actual);
 }
 
 function dispararSiguienteMasivo() {
-  const pendientes = obtenerColaPendientesConTelefono();
+  const buckets = obtenerBucketsActuales();
+  const bucketActual = buckets[bucketActualIdx] || [];
+  const pendientes = bucketActual.filter(g => !WA_SENT[g.id] && !colaSkipIds[g.id]);
   if (pendientes.length === 0) {
-    alert("🎉 ¡Ya enviaste todos los pases pendientes de este filtro!");
+    alert("🎉 ¡Ya terminaste todos los contactos de este Bucket! Selecciona el siguiente Bucket arriba.");
     return;
   }
   const actual = pendientes[0];
   WA_SENT[actual.id] = true;
   guardarEstadoPrivado();
   actualizarResumenPrivado();
-  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+  renderizarTablaPrivada();
 
   const msg = construirMensajePersonalizado(actual);
   const cleanTel = (actual.telefono || "").replace(/\D/g, "");
@@ -1530,19 +1648,89 @@ function dispararSiguienteMasivo() {
 }
 
 function saltarInvitadoCola() {
-  const pendientes = obtenerColaPendientesConTelefono();
+  const buckets = obtenerBucketsActuales();
+  const bucketActual = buckets[bucketActualIdx] || [];
+  const pendientes = bucketActual.filter(g => !WA_SENT[g.id] && !colaSkipIds[g.id]);
   if (pendientes.length === 0) return;
   colaSkipIds[pendientes[0].id] = true;
   actualizarColaMasiva();
 }
 
+function copiarTelefonosBucket() {
+  const buckets = obtenerBucketsActuales();
+  const bucketActual = buckets[bucketActualIdx] || [];
+  if (bucketActual.length === 0) return;
+  const nums = bucketActual.map(g => {
+    const c = (g.telefono || "").replace(/\D/g, "");
+    return c.length === 10 ? ("+52" + c) : ("+" + c);
+  }).join(", ");
+  navigator.clipboard.writeText(nums);
+  alert("✅ Se copiaron los " + bucketActual.length + " números de teléfono del Bucket #" + (bucketActualIdx + 1) + " al portapapeles.");
+}
+
+function copiarMensajeBroadcast() {
+  navigator.clipboard.writeText(PLANTILLA_BROADCAST);
+  alert("✅ Se copió el Mensaje Corto General (con Misa, Boda e Invitación) listo para pegar en tu Lista de Difusión de WhatsApp.");
+}
+
+function descargarVcfBucket() {
+  const buckets = obtenerBucketsActuales();
+  const bucketActual = buckets[bucketActualIdx] || [];
+  if (bucketActual.length === 0) return;
+  const bNum = bucketActualIdx + 1;
+  const vcards = bucketActual.map(g => {
+    const c = (g.telefono || "").replace(/\D/g, "");
+    const tel = c.length === 10 ? ("+52" + c) : ("+" + c);
+    return [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      "FN:BodaB" + bNum + " - " + g.nombre,
+      "TEL;TYPE=CELL:" + tel,
+      "END:VCARD"
+    ].join("\r\n");
+  }).join("\r\n");
+
+  const blob = new Blob([vcards], { type: "text/vcard;charset=utf-8;" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "Contactos_Boda_Bucket_" + bNum + ".vcf";
+  a.click();
+}
+
+function copiarPaqueteLinksBucket() {
+  const buckets = obtenerBucketsActuales();
+  const bucketActual = buckets[bucketActualIdx] || [];
+  if (bucketActual.length === 0) return;
+  const bNum = bucketActualIdx + 1;
+  const lines = ["📦 *LOTE DE ENVÍO BUCKET #" + bNum + " (" + bucketActual.length + " INVITADOS)*\n*(Pega esta lista en tu propio chat de WhatsApp y solo toca cada link para enviar)*:\n"];
+  bucketActual.forEach((g, idx) => {
+    const msg = construirMensajePersonalizado(g);
+    const cleanTel = (g.telefono || "").replace(/\D/g, "");
+    const phoneFinal = cleanTel.length === 10 ? ("52" + cleanTel) : cleanTel;
+    const waUrl = "https://wa.me/" + phoneFinal + "?text=" + encodeURIComponent(msg);
+    lines.push((idx + 1) + ". *" + g.nombre + "* (" + g.personas + "p · " + g.mesa + "):\n" + waUrl + "\n");
+  });
+  navigator.clipboard.writeText(lines.join("\n"));
+  alert("✅ ¡Lote del Bucket #" + bNum + " copiado! Pégalo en tu conversación de WhatsApp contigo mismo o con Estefanía: así desde el celular solo tocas cada link y presionas Enviar.");
+}
+
+function marcarBucketComoEnviado() {
+  const buckets = obtenerBucketsActuales();
+  const bucketActual = buckets[bucketActualIdx] || [];
+  bucketActual.forEach(g => { WA_SENT[g.id] = true; });
+  guardarEstadoPrivado();
+  actualizarResumenPrivado();
+  renderizarTablaPrivada();
+  actualizarColaMasiva();
+}
+
 function marcarTodosPendientes() {
-  if (!confirm("¿Deseas reiniciar las casillas de 'Enviado' a 0 para volver a empezar la cola?")) return;
+  if (!confirm("¿Deseas reiniciar las casillas de 'Enviado' a 0?")) return;
   WA_SENT = {};
   colaSkipIds = {};
   guardarEstadoPrivado();
   actualizarResumenPrivado();
-  renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
+  renderizarTablaPrivada();
   actualizarColaMasiva();
 }
 
@@ -1555,9 +1743,7 @@ function enviarWhatsAppPrivado(id) {
   actualizarResumenPrivado();
   renderizarTablaPrivada(); if(typeof actualizarColaMasiva==="function") actualizarColaMasiva();
 
-  const link = "https://bodajng0297.github.io/BodaSteffJorge/invitado.html?invitado=" + encodeURIComponent(g.nombre);
-  const mesaNombre = (g.mesa || "").toUpperCase();
-  const msg = "¡Hola *" + g.nombre + "*! 💍✨\n\nNos llena de alegría que nos acompañes a celebrar nuestra boda el próximo *16 de Enero de 2027*.\n\n🎟️ Aquí tienes tu *Pase Digital Oficial* reservado para *" + g.personas + (g.personas === 1 ? " persona" : " personas") + "* (Mesa / Grupo: *" + mesaNombre + "*):\n" + link + "\n\n¡Te esperamos en Quinta Agapantos!\nCon cariño, *Estefanía & Jorge* ❤️";
+  const msg = construirMensajePersonalizado(g);
 
   const cleanTel = (g.telefono || "").replace(/\D/g, "");
   if (!cleanTel) {
@@ -1853,5 +2039,6 @@ document.getElementById("modal").onclick = () => {
 </script>
 </body>
 </html>
+
 
 
